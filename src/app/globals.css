@@ -25,7 +25,7 @@ body {
 .braking_img::before{
   content:'';
   position: absolute;
-  background-image: linear-gradient(rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.583));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.043),rgba(0, 0, 0, 0.751));
   width: 100%;
   height: 100%;
   bottom: 0;
