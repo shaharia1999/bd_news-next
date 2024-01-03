@@ -34,7 +34,7 @@ const Sideber = () => {
               <AiFillSafetyCertificate className="text-secondary  text-4xl font-medium " />
               <p className="text-[24px] font-bold lg:text-3xl text-shadow">
                 {" "}
-                Medi<span className=" text-secondary  ">Doc</span>
+                News<span className=" text-secondary  ">Bd</span>
               </p>
               <AiOutlineArrowLeft
                 className="bg-white md:block hidden text-secondary   w-8 h-8 cursor-pointer shadow-lg rounded-full absolute right-[-10px]"
@@ -106,8 +106,8 @@ const Sideber = () => {
           </div>
           <div className="absolute bottom-3  w-full flex justify-center">
             {hide ? (
-              <p className="text-16px   badge-secondary  w-auto  rounded-md  px-5 py-2 text-white ">
-                New appointment
+              <p className="text-16px font-semibold   badge-secondary  w-auto  rounded-md  px-10 py-2 text-white ">
+                Contact US
               </p>
             ) : (
               <li
