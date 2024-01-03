@@ -48,7 +48,7 @@ const Sideber = () => {
                 !responsive&& "justify-center"
               } gap-4 py-4 pt-10`}
             >
-              <GiHamburgerMenu
+              <AiFillSafetyCertificate 
                 className="text-secondary   text-3xl font-medium cursor-pointer "
                 // onClick={() => setHide((prev) => !prev)}
                 onClick={()=>dispatch(Res())}
