@@ -1,5 +1,4 @@
 'use client'
-
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { TiHome } from "react-icons/ti";
@@ -14,8 +13,6 @@ import { Res } from "./Redux/slice";
 const Sideber = () => {
   const dispatch = useDispatch()
   const responsive = useSelector((state) =>state.shaharia.value);
-
-
     return (
         <div className={`  lg:h-screen lg:sticky fixed top-0 left-0 z-50   dark:text-white  h-auto shadow-md`}
         onMouseEnter={()=>dispatch(Res())}
