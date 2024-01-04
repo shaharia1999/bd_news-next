@@ -29,7 +29,8 @@ const BreakingNews = () => {
             </article>
 
             {/* Sub Breaking News ********************************************************/}
-            <Marquee>
+            <Marquee
+            speed={50}>
             <div className="grid grid-cols-3 2xl:py-10 lg:py-3 lg:gap-4 gap-2 mt-2 lg:mt-0 px-2">
             <article className="bg-gradient-to-r   text-white relative 2xl:h-[250px] lg:h-[200px]">
                  <div className="m-0 p-0 w-full braking_img relative after:bg-slate-800 h-full">

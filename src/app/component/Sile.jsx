@@ -69,7 +69,7 @@ const Sideber = () => {
                 } gap-4 py-4`}
               >
                 <CgProfile className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px">Patient Profile </p>}
+                {responsive&& <p className="text-16px">Politics </p>}
               </li>
 
               <li
@@ -78,7 +78,7 @@ const Sideber = () => {
                 } gap-4 py-4`}
               >
                 <RiProfileFill className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px ">Appointments</p>}
+                {responsive&& <p className="text-16px ">Sports</p>}
               </li>
               <li
                 className={`flex  items-center ${
@@ -87,7 +87,7 @@ const Sideber = () => {
               >
                 <FaHistory className=" text-3xl font-medium " />
 
-                {responsive&& <p className="text-16px">Medical History</p>}
+                {responsive&& <p className="text-16px">Magazine</p>}
               </li>
               <li
                 className={`flex  items-center ${
@@ -95,7 +95,15 @@ const Sideber = () => {
                 } gap-4 py-4`}
               >
                 <IoSettingsSharp className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px ">Settings</p>}
+                {responsive&& <p className="text-16px ">Education</p>}
+              </li>
+              <li
+                className={`flex  items-center ${
+                  !responsive&& "justify-center"
+                } gap-4 py-4`}
+              >
+                <IoSettingsSharp className=" text-3xl font-medium " />
+                {responsive&& <p className="text-16px ">Blog</p>}
               </li>
             </ul>
           </div>

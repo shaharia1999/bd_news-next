@@ -15,7 +15,7 @@ const Blog = () => {
       
             <div className=" lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3 ... ">
                 <div className=" w-full" >
-            <Image src={ronaldo} alt="sports" className="w-full 2xl:h-80 md:h-52"  />
+            <Image src={ronaldo} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
                Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
@@ -32,7 +32,7 @@ const Blog = () => {
               </div>
               </div>
                 <div>
-            <Image src={messi} alt="sports" className="w-full 2xl:h-80 md:h-52"  />
+            <Image src={messi} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
                Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
@@ -52,7 +52,7 @@ const Blog = () => {
             
             <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3 ... ">
                 <div>
-            <Image src={sakib} alt="sports" className="w-full 2xl:h-80 md:h-52"  />
+            <Image src={sakib} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold  text-[12px] lg:text-[16px] ">
                Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
@@ -68,7 +68,7 @@ const Blog = () => {
               </div>
               </div>
                 <div>
-            <Image src={nymer} alt="sports" className="w-full 2xl:h-80 md:h-52"  />
+            <Image src={nymer} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold  text-[12px] lg:text-[16px] ">
                Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
