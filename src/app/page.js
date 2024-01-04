@@ -8,7 +8,7 @@ import Magazine from './component/Magazine';
 import Sports from './component/Sports';
 export default function Home() {
   return (
- <div className=" w-full">
+ <div className="w-full">
       <BreakingNews></BreakingNews>
       <HomeNews ></HomeNews>
       <Sports></Sports>

@@ -10,6 +10,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Res } from "./Redux/slice";
+import Link from "next/link";
 const Sideber = () => {
   const dispatch = useDispatch()
   const responsive = useSelector((state) =>state.shaharia.value);
@@ -60,16 +61,16 @@ const Sideber = () => {
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <TiHome className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px  ">Home</p>}
+                <Link href='/'><TiHome className=" text-3xl font-medium " /></Link> 
+                {responsive&& <Link href='/'><p className="text-16px ">Home </p></Link>}
               </li>
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <CgProfile className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px">Politics </p>}
+              <Link href='/Politics'><CgProfile className=" text-3xl font-medium " /></Link> 
+                {responsive&& <p className="text-16px"><Link href='/Politics'>Politics </Link></p>}
               </li>
 
               <li
@@ -77,33 +78,34 @@ const Sideber = () => {
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <RiProfileFill className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px ">Sports</p>}
+                  <Link href='/Sports'><RiProfileFill className=" text-3xl font-medium " /></Link> 
+                  {responsive&& <p className="text-16px"><Link href='/Sports'>Sports </Link></p>}
               </li>
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <FaHistory className=" text-3xl font-medium " />
-
-                {responsive&& <p className="text-16px">Magazine</p>}
+              
+                <Link href='/Magazine'>  <FaHistory className=" text-3xl font-medium " /></Link> 
+                  {responsive&& <p className="text-16px"><Link href='/Sports'>Magazine</Link></p>}
               </li>
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <IoSettingsSharp className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px ">Education</p>}
+                
+                  <Link href='/Education'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
+                  {responsive&& <p className="text-16px"><Link href='/Sports'>Education</Link></p>}
               </li>
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
                 } gap-4 py-4`}
               >
-                <IoSettingsSharp className=" text-3xl font-medium " />
-                {responsive&& <p className="text-16px ">Blog</p>}
+                  <Link href='/Blog'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
+                  {responsive&& <p className="text-16px"><Link href='/Sports'>Blog</Link></p>}
               </li>
             </ul>
           </div>
