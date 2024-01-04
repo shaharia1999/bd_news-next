@@ -88,7 +88,7 @@ const Sideber = () => {
               >
               
                 <Link href='/Magazine'>  <FaHistory className=" text-3xl font-medium " /></Link> 
-                  {responsive&& <p className="text-16px"><Link href='/Sports'>Magazine</Link></p>}
+                  {responsive&& <p className="text-16px"><Link href='/Magazine'>Magazine</Link></p>}
               </li>
               <li
                 className={`flex  items-center ${
@@ -97,7 +97,7 @@ const Sideber = () => {
               >
                 
                   <Link href='/Education'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
-                  {responsive&& <p className="text-16px"><Link href='/Sports'>Education</Link></p>}
+                  {responsive&& <p className="text-16px"><Link href='/Education'>Education</Link></p>}
               </li>
               <li
                 className={`flex  items-center ${
@@ -105,7 +105,7 @@ const Sideber = () => {
                 } gap-4 py-4`}
               >
                   <Link href='/Blog'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
-                  {responsive&& <p className="text-16px"><Link href='/Sports'>Blog</Link></p>}
+                  {responsive&& <p className="text-16px"><Link href='/Blog'>Blog</Link></p>}
               </li>
             </ul>
           </div>
@@ -118,7 +118,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 `}
               >
                 <div className="h-12 w-12 badge-secondary  flex items-center justify-center rounded-3xl">
                   <FaPlus className=" text-3xl font-medium w-8 h-8 rounded-full  text-white " />
