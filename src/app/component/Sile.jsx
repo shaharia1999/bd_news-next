@@ -44,7 +44,7 @@ const Sideber = () => {
             <li
               className={`flex  items-center pt-20 ${
                 !responsive&& "justify-center"
-              } gap-4 py-4 pt-10`}
+              } gap-4 py-2 pt-10`}
             >
               <AiFillSafetyCertificate 
                 className="text-secondary   text-3xl font-medium cursor-pointer "
@@ -59,7 +59,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
                 <Link href='/'><TiHome className=" text-3xl font-medium " /></Link> 
                 {responsive&& <Link href='/'><p className="text-16px ">Home </p></Link>}
@@ -67,7 +67,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
               <Link href='/Politics'><CgProfile className=" text-3xl font-medium " /></Link> 
                 {responsive&& <p className="text-16px"><Link href='/Politics'>Politics </Link></p>}
@@ -76,7 +76,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
                   <Link href='/Sports'><RiProfileFill className=" text-3xl font-medium " /></Link> 
                   {responsive&& <p className="text-16px"><Link href='/Sports'>Sports </Link></p>}
@@ -84,7 +84,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
               
                 <Link href='/Magazine'>  <FaHistory className=" text-3xl font-medium " /></Link> 
@@ -93,7 +93,7 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
                 
                   <Link href='/Education'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
@@ -102,10 +102,18 @@ const Sideber = () => {
               <li
                 className={`flex  items-center ${
                   !responsive&& "justify-center"
-                } gap-4 py-4`}
+                } gap-4 py-2`}
               >
                   <Link href='/Blog'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
                   {responsive&& <p className="text-16px"><Link href='/Blog'>Blog</Link></p>}
+              </li>
+              <li
+                className={`flex  items-center ${
+                  !responsive&& "justify-center"
+                } gap-4 py-2`}
+              >
+                  <Link href='/Poem'><IoSettingsSharp className=" text-3xl font-medium " /></Link> 
+                  {responsive&& <p className="text-16px"><Link href='/Poem'>Poem</Link></p>}
               </li>
             </ul>
           </div>

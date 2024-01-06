@@ -5,9 +5,14 @@ import messi from '@/app/Img/messi.jpg'
 import nymer from '@/app/Img/ny.jpg'
 import sakib from '@/app/Img/sakib.jpg'
 
-const PoliticBraking = () => {
+const International = () => {
     return (
+        <div>
+            <div className='py-3 flex items-center'><p className='w-3 h-6 badge-secondary mr-2'>
+        </p><p className="text-3xl font-bold">International</p>
+       </div>
         <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5">
+           
         <div className=" lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3 ... ">
             <div className=" w-full" >
         <Image src={ronaldo} alt="sports" className="w-full 2xl:h-80 lg:h-52"  />
@@ -86,7 +91,8 @@ const PoliticBraking = () => {
           </div>
         </div>
         </div>
+        </div>
     );
 };
 
-export default PoliticBraking;
+export default International;
