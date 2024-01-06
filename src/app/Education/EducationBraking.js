@@ -1,5 +1,4 @@
 
-
 const Banner='/gaza.jpg'
 const japan='/japan.jpg'
 const Prime='/prime.jpg'
@@ -13,7 +12,7 @@ import Image from 'next/image';
 const EducationBraking = () => {
     return (
         <div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid lg:grid-cols-2 gap-2">
         {/* main Breaking News ********************************************************/}
         <article className="bg-gradient-to-r   text-white relative ">
              <div className="m-0 p-0 w-full braking_img relative after:bg-slate-800">
@@ -40,7 +39,7 @@ const EducationBraking = () => {
 
       </div>
      
-            <div className="grid grid-cols-4 2xl:py-10 lg:py-3 lg:gap-4 gap-2 mt-2 lg:mt-0 px-2">
+            <div className="grid lg:grid-cols-4 grid-cols-2 2xl:py-10 lg:py-3 lg:gap-4 gap-2 mt-2 lg:mt-0 px-2">
             <article className="bg-gradient-to-r   text-white relative 2xl:h-[250px] lg:h-[200px]">
                  <div className="m-0 p-0 w-full braking_img relative after:bg-slate-800 h-full">
                  <Image  width={500} height={500}  className="lg:h-[100%] h-[160px] w-[100%] "  alt="doctor" src={Prime}/>

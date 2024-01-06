@@ -14,13 +14,13 @@ const img6='/5.jpg'
 const BlogHome = () => {
     return (
         <div>
-              <div className="flex">
+              <div className="lg:flex">
         <div className="Magazine">
             <div>
         <Image src={sports} alt="sports" className="w-full h-[500px]"  />
         </div>
         </div> 
-        <div className="w-[50%]">
+        <div className="lg:w-[50%]">
         <div className="flex px-5 pb-3  flex-col w-full ">
                 <a href='#' className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold ">Powerful quake in Japan tears down homes and triggers tsunami warnings</a>
                 <p className="mt-3">magnitude earthquake in Japan has caused homes to collapse, ripped up roads and triggered tsunami warnings for coastal areas
