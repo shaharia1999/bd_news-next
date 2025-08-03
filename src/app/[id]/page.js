@@ -25,13 +25,13 @@ const page = () => {
                         </div>
                         <p>Thousands of passengers face flight cancellations after major US airlines grounded dozens of Boeing jets after a mid-flight blowout over Oregon.
 
-                            The US aviation regulator said 171 Boeing 737 Max 9s must be grounded for checks after part of an Alaska Airlines plane's fuselage fell off on Friday.
+                            The US aviation regulator said 171 Boeing 737 Max 9s must be grounded for checks after part of an Alaska Airlines plane fuselage fell off on Friday.
 
                             Alaska said flight disruptions are expected to last into next week. United Airlines has grounded 79 planes.
 
                             Disruptions are likely to primarily affect flights in the US.
 
-                            It follows regulator the Federal Aviation Administration (FAA) ordering "immediate inspections" of 737 Max 9s worldwide.
+                            It follows regulator the Federal Aviation Administration (FAA) orderingimmediate inspectio of 737 Max 9s worldwide.
 
                             Required inspections would take around four to eight hours per aircraft, it said.
 
@@ -39,7 +39,7 @@ const page = () => {
 
                             EASA said it believes no European airlines operate Max 9s with the configuration covered by the FAA order.
 
-                            One of the world's largest intercontinental airports, London Heathrow, said there was no impact on flights.
+                            One of the world largest intercontinental airports, London Heathrow, said there was no impact on flights.
 
                             The bulk of the affected planes are owned by US airlines. United Airlines has grounded all 79 of its Max 9 planes.
 
@@ -47,15 +47,15 @@ const page = () => {
 
                             Other airlines which also fly the planes have temporarily taken them out of service.
 
-                            Boeing said it welcomed the FAA's decision, adding its teams were in close contact with the regulator.
+                            Boeing said it welcomed the FAA decision, adding its teams were in close contact with the regulator.
 
-                            During Friday's incident, Alaska Airlines flight 1282 from Portland, Oregon, to Ontario, California, reached 16,000ft (4,876m) when it began an emergency descent, according to flight tracking data.
+                            During Friday incident, Alaska Airlines flight 1282 from Portland, Oregon, to Ontario, California, reached 16,000ft (4,876m) when it began an emergency descent, according to flight tracking data.
 
-                            Passengers on board said a large section of the plane's outer shell fell to the ground shortly after take-off.
+                            Passengers on board said a large section of the plane outer shell fell to the ground shortly after take-off.
 
                             Images sent to news outlets show the night sky and lights of Portland visible through the gap in the fuselage, with insulation material and other debris also seen.
 
-                            One passenger said the gap was "as wide as a refrigerator" while another said a child's shirt was ripped off in the wind as the plane made its emergency landing.
+                            One passenger said the gap was as wide as a refrigerator while another said a child shirt was ripped off in the wind as the plane made its emergency landing.
 
                         </p>
                     </article>
@@ -67,7 +67,7 @@ const page = () => {
             <Image src={ronaldo} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
-               Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+               Unprecedented Colorado ruling puts courts at the center of Trump fate next year
                </a></div>
              
               <div className='flex justify-between'>
@@ -81,7 +81,7 @@ const page = () => {
             <Image src={messi} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
-               Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+               Unprecedented Colorado ruling puts courts at the center  fate next year
                </a></div>
              
               <div className='flex justify-between'>
@@ -95,7 +95,7 @@ const page = () => {
             <Image src={messi} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
-               Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+               Unprecedented Colorado ruling puts courts at the center of Trump fate next year
                </a></div>
              
               <div className='flex justify-between'>
@@ -109,7 +109,7 @@ const page = () => {
             <Image src={messi} alt="sports" className="w-full 2xl:h-80 md:h-52 h-72"  />
             <div className="py-2 px-1">
                <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" lg:font-semibold font-bold text-[12px] lg:text-[16px] ">
-               Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+               Unprecedented Colorado ruling puts courts at the center of Trump fate next year
                </a></div>
              
               <div className='flex justify-between'>
@@ -137,7 +137,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]'>
             Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
@@ -157,7 +157,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]'>
             Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
@@ -178,7 +178,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]'>
             Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
@@ -198,7 +198,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]'>
             Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
@@ -218,7 +218,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]  justify-center'>
           Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
@@ -238,7 +238,7 @@ const page = () => {
          height={500} alt="img" className='2xl:h-96 md:h-60 w-full' /></figure>
         <div className="py-2 px-1">
           <div className='lg:leading-6 2xl:leading-5'> <a href='#' className=" font-bold text-[12px] lg:text-[20px] ">
-          Unprecedented Colorado ruling puts courts at the center of Trump’s fate next year
+          Unprecedented Colorado ruling puts courts at the center of Trump fate next year
           </a></div>
           <p className='2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]'>
             Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city of Belgorod, where 25 people were killed on Saturday, Russian officials say the border city 
