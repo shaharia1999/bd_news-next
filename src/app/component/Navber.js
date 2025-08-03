@@ -1,5 +1,6 @@
 
 import Image from 'next/image'
+import ResponsiveButton from './ResponsiveButton';
 // import ResponsiveButton from './responsiveButton';
 const dark = '/Toggle button.png'
 const Navber = () => {
