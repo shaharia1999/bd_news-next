@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import sakib from '@/app/Img/h6.jpg'
+// import sakib from '@/app/Img/h6.jpg'
 import ronaldo from '@/app/Img/h2.jpg'
 import messi from '@/app/Img/h3.jpg'
-import nymer from '@/app/Img/h5.jpg'
+// import nymer from '@/app/Img/h5.jpg'
 const img='/younus.jpg'
 const img1='/2.jpg'
 const img3='/1.jpg'
