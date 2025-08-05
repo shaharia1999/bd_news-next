@@ -1,9 +1,9 @@
 import Image from "next/image";
-import sports from '@/app/Img/h1.jpg'
-import ronaldo from '@/app/Img/h2.jpg'
-import messi from '@/app/Img/h3.jpg'
-import nymer from '@/app/Img/h5.jpg'
-import sakib from '@/app/Img/h6.jpg'
+import sports from '../Img/h1.jpg'
+import ronaldo from '../Img/h2.jpg'
+import messi from '../Img/h3.jpg'
+import nymer from '../Img/h5.jpg'
+import sakib from '../Img/h6.jpg'
 
 const PoliticBengali = () => {
     return (

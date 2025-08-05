@@ -1,9 +1,9 @@
 import Image from "next/image";
-import sports from '@/app/Img/sports1.jpg'
-import ronaldo from '@/app/Img/ronaldo.jpg'
-import messi from '@/app/Img/messi.jpg'
-import nymer from '@/app/Img/ny.jpg'
-import sakib from '@/app/Img/sakib.jpg'
+import sports from '../Img/sports1.jpg'
+import ronaldo from '../Img/ronaldo.jpg'
+import messi from '../Img/messi.jpg'
+import nymer from '../Img/ny.jpg'
+import sakib from '../Img/sakib.jpg'
 
 const PoliticBraking = () => {
     return (

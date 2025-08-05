@@ -14,7 +14,7 @@ interface News {
 
 export default async function BreakingNews() {
   const news = await serverFetchData<News[]>(
-    'news?sortBy=createdAt&sortOrder=desc&limit=10&page=1',
+    'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=10&page=1',
     'no-store'
   );
 
@@ -51,12 +51,12 @@ export default async function BreakingNews() {
                 >
                   {bannerNews.title}
                 </a>
-                <p
+                {/* <p
                   className="mt-3 text-sm"
                   dangerouslySetInnerHTML={{
                     __html: truncate(bannerNews.description, 200),
                   }}
-                />
+                /> */}
               </div>
             </article>
           )}
@@ -77,19 +77,19 @@ export default async function BreakingNews() {
                       style={{ objectFit: 'cover' }}
                     />
                   </div>
-                  <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full bg-gradient-to-t from-black/60 to-transparent">
+                  <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full bg-gradient-to-t from-black/80 to-transparent">
                     <a
                       href={`/news/${item.slug}`}
                       className="text-[16px] 2xl:text-[18px] font-bold hover:text-gray-200"
                     >
                       {item.title}
                     </a>
-                    <p
+                    {/* <p
                       className="text-xs mt-1"
                       dangerouslySetInnerHTML={{
                         __html: truncate(item.description, 200),
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
               ))}

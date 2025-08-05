@@ -5,6 +5,9 @@ import Magazine from "./component/Magazine";
 import Education from "./component/Education";
 import Blog from "./component/Blog";
 import { serverFetchData } from "./lib/serverFetch";
+// import { Suspense } from "react";
+// import BreakingNewsSkeleton from "./component/BreakingNewsSkeleton"; // Make sure this file exists
+
 
 
 export async function generateMetadata() {
