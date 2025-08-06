@@ -12,12 +12,18 @@ interface News {
   createdAt: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
 export default async function Magazine() {
   // const news = await serverFetchData<News[]>(
   //   'news?category=Magazine&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
   //   'no-store'
   // );
- const news = await serverFetchData<News[]>(
+ const {news} = await serverFetchData<NewsApiResponse>(
     'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );

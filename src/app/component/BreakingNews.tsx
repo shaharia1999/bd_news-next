@@ -12,12 +12,20 @@ interface News {
   mainImage: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
+
+
 export default async function BreakingNews() {
-  const news = await serverFetchData<News[]>(
+  const {news }= await serverFetchData<NewsApiResponse>(
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=10&page=1',
     'no-store'
   );
-
+  console.log('Breaking news data:', news);
   if (!news || news.length === 0) return null;
 
   const bannerNews = news[0];

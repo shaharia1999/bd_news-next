@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { serverFetchData } from "../../lib/serverFetch";
 import { RenderHTMLWithImagesServer } from "../HTMLWithImagesServer";
-// import { serverFetchData } from "../../../lib/serverFetch";
 
 interface NewsItem {
   _id: string;
@@ -12,71 +11,47 @@ interface NewsItem {
   mainImage: string;
   category: string;
   createdAt: string;
-    images?: string[];
+  images?: string[];
+}
+interface News {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  mainImage: string;
+  category: string;
+  createdAt: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
 interface Params {
   params: {
     slug: string;
   };
 }
-function RenderDescriptionWithImages({
-  description,
-  images = [],
-}: {
-  description: string;
-  images?: string[];
-}) {
-  const cleanText = description.replace(/<[^>]*>?/gm, ''); // Remove all HTML tags
-  const words = cleanText.trim().split(/\s+/); // Split into words
-  const chunks: string[] = [];
 
-  for (let i = 0; i < words.length; i += 100) {
-    chunks.push(words.slice(i, i + 100).join(' '));
-  }
-
-  return (
-    <div className="prose max-w-none">
-      {chunks.map((chunk, index) => (
-        <div key={index} className="mb-6">
-          <p>{chunk}</p>
-          {images[index] && (
-            <div className="my-4">
-              <Image
-                src={images[index]}
-                alt={`Post image ${index + 1}`}
-                width={800}
-                height={450}
-                className="rounded-md w-full object-cover"
-              />
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
-export default async function page({ params }: Params) {
+export default async function Page({ params }: Params) {
   const { slug } = params;
 
-  // Fetch the main post by slug
-  const [post] = await serverFetchData<NewsItem[]>(
-    `news?slug=${slug}`,
-    "no-store"
-  );
-
+  // ✅ Fetch single post by slug
+  const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(`news/${slug}`, "no-store");
+  const post = await response?.data;
+//  console.log(post)
   if (!post) {
     return <p className="p-4">Post not found</p>;
   }
 
-  // Fetch related posts by same category, excluding current post by slug or _id
-  const relatedPosts = await serverFetchData<NewsItem[]>(
+   // Fetch related posts by same category, excluding current post by slug or _id
+  const {news} = await serverFetchData<NewsApiResponse>(
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
     "no-store"
   );
-
+console.log(news)
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("en-GB");
 
@@ -100,14 +75,10 @@ export default async function page({ params }: Params) {
               <p>{formatDate(post.createdAt)}</p>
             </div>
             <div className="prose max-w-none">
-              {/* {post.description && (
-                <div dangerouslySetInnerHTML={{ __html: post.description }} />
-              ) } */}
-          <RenderHTMLWithImagesServer
-  description={post.description}
-  images={post.images}
-/>
-
+              <RenderHTMLWithImagesServer
+                description={post.description}
+                images={post.images}
+              />
             </div>
           </article>
         </div>
@@ -118,8 +89,8 @@ export default async function page({ params }: Params) {
             More in {post.category}
           </h2>
 
-          {relatedPosts && relatedPosts.length > 0 ? (
-            relatedPosts.map((item) => (
+          {news && news.length > 0 ? (
+            news.map((item) => (
               <Link
                 key={item._id}
                 href={`/news/${item.slug}`}
@@ -150,3 +121,4 @@ export default async function page({ params }: Params) {
     </div>
   );
 }
+

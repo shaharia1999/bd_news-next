@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { serverFetchData } from "../lib/serverFetch";
 
-interface BlogPost {
+interface News {
   _id: string;
   title: string;
   description: string;
@@ -12,12 +12,19 @@ interface BlogPost {
   createdAt: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  blogPosts: News[];
+}
+
 export default async function Blog() {
   // const blogPosts = await serverFetchData<BlogPost[]>(
   //   "news?category=Blog&sortBy=createdAt&sortOrder=desc&limit=6&page=1",
   //   "no-store"
   // );
- const blogPosts = await serverFetchData<BlogPost[]>(
+ const {blogPosts} = await serverFetchData<NewsApiResponse>(
     'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );

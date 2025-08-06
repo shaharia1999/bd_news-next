@@ -12,8 +12,15 @@ interface News {
   createdAt: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
+
 export default async function HomeNews() {
-  const news = await serverFetchData<News[]>(
+  const {news }= await serverFetchData<NewsApiResponse>(
     'news?sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );
@@ -30,13 +37,13 @@ export default async function HomeNews() {
         <p className="text-3xl font-bold">News</p>
       </div>
       <div className="All-News grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
-        {news.map((item) => (
+        {news?.map((item) => (
           <article key={item._id}>
             <div className="car bg-base-100  2xl:h-auto">
               <figure className="relative w-full 2xl:h-96 md:h-60 aspect-[4/3]">
                 <Image
-                  src={item.mainImage}
-                  alt={item.title}
+                  src={item?.mainImage}
+                  alt={item?.title}
                   fill
                   sizes="(min-width: 1536px) 500px, (min-width: 768px) 400px, 300px"
                   style={{ objectFit: 'cover' }}
@@ -45,16 +52,16 @@ export default async function HomeNews() {
               <div className="py-2 px-1">
                 <div className="lg:leading-6 2xl:leading-5">
                   <a
-                    href={`/news/${item.slug}`}
+                    href={`/news/${item?.slug}`}
                     className="font-bold text-[12px] lg:text-[20px] hover:text-primary"
                   >
-                    {item.title}
+                    {item?.title}
                   </a>
                 </div>
                 <p
                   className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]"
                   dangerouslySetInnerHTML={{
-                    __html: truncate(item.description, 200),
+                    __html: truncate(item?.description, 200),
                   }}
                 />
                 <div className="flex justify-between">

@@ -12,8 +12,15 @@ interface News {
   createdAt: string;
 }
 
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
+
 export default async function Sports() {
-  const news = await serverFetchData<News[]>(
+  const {news} = await serverFetchData<NewsApiResponse>(
     'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );
@@ -45,7 +52,7 @@ export default async function Sports() {
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
                   src={item.mainImage}
-                  alt={item.title}
+                  alt={item?.title}
                   fill
                   style={{ objectFit: 'cover' }}
                 />
@@ -72,7 +79,8 @@ export default async function Sports() {
         </div>
 
         {/* Main Center Column */}
-        <div className="lg:col-span-4 md:col-span-4">
+        {
+          mainNews &&     <div className="lg:col-span-4 md:col-span-4">
           <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
             <Image
               src={mainNews.mainImage}
@@ -83,26 +91,27 @@ export default async function Sports() {
           </div>
           <div className="py-2 px-1">
             <Link
-              href={`/news/${mainNews.slug}`}
+              href={`/news/${mainNews?.slug}`}
               className="lg:font-semibold font-bold text-[12px] lg:text-[20px] block lg:leading-6 2xl:leading-5"
             >
-              {truncate(mainNews.title, 100)}
+              {truncate(mainNews?.title, 100)}
             </Link>
             <p className="2xl:mt-3 mt-1 text-[12px] lg:text-[14px] lg:leading-5 2xl:leading-4">
-              {truncate(mainNews.description.replace(/<[^>]+>/g, ''), 300)}
+              {truncate(mainNews?.description.replace(/<[^>]+>/g, ''), 300)}
             </p>
             <div className="flex justify-between text-sm">
               <div className="mt-4 flex items-center">
                 <p className="w-1 h-5 badge-secondary mr-2"></p>
-                {mainNews.category}
+                {mainNews?.category}
               </div>
               <div className="mt-4 flex items-center">
-                {formatDate(mainNews.createdAt)}
+                {formatDate(mainNews?.createdAt)}
               </div>
             </div>
           </div>
         </div>
-
+        }
+    
         {/* Right Column */}
         <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
           {rightNews.map((item) => (

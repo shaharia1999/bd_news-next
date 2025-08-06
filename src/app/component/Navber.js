@@ -8,7 +8,7 @@ const Navber = () => {
         <div>
          <div className="flex fixed w-full justify-between items-center z-50  bg-[#121D45] shadow-sm shadow-buttom   dark:md:bg-[#150A09] px-2 py-2 ">
           <div className="flex justify-center items-center ">
-          <ResponsiveButton/>
+          {/* <ResponsiveButton/> */}
           <p className="text-[24px] text-white">News</p></div>
           <div className="flex justify-center gap-3 ">
             <div className="flex justify-center items-center">
