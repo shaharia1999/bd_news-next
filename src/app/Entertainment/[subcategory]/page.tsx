@@ -3,7 +3,6 @@ import { subCategoriesMap } from '../../lib/subCategories';
 import { serverFetchData } from '../../lib/serverFetch';
 import Link from 'next/link';
 import Image from 'next/image';
-import { RenderHTMLWithImagesServer } from '../../news/HTMLWithImagesServer';
 
 interface NewsItem {
   _id: string;
@@ -25,7 +24,7 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
   const { subcategory } = params;
   const currentPage = parseInt(searchParams?.page || '1', 10);
 
-  const validSubs = subCategoriesMap['Politics'].map((s) => s.toLowerCase());
+  const validSubs = subCategoriesMap['Sports'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
@@ -81,16 +80,12 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
                 {/* <p className="mt-3 text-sm hidden lg:block">
                   {truncate(item.description, 150)}
                 </p> */}
-                 {/* <p
+                 <p
                   className="mt-3 text-sm"
                   dangerouslySetInnerHTML={{
                     __html: truncate(item.description, 200),
                   }}
-                /> */}
-                 <RenderHTMLWithImagesServer
-                description={item.description}
-                // images={post.images}
-              />
+                />
               </div>
             </article>
           </Link>

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <Navber ></Navber>
         </div>
         <div className='flex '>
-        <Sideber className=''></Sideber>
+        {/* <Sideber className=''></Sideber> */}
         <QueryProvider>   
                {children}
                </QueryProvider>
