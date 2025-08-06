@@ -10,6 +10,10 @@ interface News {
   mainImage: string;
   category: string;
   createdAt: string;
+  images?: string[];
+  visitCount?: number |string;
+  author?:string;
+  source?: string;
 }
 
 interface NewsApiResponse {

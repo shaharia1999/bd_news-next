@@ -10,6 +10,10 @@ interface News {
   mainImage: string;
   category: string;
   createdAt: string;
+  images?: string[];
+  visitCount?: number |string;
+  author?:string;
+  source?: string;
 }
 
 interface NewsApiResponse {
@@ -58,6 +62,15 @@ export default async function HomeNews() {
                     {item?.title}
                   </a>
                 </div>
+                <div className='flex justify-between'>
+                  <p className="text-[10px] lg:text-[10px] text-gray-400">
+                    {item?.author ? `Author: ${item.author}` : ''}
+                  </p>
+                  <p className="text-[10px] lg:text-[10px]  text-gray-400">
+                    {item?.source ? `Source: ${item.source}` : ''}
+                  </p>
+                </div>
+           
                 <p
                   className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]"
                   dangerouslySetInnerHTML={{

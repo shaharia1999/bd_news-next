@@ -1,0 +1,160 @@
+import { notFound } from 'next/navigation';
+import { subCategoriesMap } from '../../lib/subCategories';
+import { serverFetchData } from '../../lib/serverFetch';
+import Link from 'next/link';
+import Image from 'next/image';
+
+interface NewsItem {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  mainImage: string;
+  createdAt: string;
+  visitCount?: number | string;
+  author?: string;
+  source?: string;
+}
+interface PageProps {
+  params: { subcategory: string };
+  searchParams?: { page?: string };
+}
+
+export default async function SubCategoryPage({ params, searchParams }: PageProps) {
+  const { subcategory } = params;
+  const currentPage = parseInt(searchParams?.page || '1', 10);
+
+  const validSubs = subCategoriesMap['Politics'].map((s) => s.toLowerCase());
+
+  if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
+
+  const res = await serverFetchData<{
+    news: NewsItem[];
+    pages: number;
+  }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`, 'no-store'); // Increased limit to 12 for the layout
+
+  const news = res?.news || [];
+  const totalPages = res?.pages || 1;
+
+  // Pagination logic: show max 10 pages with arrows
+  const pageRange = 10;
+  let startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
+  let endPage = startPage + pageRange - 1;
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, endPage - pageRange + 1);
+  }
+
+  const pagesToShow = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+   const truncate = (text: string, maxLength: number) =>
+    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+
+  // Slice the first two items for the main breaking news section
+  const mainBreakingNews = news.slice(0, 2);
+  const otherNews = news.slice(2);
+
+  return (
+    <div className="px-5 py-10  w-full">
+      <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory} News</h1>
+
+      {/* Main Breaking News Section */}
+      <div className="grid  lg:grid-cols-2 gap-2">
+        {mainBreakingNews.map((item) => (
+          <Link key={item._id} href={`/news/${item.slug}`} className="block">
+            <article className="text-white relative group">
+              <div className="m-0 p-0 w-full relative after:absolute after:inset-0 after:bg-slate-800 after:opacity-40 after:transition-opacity after:duration-300 group-hover:after:opacity-60">
+                <Image
+                  src={item.mainImage}
+                  width={1000} // Adjust width and height as needed
+                  height={600}
+                  className="2xl:h-[500px] lg:h-[320px] md:h-[300px] w-full object-cover"
+                  alt={item.title}
+                />
+              </div>
+              <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full z-10">
+                <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200">
+                  {item.title}
+                </h2>
+                {/* <p className="mt-3 text-sm hidden lg:block">
+                  {truncate(item.description, 150)}
+                </p> */}
+                 <p
+                  className="mt-3 text-sm"
+                  dangerouslySetInnerHTML={{
+                    __html: truncate(item.description, 200),
+                  }}
+                />
+              </div>
+            </article>
+          </Link>
+        ))}
+      </div>
+
+      {/* Sub Breaking News (remaining articles) */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {otherNews.map((item) => (
+          <Link key={item._id} href={`/news/${item.slug}`} className="block">
+            <div className="border p-3 rounded h-full flex flex-col">
+              <img
+                src={item.mainImage}
+                alt={item.title}
+                className="w-full h-40 object-cover mb-2 rounded"
+              />
+              <div className='flex justify-between text-xs text-gray-400'>
+                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+              </div>
+              <h3 className="font-semibold text-sm mt-2">{item.title}</h3>
+              <p
+                className="text-sm text-gray-700 leading-relaxed mt-1"
+                dangerouslySetInnerHTML={{
+                  __html: truncate(item?.description, 150),
+                }}
+              />
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-6 space-x-2 items-center">
+          {/* Left Arrow */}
+          {currentPage > 1 && (
+            <Link
+              href={`?page=${currentPage - 1}`}
+              className="px-3 py-1 border rounded bg-white text-blue-600 hover:bg-blue-100"
+            >
+              ‹
+            </Link>
+          )}
+
+          {/* Page Numbers */}
+          {pagesToShow.map((page) => (
+            <Link
+              key={page}
+              href={`?page=${page}`}
+              className={`px-3 py-1 border rounded ${
+                currentPage === page ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 hover:bg-blue-100'
+              }`}
+            >
+              {page}
+            </Link>
+          ))}
+
+          {/* Right Arrow */}
+          {currentPage < totalPages && (
+            <Link
+              href={`?page=${currentPage + 1}`}
+              className="px-3 py-1 border rounded bg-white text-blue-600 hover:bg-blue-100"
+            >
+              ›
+            </Link>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

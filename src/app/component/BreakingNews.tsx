@@ -10,6 +10,12 @@ interface News {
   description: string;
   slug: string;
   mainImage: string;
+  category: string;
+  createdAt: string;
+  images?: string[];
+  visitCount?: number | string;
+  author?: string;  
+  source?: string;
 }
 
 interface NewsApiResponse {
@@ -30,7 +36,7 @@ export default async function BreakingNews() {
 
   const bannerNews = news[0];
   const marqueeNews = news.slice(1, 5);
-  const sideNews = news.slice(5, 9);
+  const sideNews = news.slice(1, 9);
 
   const truncate = (text: string, maxLength: number) =>
     text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
