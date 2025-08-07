@@ -1,6 +1,9 @@
 import { serverFetchData } from "../lib/serverFetch";
 import { subCategoriesMap } from "../lib/subCategories";
-import PoliticsSection from "./components/PoliticsSection";
+import TrendingSection from "./components/TrendingSection";
+
+
+
 
 interface NewsItem {
   _id: string;
@@ -11,13 +14,13 @@ interface NewsItem {
   createdAt: string;
 }
 
-const PoliticsPage = async () => {
-  const subCategories = subCategoriesMap['Politics'];
+const TrendingPage = async () => {
+  const subCategories = subCategoriesMap['Tranding'];
   const data: { [key: string]: NewsItem[] } = {};
 
   for (const sub of subCategories) {
     const res = await serverFetchData<{ news: NewsItem[] }>(
-      `news?subCategory=${sub}&limit=8`,
+      `news?subCategory=${sub}&limit=8&page=1`,
       'no-store'
     );
     data[sub] = res?.news ?? [];
@@ -28,7 +31,7 @@ const PoliticsPage = async () => {
       {Object.entries(data)
         .filter(([_, items]) => items.length > 0) // ✅ Only show sections with data
         .map(([subCategory, items]) => (
-          <PoliticsSection
+          <TrendingSection
             key={subCategory}
             subCategory={subCategory}
             title={subCategory}
@@ -39,4 +42,4 @@ const PoliticsPage = async () => {
   );
 };
 
-export default PoliticsPage;
+export default TrendingPage;

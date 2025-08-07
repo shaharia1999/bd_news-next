@@ -24,7 +24,7 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
   const { subcategory } = params;
   const currentPage = parseInt(searchParams?.page || '1', 10);
 
-  const validSubs = subCategoriesMap['Politics'].map((s) => s.toLowerCase());
+  const validSubs = subCategoriesMap['Blog'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
@@ -52,73 +52,115 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
     text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 
   // Slice the first two items for the main breaking news section
-  const mainBreakingNews = news.slice(0, 2);
-  const otherNews = news.slice(2);
+const mainFeatured = news.slice(0, 1);
+const sidebarNews = news.slice(1, 5);
+const gridNews = news.slice(5);
 
   return (
     <div className="px-5 py-10  w-full">
-      <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory} News</h1>
+      {/* <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory} News</h1> */}
 
-      {/* Main Breaking News Section */}
-      <div className="grid  lg:grid-cols-2 gap-2">
-        {mainBreakingNews.map((item) => (
-          <Link key={item._id} href={`/news/${item.slug}`} className="block">
-            <article className="text-white relative group">
-              <div className="m-0 p-0 w-full relative after:absolute after:inset-0 after:bg-slate-800 after:opacity-40 after:transition-opacity after:duration-300 group-hover:after:opacity-60">
-                <Image
-                  src={item.mainImage}
-                  width={1000} // Adjust width and height as needed
-                  height={600}
-                  className="2xl:h-[500px] lg:h-[320px] md:h-[300px] w-full object-cover"
-                  alt={item.title}
-                />
-              </div>
-              <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full z-10">
-                <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200">
-                  {item.title}
-                </h2>
-                {/* <p className="mt-3 text-sm hidden lg:block">
-                  {truncate(item.description, 150)}
-                </p> */}
-                 <p
-                  className="mt-3 text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: truncate(item.description, 200),
-                  }}
-                />
-              </div>
-            </article>
-          </Link>
-        ))}
-      </div>
+   <div className="px-5 py-10 w-full">
+  <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory}</h1>
 
-      {/* Sub Breaking News (remaining articles) */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {otherNews.map((item) => (
-          <Link key={item._id} href={`/news/${item.slug}`} className="block">
-            <div className="border p-3 rounded h-full flex flex-col">
-              <img
-                src={item.mainImage}
-                alt={item.title}
-                className="w-full h-40 object-cover mb-2 rounded"
-              />
-              <div className='flex justify-between text-xs text-gray-400'>
-                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
-                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
-              </div>
-              <h3 className="font-semibold text-sm mt-2">{item.title}</h3>
+  {/* Featured + Sidebar */}
+  <div className="grid lg:grid-cols-3 gap-6">
+    {/* Featured Post (2/3 width) */}
+    <div className="lg:col-span-2">
+      {mainFeatured.map((item) => (
+        <Link key={item._id} href={`/news/${item.slug}`} className="block group">
+          <div className="relative">
+            <Image
+              src={item.mainImage}
+              width={1000}
+              height={600}
+              alt={item.title}
+              className="w-full h-[400px] object-cover rounded"
+            />
+            <div className="absolute bottom-0 left-0 w-full p-5 bg-gradient-to-t from-black via-transparent text-white">
+              <h2 className="text-3xl font-bold group-hover:underline">{item.title}</h2>
               <p
-                className="text-sm text-gray-700 leading-relaxed mt-1"
+                className="mt-2 text-sm"
+                dangerouslySetInnerHTML={{ __html: truncate(item.description, 150) }}
+              />
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
+
+    {/* Sidebar Posts */}
+    <div className="space-y-4">
+     {sidebarNews.map((item) => (
+  <Link key={item._id} href={`/news/${item.slug}`} className="block">
+    <div className="flex items-start space-x-3 border-b pb-4 hover:opacity-80">
+      <div className="w-20 h-16 flex-shrink-0">
+        <img
+          src={item.mainImage}
+          alt={item.title}
+          className="w-full h-full object-cover rounded"
+        />
+      </div>
+      <div className="flex-1">
+        <h3 className="font-semibold text-sm text-gray-900 leading-snug line-clamp-2">
+          {item.title}
+        </h3>
+        <p className="text-xs text-gray-500 mt-1">{item.author && `By ${item.author}`}</p>
+      </div>
+    </div>
+  </Link>
+))}
+
+       {currentPage < totalPages && (
+            <Link
+              href={`?page=${currentPage + 1}`}
+              className="px-3 py-1 border rounded bg-white text-blue-600 hover:bg-blue-100"
+            >
+               Get More News →
+            </Link>
+          )}
+      {/* <Link href="#" className="text-purple-600 text-sm hover:underline block mt-4">
+       
+      </Link> */}
+    </div>
+  </div>
+
+  {/* Grid Section */}
+  <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {gridNews.map((item) => (
+      <Link key={item._id} href={`/news/${item.slug}`} className="block">
+        <div className="border rounded overflow-hidden hover:shadow-lg h-full flex flex-col">
+          <img
+            src={item.mainImage}
+            alt={item.title}
+            className="w-full h-40 object-cover"
+          />
+          <div className="p-3 flex flex-col justify-between flex-grow">
+            <div>
+              <h3 className="font-semibold text-base">{item.title}</h3>
+              <p
+                className="text-sm text-gray-600 mt-1"
                 dangerouslySetInnerHTML={{
-                  __html: truncate(item?.description, 150),
+                  __html: truncate(item?.description, 120),
                 }}
               />
             </div>
-          </Link>
-        ))}
-      </div>
+            <div className="mt-2 text-xs text-gray-400 flex justify-between">
+              <span>{item.author && `Author: ${item.author}`}</span>
+              <span>{item.source && `Source: ${item.source}`}</span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+
+  {/* Pagination (unchanged) */}
+  {/* ... keep your existing pagination logic here ... */}
+</div>
 
       {/* Pagination */}
+      
       {totalPages > 1 && (
         <div className="flex justify-center mt-6 space-x-2 items-center">
           {/* Left Arrow */}

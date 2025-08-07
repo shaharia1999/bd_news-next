@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { serverFetchData } from "../lib/serverFetch";
+import { RenderHTMLWithImagesServer } from "../news/HTMLWithImagesServer";
 
 interface News {
   _id: string;
@@ -29,7 +30,7 @@ export default async function Education() {
   //   "no-store"
   // );
  const {news }= await serverFetchData<NewsApiResponse>(
-    'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
+    'news?category=Technology&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );
   if (!news || news.length === 0) return null;
@@ -44,7 +45,7 @@ export default async function Education() {
     <div className="md:pl-[85px] md:pr-[10px] w-full lg:px-7 md:pt-0 md:py-10 px-2 md:px-0">
       <div className="py-3 flex items-center">
         <p className="w-3 h-6 badge-secondary mr-2"></p>
-        <p className="text-3xl font-bold">Education</p>
+        <p className="text-3xl font-bold">Technology</p>
       </div>
 
       <div className="All-News grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
@@ -78,6 +79,14 @@ export default async function Education() {
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                                  </div>
+                                    
+                                <RenderHTMLWithImagesServer description={item.description} limit={30}
+                              />
+                            <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           </article>

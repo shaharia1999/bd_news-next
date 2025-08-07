@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { serverFetchData } from '../lib/serverFetch';
+import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
 
 interface News {
   _id: string;
@@ -77,6 +78,14 @@ export default async function Sports() {
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={30}
+              />
+            <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           ))}
@@ -100,9 +109,7 @@ export default async function Sports() {
             >
               {truncate(mainNews?.title, 100)}
             </Link>
-            <p className="2xl:mt-3 mt-1 text-[12px] lg:text-[14px] lg:leading-5 2xl:leading-4">
-              {truncate(mainNews?.description.replace(/<[^>]+>/g, ''), 300)}
-            </p>
+           
             <div className="flex justify-between text-sm">
               <div className="mt-4 flex items-center">
                 <p className="w-1 h-5 badge-secondary mr-2"></p>
@@ -112,6 +119,14 @@ export default async function Sports() {
                 {formatDate(mainNews?.createdAt)}
               </div>
             </div>
+             <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{mainNews?.author ? `Author: ${mainNews.author}` : ''}</p>
+                    <p>{mainNews?.source ? `Source: ${mainNews.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={mainNews.description} limit={200}
+              />
+            <span className='text-blue-500'>learn more</span>
           </div>
         </div>
         }
@@ -144,6 +159,14 @@ export default async function Sports() {
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={30}
+              />
+            <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           ))}

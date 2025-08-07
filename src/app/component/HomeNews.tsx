@@ -1,6 +1,7 @@
 // components/HomeNews.tsx
 import Image from 'next/image';
 import { serverFetchData } from '../lib/serverFetch';
+import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
 
 interface News {
   _id: string;
@@ -62,21 +63,7 @@ export default async function HomeNews() {
                     {item?.title}
                   </a>
                 </div>
-                <div className='flex justify-between'>
-                  <p className="text-[10px] lg:text-[10px] text-gray-400">
-                    {item?.author ? `Author: ${item.author}` : ''}
-                  </p>
-                  <p className="text-[10px] lg:text-[10px]  text-gray-400">
-                    {item?.source ? `Source: ${item.source}` : ''}
-                  </p>
-                </div>
-           
-                <p
-                  className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]"
-                  dangerouslySetInnerHTML={{
-                    __html: truncate(item?.description, 200),
-                  }}
-                />
+                
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
                     <p className="w-1 h-5 badge-secondary mr-2"></p>
@@ -86,6 +73,14 @@ export default async function HomeNews() {
                     {new Date(item.createdAt).toLocaleDateString('en-GB')}
                   </div>
                 </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
+              />
+            <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           </article>

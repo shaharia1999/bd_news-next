@@ -37,9 +37,8 @@ export default async function BreakingNews() {
   const bannerNews = news[0];
   const marqueeNews = news.slice(1, 5);
   const sideNews = news.slice(1, 9);
-
-  const truncate = (text: string, maxLength: number) =>
-    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString('en-GB');
 
   return (
     <div className="md:pl-[85px] md:pr-[10px] 2xl:mt-24 lg:mt-20 mt-16 w-full lg:px-7 md:py-10">
@@ -132,14 +131,24 @@ export default async function BreakingNews() {
                   >
                     {item.title}
                   </a>
-                  <div className="badge badge-secondary mt-1">NEW</div>
-                  <p
-                    className="mt-2 text-[12px] 2xl:text-[14px]"
-                    dangerouslySetInnerHTML={{
-                      __html: truncate(item.description, 200),
-                    }}
-                  />
+                 
                 </div>
+                <div className="flex justify-between text-sm">
+                  <div className="mt-4 flex items-center">
+                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                     Breaking
+                  </div>
+                  <div className="mt-4 flex items-center">
+                    {formatDate(item.createdAt)}
+                  </div>
+                </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+              
+            {/* <span className='text-blue-500'>learn more</span> */}
               </div>
             ))}
           </article>

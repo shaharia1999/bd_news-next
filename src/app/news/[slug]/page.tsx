@@ -46,7 +46,7 @@ export default async function Page({ params }: Params) {
 
   // Fetch subCategory posts
   const subcetagory = await serverFetchData<NewsApiResponse>(
-    `news?subCategory=${post.subCategory}&limit=20&excludeSlug=${slug}`,
+    `news?subCategory=${post.subCategory}&limit=20&page=1&excludeSlug=${slug}`,
     "no-store"
   );
 

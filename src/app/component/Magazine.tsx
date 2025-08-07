@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { serverFetchData } from '../lib/serverFetch';
+import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
 
 interface News {
   _id: string;
@@ -11,8 +12,8 @@ interface News {
   category: string;
   createdAt: string;
   images?: string[];
-  visitCount?: number |string;
-  author?:string;
+  visitCount?: number | string;
+  author?: string;
   source?: string;
 }
 
@@ -27,8 +28,8 @@ export default async function Magazine() {
   //   'news?category=Magazine&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
   //   'no-store'
   // );
- const {news} = await serverFetchData<NewsApiResponse>(
-    'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
+  const { news } = await serverFetchData<NewsApiResponse>(
+    'news?category=Entertainment&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );
   if (!news || news.length === 0) return null;
@@ -68,9 +69,7 @@ export default async function Magazine() {
             >
               {truncate(mainNews.title, 100)}
             </Link>
-            <p className="2xl:mt-3 mt-1 text-[12px] lg:text-[14px] lg:leading-5 2xl:leading-4">
-              {truncate(mainNews.description.replace(/<[^>]+>/g, ''), 300)}
-            </p>
+
             <div className="flex justify-between text-sm">
               <div className="mt-4 flex items-center">
                 <p className="w-1 h-5 badge-secondary mr-2"></p>
@@ -79,7 +78,16 @@ export default async function Magazine() {
               <div className="mt-4 flex items-center">
                 {formatDate(mainNews.createdAt)}
               </div>
+
             </div>
+            <div className='flex justify-between text-xs text-gray-400'>
+              <p>{mainNews?.author ? `Author: ${mainNews.author}` : ''}</p>
+              <p>{mainNews?.source ? `Source: ${mainNews.source}` : ''}</p>
+            </div>
+
+            <RenderHTMLWithImagesServer description={mainNews.description} limit={200}
+            />
+            <span className='text-blue-500'>learn more</span>
           </div>
         </div>
 
@@ -111,6 +119,14 @@ export default async function Magazine() {
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
+                 <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
+              />
+            <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           ))}
@@ -144,6 +160,14 @@ export default async function Magazine() {
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
+                <div className='flex justify-between text-xs text-gray-400'>
+                  <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                  <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                </div>
+
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
+                />
+                <span className='text-blue-500'>learn more</span>
               </div>
             </div>
           ))}

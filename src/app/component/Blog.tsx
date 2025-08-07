@@ -29,7 +29,7 @@ export default async function Blog() {
   //   "no-store"
   // );
  const {blogPosts} = await serverFetchData<NewsApiResponse>(
-    'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
+    'news?category=Blog&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     'no-store'
   );
   if (!blogPosts || blogPosts.length === 0) return null;

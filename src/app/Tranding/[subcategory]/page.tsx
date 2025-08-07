@@ -24,7 +24,7 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
   const { subcategory } = params;
   const currentPage = parseInt(searchParams?.page || '1', 10);
 
-  const validSubs = subCategoriesMap['Politics'].map((s) => s.toLowerCase());
+  const validSubs = subCategoriesMap['Tranding'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
