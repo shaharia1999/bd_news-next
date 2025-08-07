@@ -1,6 +1,7 @@
 import { serverFetchData } from "../lib/serverFetch";
 import { subCategoriesMap } from "../lib/subCategories";
-import PoliticsSection from "./components/PoliticsSection";
+import TechnologySection from "./components/TechnogySection";
+
 
 interface NewsItem {
   _id: string;
@@ -11,8 +12,8 @@ interface NewsItem {
   createdAt: string;
 }
 
-const PoliticsPage = async () => {
-  const subCategories = subCategoriesMap['Politics'];
+const TechnologyPage = async () => {
+  const subCategories = subCategoriesMap['Technology'];
   const data: { [key: string]: NewsItem[] } = {};
 
   for (const sub of subCategories) {
@@ -28,7 +29,7 @@ const PoliticsPage = async () => {
       {Object.entries(data)
         .filter(([_, items]) => items.length > 0) // ✅ Only show sections with data
         .map(([subCategory, items]) => (
-          <PoliticsSection
+          <TechnologySection
             key={subCategory}
             subCategory={subCategory}
             title={subCategory}
@@ -39,4 +40,4 @@ const PoliticsPage = async () => {
   );
 };
 
-export default PoliticsPage;
+export default TechnologyPage;

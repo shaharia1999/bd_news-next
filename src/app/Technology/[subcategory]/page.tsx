@@ -3,6 +3,7 @@ import { subCategoriesMap } from '../../lib/subCategories';
 import { serverFetchData } from '../../lib/serverFetch';
 import Link from 'next/link';
 import Image from 'next/image';
+import { RenderHTMLWithImagesServer } from '../../news/HTMLWithImagesServer';
 
 interface NewsItem {
   _id: string;
@@ -19,12 +20,13 @@ interface PageProps {
   params: { subcategory: string };
   searchParams?: { page?: string };
 }
-
+const formatDate = (dateStr: string) =>
+  new Date(dateStr).toLocaleDateString("en-GB");
 export default async function SubCategoryPage({ params, searchParams }: PageProps) {
   const { subcategory } = params;
   const currentPage = parseInt(searchParams?.page || '1', 10);
 
-  const validSubs = subCategoriesMap['Politics'].map((s) => s.toLowerCase());
+  const validSubs = subCategoriesMap['Technology'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
@@ -48,8 +50,6 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
 
   const pagesToShow = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
-   const truncate = (text: string, maxLength: number) =>
-    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 
   // Slice the first two items for the main breaking news section
   const mainBreakingNews = news.slice(0, 2);
@@ -77,17 +77,19 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
                 <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200">
                   {item.title}
                 </h2>
-                {/* <p className="mt-3 text-sm hidden lg:block">
-                  {truncate(item.description, 150)}
-                </p> */}
-                 <p
-                  className="mt-3 text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: truncate(item.description, 200),
-                  }}
-                />
+
               </div>
             </article>
+            <p className="text-xs text-gray-500 mt-1">
+              {formatDate(item.createdAt)}
+            </p>
+            <div className='flex justify-between text-xs text-gray-400'>
+              <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+              <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+            </div>
+              <RenderHTMLWithImagesServer description={item.description} limit={50}
+              />
+               <span className='text-blue-500'>learn more</span>
           </Link>
         ))}
       </div>
@@ -107,12 +109,10 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>
               <h3 className="font-semibold text-sm mt-2">{item.title}</h3>
-              <p
-                className="text-sm text-gray-700 leading-relaxed mt-1"
-                dangerouslySetInnerHTML={{
-                  __html: truncate(item?.description, 150),
-                }}
+              <RenderHTMLWithImagesServer description={item.description} limit={50}
               />
+                          <span className='text-blue-500'>learn more</span>
+
             </div>
           </Link>
         ))}
@@ -136,9 +136,8 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
             <Link
               key={page}
               href={`?page=${page}`}
-              className={`px-3 py-1 border rounded ${
-                currentPage === page ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 hover:bg-blue-100'
-              }`}
+              className={`px-3 py-1 border rounded ${currentPage === page ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 hover:bg-blue-100'
+                }`}
             >
               {page}
             </Link>

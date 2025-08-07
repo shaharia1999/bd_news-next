@@ -20,10 +20,10 @@ interface Props {
   items: NewsItem[];
 }
 
-const SportsSection = ({ subCategory, title, items }: Props) => {
-  const truncate = (text: string, maxLength: number) =>
-    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+const EntertainmentSection = ({ subCategory, title, items }: Props) => {
 
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString("en-GB");
   if (items.length === 0) return null;
 
   const mainArticle = items[0];
@@ -58,16 +58,17 @@ const SportsSection = ({ subCategory, title, items }: Props) => {
                       <p className="w-1 h-5 badge-secondary mr-2"></p>
                       {subCategory}
                     </div>
-                    <div className="flex items-center">
-                      {new Date(item.createdAt).toLocaleDateString()}
-                    </div>
-                  </div>
 
+
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {formatDate(item.createdAt)}
+                  </p>
                   <div className='flex justify-between text-xs text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
-                  <RenderHTMLWithImagesServer description={item.description} limit={20}
+                  <RenderHTMLWithImagesServer description={item.description} limit={50}
                   />
                   <span className='text-blue-500'>learn more</span>
                 </div>
@@ -147,10 +148,10 @@ const SportsSection = ({ subCategory, title, items }: Props) => {
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
-
-                  <RenderHTMLWithImagesServer description={item.description} limit={20}
-                  />
-                  <span className='text-blue-500'>learn more</span>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
+              />
+            <span className='text-blue-500'>learn more</span>
                 </div>
               </Link>
             ))}
@@ -159,7 +160,7 @@ const SportsSection = ({ subCategory, title, items }: Props) => {
       </div>
 
       <div className="text-right mt-6">
-        <Link href={`/Sports/${subCategory}`}>
+        <Link href={`/Technology/${subCategory}`}>
           <button className="text-blue-600 hover:underline font-semibold">See All</button>
         </Link>
       </div>
@@ -167,4 +168,4 @@ const SportsSection = ({ subCategory, title, items }: Props) => {
   );
 };
 
-export default SportsSection;
+export default EntertainmentSection;

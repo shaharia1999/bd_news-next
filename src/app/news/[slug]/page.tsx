@@ -9,24 +9,12 @@ interface NewsItem {
   description: string;
   slug: string;
   mainImage: string;
+  subCategory: string;
   category: string;
   createdAt: string;
   images?: string[];
-  visitCount?: number |string;
-  author?:string;
-  source?: string;
-}
-interface News {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  mainImage: string;
-  category: string;
-  createdAt: string;
-  images?: string[];
-  visitCount?: number |string;
-  author?:string;
+  visitCount?: number | string;
+  author?: string;
   source?: string;
 }
 
@@ -34,8 +22,9 @@ interface NewsApiResponse {
   total: number;
   page: number;
   pages: number;
-  news: News[];
+  news: NewsItem[];
 }
+
 interface Params {
   params: {
     slug: string;
@@ -45,27 +34,35 @@ interface Params {
 export default async function Page({ params }: Params) {
   const { slug } = params;
 
-  // ✅ Fetch single post by slug
-  const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(`news/${slug}`, "no-store");
-  const post = await response?.data;
-//  console.log(post)
+  const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(
+    `news/${slug}`,
+    "no-store"
+  );
+
+  const post = response?.data;
   if (!post) {
     return <p className="p-4">Post not found</p>;
   }
 
-   // Fetch related posts by same category, excluding current post by slug or _id
-  const {news} = await serverFetchData<NewsApiResponse>(
+  // Fetch subCategory posts
+  const subcetagory = await serverFetchData<NewsApiResponse>(
+    `news?subCategory=${post.subCategory}&limit=20&excludeSlug=${slug}`,
+    "no-store"
+  );
+
+  // Fetch category posts
+  const category = await serverFetchData<NewsApiResponse>(
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
     "no-store"
   );
-console.log(news)
+
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("en-GB");
 
   return (
     <div className="md:pl-[85px] md:pr-[10px] 2xl:mt-24 lg:mt-20 mt-16 md:mt-16 w-full lg:px-7 pl-0 md:pt-0 md:py-10">
       <div className="grid grid-cols-4 gap-6">
-        {/* Main post content */}
+        {/* Main Content */}
         <div className="lg:col-span-3 col-span-4">
           <article>
             <h1 className="lg:text-3xl font-bold mb-4">{post.title}</h1>
@@ -77,10 +74,14 @@ console.log(news)
               height={450}
               priority
             />
-            <div className="flex justify-between mt-3 mb-6 text-gray-600">
+            <div className="flex justify-between mt-3  text-gray-600">
               <p className="font-semibold">{post.category}</p>
               <p>{formatDate(post.createdAt)}</p>
             </div>
+                          <div className='flex justify-between text-xs text-gray-400'>
+                <p>{post?.author ? `Author: ${post.author}` : ''}</p>
+                <p>{post?.source ? `Source: ${post.source}` : ''}</p>
+              </div>
             <div className="prose max-w-none">
               <RenderHTMLWithImagesServer
                 description={post.description}
@@ -90,42 +91,88 @@ console.log(news)
           </article>
         </div>
 
-        {/* Sidebar related posts */}
-        <aside className="lg:col-span-1 col-span-4 space-y-6">
-          <h2 className="text-2xl font-semibold mb-4">
-            More in {post.category}
-          </h2>
+        {/* Sidebar */}
+        <aside className="lg:col-span-1 col-span-4 flex flex-col space-y-8">
+          {/* SubCategory Section */}
+          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-1">
+            <h2 className="text-xl font-semibold mb-3">
+              More in {post.subCategory}
+            </h2>
+            {subcetagory?.news?.length ? (
+              subcetagory.news.map((item) => (
+                <Link
+                  key={item._id}
+                  href={`/news/${item.slug}`}
+                  className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200 mb-4"
+                >
+                  <Image
+                    src={item.mainImage}
+                    alt={item.title}
+                    width={300}
+                    height={180}
+                    className="w-full object-cover"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-sm line-clamp-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {formatDate(item.createdAt)}
+                    </p>
+                                  <div className='flex justify-between text-xs text-gray-400'>
+                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+              </div>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p>No related posts found.</p>
+            )}
+          </div>
 
-          {news && news.length > 0 ? (
-            news.map((item) => (
-              <Link
-                key={item._id}
-                href={`/news/${item.slug}`}
-                className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200"
-              >
-                <Image
-                  src={item.mainImage}
-                  alt={item.title}
-                  width={300}
-                  height={180}
-                  className="w-full object-cover"
-                />
-                <div className="p-3">
-                  <h3 className="font-semibold text-lg line-clamp-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {formatDate(item.createdAt)}
-                  </p>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p>No related posts found.</p>
-          )}
+          {/* Category Section - Grid layout */}
+        
         </aside>
       </div>
+        <div>
+            <h2 className="text-xl font-semibold mb-3">
+              Explore more in {post.category}
+            </h2>
+            <div className="grid grid-cols-3 gap-4">
+              {category?.news?.length ? (
+                category.news.map((item) => (
+                  <Link
+                    key={item._id}
+                    href={`/news/${item.slug}`}
+                    className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200"
+                  >
+                    <Image
+                      src={item.mainImage}
+                      alt={item.title}
+                      width={300}
+                      height={180}
+                      className="w-full object-cover"
+                    />
+                    <div className="p-3">
+                      <h3 className="font-semibold text-sm line-clamp-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {formatDate(item.createdAt)}
+                      </p>
+                                    <div className='flex justify-between text-xs text-gray-400'>
+                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+              </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p>No more posts found.</p>
+              )}
+            </div>
+          </div>
     </div>
   );
 }
-

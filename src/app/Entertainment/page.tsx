@@ -1,7 +1,7 @@
 import { serverFetchData } from "../lib/serverFetch";
 import { subCategoriesMap } from "../lib/subCategories";
-import SportsSection from "./components/SportsSection";
-// import PoliticsSection from "./components/SportsSection";
+import EntertainmentSection from "./components/EntertainmentSection";
+
 
 interface NewsItem {
   _id: string;
@@ -12,8 +12,8 @@ interface NewsItem {
   createdAt: string;
 }
 
-const SportsPage = async () => {
-  const subCategories = subCategoriesMap['Sports'];
+const EntertainmenPage = async () => {
+  const subCategories = subCategoriesMap['Entertainment'];
   const data: { [key: string]: NewsItem[] } = {};
 
   for (const sub of subCategories) {
@@ -21,6 +21,7 @@ const SportsPage = async () => {
       `news?subCategory=${sub}&limit=8`,
       'no-store'
     );
+    console.log(res);
     data[sub] = res?.news ?? [];
   }
 
@@ -29,7 +30,7 @@ const SportsPage = async () => {
       {Object.entries(data)
         .filter(([_, items]) => items.length > 0) // ✅ Only show sections with data
         .map(([subCategory, items]) => (
-          <SportsSection
+          <EntertainmentSection
             key={subCategory}
             subCategory={subCategory}
             title={subCategory}
@@ -40,4 +41,4 @@ const SportsPage = async () => {
   );
 };
 
-export default SportsPage;
+export default EntertainmenPage;

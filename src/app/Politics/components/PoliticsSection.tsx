@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image'; // Assuming you use Next.js Image component
+import Image from 'next/image';
+import { RenderHTMLWithImagesServer } from '../../news/HTMLWithImagesServer';
 
 interface NewsItem {
   _id: string;
@@ -20,17 +21,11 @@ interface Props {
 }
 
 const PoliticsSection = ({ subCategory, title, items }: Props) => {
-   const truncate = (text: string, maxLength: number) =>
-    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 
-  // Ensure we have at least 5 items before slicing
-  if (items.length < 5) {
-    // You can handle this case by either returning null or a different layout
-    // For now, we'll return null to prevent errors
-    return null;
-  }
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString("en-GB");
+  if (items.length === 0) return null;
 
-  // Slice the data for the new layout
   const mainArticle = items[0];
   const leftArticles = items.slice(1, 3);
   const rightArticles = items.slice(3, 5);
@@ -40,46 +35,56 @@ const PoliticsSection = ({ subCategory, title, items }: Props) => {
       <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-300 pb-2">{title}</h2>
 
       <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5 2xl:mt-20 lg:mt-12 mt-8">
-        
-        {/* Left Section - 2 articles */}
-        <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
-          {leftArticles.map((item) => (
-            <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
-              <Image 
-                src={item.mainImage}
-                alt={item.title}
-                width={500} // Adjust as needed
-                height={300} // Adjust as needed
-                className="w-full 2xl:h-80 lg:h-52 object-cover"
-              />
-              <div className="py-2 px-1">
-                <div className="lg:leading-6 2xl:leading-5">
-                  <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="flex justify-between text-xs text-gray-500 mt-4">
-                  <div className="flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
-                    {subCategory}
+        {/* Left Section - up to 2 articles */}
+        {leftArticles.length > 0 && (
+          <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
+            {leftArticles.map((item) => (
+              <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
+                <Image
+                  src={item.mainImage}
+                  alt={item.title}
+                  width={500}
+                  height={300}
+                  className="w-full 2xl:h-80 lg:h-52 object-cover"
+                />
+                <div className="py-2 px-1">
+                  <div className="lg:leading-6 2xl:leading-5">
+                    <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
+                      {item.title}
+                    </h3>
                   </div>
-                  <div className="flex items-center">
-                    {new Date(item.createdAt).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                  <div className="flex justify-between text-xs text-gray-500 mt-4">
+                    <div className="flex items-center">
+                      <p className="w-1 h-5 badge-secondary mr-2"></p>
+                      {subCategory}
+                    </div>
 
-        {/* Center Section - 1 main article */}
-        <div className="lg:col-span-4 md:col-span-4 h-mx-[400px]">
+
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {formatDate(item.createdAt)}
+                  </p>
+                  <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                  <RenderHTMLWithImagesServer description={item.description} limit={50}
+                  />
+                  <span className='text-blue-500'>learn more</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Center Section - main article */}
+        <div className="lg:col-span-4 md:col-span-4">
           <Link href={`/news/${mainArticle.slug}`} className="block group">
-            <Image 
+            <Image
               src={mainArticle.mainImage}
               alt={mainArticle.title}
-              width={400} // Adjust as needed
-              height={400} // Adjust as needed
+              width={400}
+              height={400}
               className="w-full object-cover h-[300px] md:h-[400px] 2xl:h-[500px]"
             />
             <div className="py-2 px-1">
@@ -88,8 +93,6 @@ const PoliticsSection = ({ subCategory, title, items }: Props) => {
                   {mainArticle.title}
                 </h3>
               </div>
-              
-              
               <div className="flex justify-between text-xs text-gray-500 mt-4">
                 <div className="flex items-center">
                   <p className="w-1 h-5 badge-secondary mr-2"></p>
@@ -98,51 +101,66 @@ const PoliticsSection = ({ subCategory, title, items }: Props) => {
                 <div className="flex items-center">
                   {new Date(mainArticle.createdAt).toLocaleDateString()}
                 </div>
+
               </div>
-              <div> <p
-                  className="mt-3 text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: truncate(mainArticle.description, 1000),
-                  }}
-                /></div>
+              <div className='flex justify-between text-xs text-gray-400'>
+                <p>{mainArticle?.author ? `Author: ${mainArticle.author}` : ''}</p>
+                <p>{mainArticle?.source ? `Source: ${mainArticle.source}` : ''}</p>
+              </div>
+              <div>
+                <RenderHTMLWithImagesServer description={mainArticle.description} limit={200}
+
+                />
+                <span className='text-blue-500'>learn more</span>
+              </div>
             </div>
           </Link>
         </div>
 
-        {/* Right Section - 2 articles */}
-        <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
-          {rightArticles.map((item) => (
-            <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
-              <Image 
-                src={item.mainImage}
-                alt={item.title}
-                width={500} // Adjust as needed
-                height={300} // Adjust as needed
-                className="w-full 2xl:h-80 lg:h-52 object-cover"
+        {/* Right Section - up to 2 articles */}
+        {rightArticles.length > 0 && (
+          <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
+            {rightArticles.map((item) => (
+              <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
+                <Image
+                  src={item.mainImage}
+                  alt={item.title}
+                  width={500}
+                  height={300}
+                  className="w-full 2xl:h-80 lg:h-52 object-cover"
+                />
+                <div className="py-2 px-1">
+                  <div className="lg:leading-6 2xl:leading-5">
+                    <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-500 mt-4">
+                    <div className="flex items-center">
+                      <p className="w-1 h-5 badge-secondary mr-2"></p>
+                      {subCategory}
+                    </div>
+                    <div className="flex items-center">
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </div>
+                  </div>
+                  <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                    
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
               />
-              <div className="py-2 px-1">
-                <div className="lg:leading-6 2xl:leading-5">
-                  <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
-                    {item.title}
-                  </h3>
+            <span className='text-blue-500'>learn more</span>
                 </div>
-                <div className="flex justify-between text-xs text-gray-500 mt-4">
-                  <div className="flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
-                    {subCategory}
-                  </div>
-                  <div className="flex items-center">
-                    {new Date(item.createdAt).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
-      
+
       <div className="text-right mt-6">
-        <Link href={`/Politics/${subCategory}`}>
+        <Link href={`/Technology/${subCategory}`}>
           <button className="text-blue-600 hover:underline font-semibold">See All</button>
         </Link>
       </div>

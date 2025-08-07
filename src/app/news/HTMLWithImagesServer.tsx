@@ -4,15 +4,24 @@ import Image from "next/image";
 interface Props {
   description: string; // HTML string
   images?: string[];
+  limit?: number; // Optional word limit
 }
 
-export function RenderHTMLWithImagesServer({ description, images = [] }: Props) {
+export function RenderHTMLWithImagesServer({ description, images = [], limit }: Props) {
+  // Remove HTML tags and prepare plain text
   const clean = description
-    .replace(/<\/p>\s*<p>/g, '\n\n') // replace paragraph breaks with double newline
-    .replace(/<[^>]+>/g, '') // strip HTML tags to get plain text
+    .replace(/<\/p>\s*<p>/g, '\n\n')
+    .replace(/<[^>]+>/g, '')
     .trim();
 
-  const words = clean.split(/\s+/);
+  let words = clean.split(/\s+/);
+
+  // Apply limit if provided
+  if (limit && limit > 0) {
+    words = words.slice(0, limit);
+  }
+
+  // Chunk words into groups of ~100
   const chunks: string[][] = [];
   let temp: string[] = [];
 
@@ -23,11 +32,6 @@ export function RenderHTMLWithImagesServer({ description, images = [] }: Props) 
       temp = [];
     }
   }
-
-  const htmlParts = description
-    .split(/<\/p>\s*/g)
-    .map((block) => block.trim())
-    .filter(Boolean);
 
   let imageIndex = 0;
 
@@ -45,10 +49,11 @@ export function RenderHTMLWithImagesServer({ description, images = [] }: Props) 
                 height={450}
                 className="w-full object-cover rounded-md"
               />
-              {imageIndex++}
+              {/* {imageIndex++} */}
             </div>
           )}
         </Fragment>
+        
       ))}
     </div>
   );

@@ -55,10 +55,11 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
   // Slice the first two items for the main breaking news section
   const mainBreakingNews = news.slice(0, 2);
   const otherNews = news.slice(2);
-
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString("en-GB");
   return (
     <div className="px-5 py-10  w-full">
-      <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory} News</h1>
+      <h1 className="text-2xl font-bold capitalize my-10">{subcategory} News</h1>
 
       {/* Main Breaking News Section */}
       <div className="grid  lg:grid-cols-2 gap-2">
@@ -87,12 +88,22 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
                     __html: truncate(item.description, 200),
                   }}
                 /> */}
-                 <RenderHTMLWithImagesServer
+                 {/* <RenderHTMLWithImagesServer
                 description={item.description}
                 // images={post.images}
-              />
+              /> */}
               </div>
             </article>
+               <p className="text-xs text-gray-500 mt-1">
+                        {formatDate(item.createdAt)}
+                      </p>
+                          <div className='flex justify-between text-xs text-gray-400'>
+                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+              </div>
+                <RenderHTMLWithImagesServer description={item.description} limit={50}
+              />
+                <span className='text-blue-500'>learn more</span>
           </Link>
         ))}
       </div>
@@ -107,17 +118,16 @@ export default async function SubCategoryPage({ params, searchParams }: PageProp
                 alt={item.title}
                 className="w-full h-40 object-cover mb-2 rounded"
               />
+                <p className="text-xs text-gray-500 mt-1">
+                        {formatDate(item.createdAt)}
+                      </p>
               <div className='flex justify-between text-xs text-gray-400'>
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>
               <h3 className="font-semibold text-sm mt-2">{item.title}</h3>
-              <p
-                className="text-sm text-gray-700 leading-relaxed mt-1"
-                dangerouslySetInnerHTML={{
-                  __html: truncate(item?.description, 150),
-                }}
-              />
+                 <RenderHTMLWithImagesServer description={item.description}  limit={50} ></RenderHTMLWithImagesServer>
+              <span className='text-blue-500'>learn more</span>
             </div>
           </Link>
         ))}
