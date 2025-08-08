@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
   const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(
     `news/${slug}`,
       {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }
   );
@@ -51,7 +51,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
   const subcetagory = await serverFetchData<NewsApiResponse>(
     `news?subCategory=${post.subCategory}&limit=20&page=1&excludeSlug=${slug}`,
       {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }
   );
@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
   const category = await serverFetchData<NewsApiResponse>(
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
       {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }
   );

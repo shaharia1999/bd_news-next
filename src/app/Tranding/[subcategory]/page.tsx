@@ -33,7 +33,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
     news: NewsItem[];
     pages: number;
   }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`,  {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }); // Increased limit to 12 for the layout
 

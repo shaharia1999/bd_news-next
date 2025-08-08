@@ -30,7 +30,7 @@ export default async function SubCategoryPage( { params }: { params: Promise<Dat
 const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
   `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
   {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }
 );

@@ -21,7 +21,7 @@ const EntertainmenPage = async () => {
     const res = await serverFetchData<{ news: NewsItem[] }>(
       `news?subCategory=${sub}&limit=8&page=1`,
         {
-    cache: 'no-store',
+   cache: 'default',
     next: { revalidate: 300 }
   }
     );
