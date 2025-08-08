@@ -114,7 +114,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
     new Date(dateStr).toLocaleDateString("en-GB");
 
   return (
-    <div className="px-3 pb-10 w-full">
+    <div className="px-3 pb-10 w-full lg-px-7">
       <div className="grid grid-cols-4 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-3 col-span-4">
