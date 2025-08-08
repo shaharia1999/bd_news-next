@@ -36,7 +36,7 @@ export function RenderHTMLWithImagesServer({ description, images = [], limit }: 
   let imageIndex = 0;
 
   return (
-    <div className="prose max-w-none">
+    <div className="prose max-w-none font-publicsans">
       {chunks.map((chunk, index) => (
         <Fragment key={index}>
           <p>{chunk.join(" ")}</p>

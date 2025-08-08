@@ -45,10 +45,10 @@ export default async function Education() {
     text?.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
   return (
-    <div className="md:pl-[85px] md:pr-[10px] w-full lg:px-7 md:pt-0 md:py-10 px-2 md:px-0">
+    <div className=" md:pr-[10px] w-full lg:px-7 ">
       <div className="py-3 flex items-center">
-        <p className="w-3 h-6 badge-secondary mr-2"></p>
-        <p className="text-3xl font-bold">Technology</p>
+        <p className="w-3 h-6 badge-error mr-2"></p>
+        <p className="lg:text-3xl font-bold font-libertinus">Technology</p>
       </div>
 
       <div className="All-News grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
@@ -70,21 +70,21 @@ export default async function Education() {
                   <div className="lg:leading-6 2xl:leading-5">
                     <Link
                       href={`/news/${item.slug}`}
-                      className="font-bold text-[12px] lg:text-[16px]"
+                      className="font-bold text-[16px] lg:text-[18px] capitalize font-libertinus"
                     >
                       {truncate(item.title, 90)}
                     </Link>
                   </div>
-                  <div className="flex justify-between">
-                    <div className="mt-4 flex items-center">
-                      <p className="w-1 h-5 badge-secondary mr-2"></p>
+                  <div className="flex justify-between text-gray-500 text-sm">
+                    {/* <div className="mt-4 flex items-center "> */}
+                      {/* <p className="w-1 h-5 badge-error mr-2"></p>
                       {item.category}
-                    </div>
-                    <div className="mt-4 flex items-center">
+                    </div> */}
+                    <div className=" flex items-center">
                       {formatDate(item.createdAt)}
                     </div>
                   </div>
-                  <div className='flex justify-between text-xs text-gray-400'>
+                  <div className='flex justify-between text-sm pb-2 text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>

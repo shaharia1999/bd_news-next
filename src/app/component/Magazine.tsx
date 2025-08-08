@@ -48,10 +48,10 @@ export default async function Magazine() {
     text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 
   return (
-    <div className="md:pl-[85px] md:pr-[10px] w-full lg:px-7 md:py-10 px-2 md:px-0">
+    <div className=" w-full lg:px-7 px-3">
       <div className="py-3 flex items-center">
-        <p className="w-3 h-6 badge-secondary mr-2"></p>
-        <p className="text-3xl font-bold">Magazine</p>
+        <p className="w-3 h-6 badge-error mr-2"></p>
+        <p className="text-2xl lg:text-3xl font-bold">Magazine</p>
       </div>
 
       <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5">
@@ -70,22 +70,22 @@ export default async function Magazine() {
           <div className="py-2 px-1">
             <Link
               href={`/news/${mainNews.slug}`}
-              className="lg:font-semibold font-bold text-[12px] lg:text-[20px] block lg:leading-6 2xl:leading-5"
+              className="lg:font-semibold font-bold text-[16px] lg:text-[20px] block lg:leading-6 2xl:leading-5 capitalize font-libertinus"
             >
               {truncate(mainNews.title, 100)}
             </Link>
 
-            <div className="flex justify-between text-sm">
-              <div className="mt-4 flex items-center">
-                <p className="w-1 h-5 badge-secondary mr-2"></p>
+            <div className="flex justify-between text-sm text-gray-500">
+              {/* <div className="mt-4 flex items-center">
+                <p className="w-1 h-5 badge-error mr-2"></p>
                 {mainNews.category}
-              </div>
-              <div className="mt-4 flex items-center">
+              </div> */}
+              <div className=" flex items-center">
                 {formatDate(mainNews.createdAt)}
               </div>
 
             </div>
-            <div className='flex justify-between text-xs text-gray-400'>
+            <div className='flex justify-between text-sm text-gray-400'>
               <p>{mainNews?.author ? `Author: ${mainNews.author}` : ''}</p>
               <p>{mainNews?.source ? `Source: ${mainNews.source}` : ''}</p>
             </div>
@@ -113,20 +113,20 @@ export default async function Magazine() {
               <div className="py-2 px-1">
                 <Link
                   href={`/news/${item.slug}`}
-                  className="lg:font-semibold font-bold text-[12px] lg:text-[16px] block lg:leading-6 2xl:leading-5"
+                  className="lg:font-semibold font-bold text-[16px] lg:text-[18px] block lg:leading-6 2xl:leading-5 capitalize font-libertinus"
                 >
                   {truncate(item.title, 80)}
                 </Link>
-                <div className="flex justify-between text-sm">
-                  <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                <div className="flex justify-between text-sm text-gray-500">
+                  {/* <div className="mt-4 flex items-center">
+                    <p className="w-1 h-5 badge-error mr-2"></p>
                     {item.category}
-                  </div>
-                  <div className="mt-4 flex items-center">
+                  </div> */}
+                  <div className=" flex items-center">
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
-                 <div className='flex justify-between text-xs text-gray-400'>
+                 <div className='flex justify-between text-sm pb-2 text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
@@ -157,20 +157,20 @@ export default async function Magazine() {
               <div className="py-2 px-1">
                 <Link
                   href={`/news/${item.slug}`}
-                  className="lg:font-semibold font-bold text-[12px] lg:text-[16px] block lg:leading-6 2xl:leading-5"
+                  className="lg:font-semibold font-bold text-[16px] lg:text-[18px] block lg:leading-6 2xl:leading-5 capitalize font-libertinus"
                 >
                   {truncate(item.title, 80)}
                 </Link>
                 <div className="flex justify-between text-sm">
-                  <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                  {/* <div className="mt-4 flex items-center">
+                    <p className="w-1 h-5 badge-error mr-2"></p>
                     {item.category}
-                  </div>
-                  <div className="mt-4 flex items-center">
+                  </div> */}
+                  <div className=" flex items-center">
                     {formatDate(item.createdAt)}
                   </div>
                 </div>
-                <div className='flex justify-between text-xs text-gray-400'>
+                <div className='flex justify-between text-sm text-gray-400'>
                   <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                   <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                 </div>

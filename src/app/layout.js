@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navber from "./component/Navber";
+import Footer from "./component/Footer";
 
 
 export const metadata = {
@@ -9,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="relative">
+      <body className="relative font-publicsans">
         <div>
           <Navber></Navber>
         </div>
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           {/* <Sideber className=''></Sideber> */}
           {children}
         </div>
+        <Footer/>
       </body>
     </html>
   );

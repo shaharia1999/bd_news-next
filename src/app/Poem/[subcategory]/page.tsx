@@ -62,10 +62,10 @@ const sidebarNews = news.slice(1, 5);
 const gridNews = news.slice(5);
 
   return (
-    <div className="px-5 py-10  w-full">
+    <div className="px-3 pb-10 w-full">
       {/* <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory} News</h1> */}
 
-   <div className="px-5 py-10 w-full">
+   <div className=" w-full">
   <h1 className="text-2xl font-bold capitalize mb-6 mt-5">{subcategory}</h1>
 
   {/* Featured + Sidebar */}
@@ -87,7 +87,7 @@ const gridNews = news.slice(5);
              
             </div>
           </div>
-            <div className='flex justify-between text-xs text-gray-400'>
+            <div className='flex justify-between text-sm text-gray-400'>
                               <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                               <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                             </div>
@@ -115,7 +115,7 @@ const gridNews = news.slice(5);
         <h3 className="font-semibold text-sm text-gray-900 leading-snug line-clamp-2">
           {item.title}
         </h3>
-        <p className="text-xs text-gray-500 mt-1">{item.author && `By ${item.author}`}</p>
+        <p className="text-sm text-gray-500 mt-1">{item.author && `By ${item.author}`}</p>
       </div>
     </div>
   </Link>
@@ -155,7 +155,7 @@ const gridNews = news.slice(5);
                 }}
               />
             </div>
-            <div className="mt-2 text-xs text-gray-400 flex justify-between">
+            <div className="mt-2 text-sm text-gray-400 flex justify-between">
               <span>{item.author && `Author: ${item.author}`}</span>
               <span>{item.source && `Source: ${item.source}`}</span>
             </div>

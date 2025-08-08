@@ -114,7 +114,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
     new Date(dateStr).toLocaleDateString("en-GB");
 
   return (
-    <div className="md:pl-[85px] md:pr-[10px] 2xl:mt-24 lg:mt-20 mt-16 md:mt-16 w-full lg:px-7 pl-0 md:pt-0 md:py-10">
+    <div className="px-3 pb-10 w-full">
       <div className="grid grid-cols-4 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-3 col-span-4">
@@ -132,7 +132,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
               <p className="font-semibold">{post.category}</p>
               <p>{formatDate(post.createdAt)}</p>
             </div>
-                          <div className='flex justify-between text-xs text-gray-400'>
+                          <div className='flex justify-between text-sm text-gray-400'>
                 <p>{post?.author ? `Author: ${post.author}` : ''}</p>
                 <p>{post?.source ? `Source: ${post.source}` : ''}</p>
               </div>
@@ -170,10 +170,10 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                     <h3 className="font-semibold text-sm line-clamp-2">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-sm text-gray-500 mt-1">
                       {formatDate(item.createdAt)}
                     </p>
-                                  <div className='flex justify-between text-xs text-gray-400'>
+                                  <div className='flex justify-between text-sm text-gray-400'>
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>
@@ -190,10 +190,10 @@ export default async function Page({ params }: { params: Promise<Params>}) {
         </aside>
       </div>
         <div>
-            <h2 className="text-xl font-semibold mb-3">
+            <h2 className="text-xl font-semibold mt-5">
               Explore more in {post.category}
             </h2>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
               {category?.news?.length ? (
                 category.news.map((item) => (
                   <Link
@@ -209,13 +209,13 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                       className="w-full object-cover"
                     />
                     <div className="p-3">
-                      <h3 className="font-semibold text-sm line-clamp-2">
+                      <h3 className="font-semibold text-sm line-clamp-2 font-libertinus capitalize">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-sm text-gray-500 mt-1">
                         {formatDate(item.createdAt)}
                       </p>
-                                    <div className='flex justify-between text-xs text-gray-400'>
+                                    <div className='flex justify-between text-sm text-gray-400'>
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>

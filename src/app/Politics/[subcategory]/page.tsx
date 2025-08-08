@@ -62,8 +62,8 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("en-GB");
   return (
-    <div className="px-5 py-10  w-full">
-      <h1 className="text-2xl font-bold capitalize my-10">{subcategory} News</h1>
+    <div className="px-3 pb-10 w-full">
+      <h1 className="text-2xl font-bold capitalize my-5">{subcategory} News</h1>
 
       {/* Main Breaking News Section */}
       <div className="grid  lg:grid-cols-2 gap-2">
@@ -80,7 +80,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
                 />
               </div>
               <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full z-10">
-                <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200">
+                   <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200 capitalize font-libertinus">
                   {item.title}
                 </h2>
                 {/* <p className="mt-3 text-sm hidden lg:block">
@@ -129,7 +129,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>
-              <h3 className="font-semibold text-sm mt-2">{item.title}</h3>
+                <h3 className="font-semibold text-sm mt-2 font-libertinus text-[16px] lg-text-[18px] capitalize">{item.title}</h3>
                  <RenderHTMLWithImagesServer description={item.description}  limit={50} ></RenderHTMLWithImagesServer>
               <span className='text-blue-500'>learn more</span>
             </div>

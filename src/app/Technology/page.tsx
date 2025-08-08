@@ -28,7 +28,7 @@ const TechnologyPage = async () => {
   }
 
   return (
-    <div className=" px-4 py-10 mt-20">
+    <div className=" px-3 md:py-10  py-5 lg:px-7 ">
       {Object.entries(data)
         .filter(([_, items]) => items.length > 0) // ✅ Only show sections with data
         .map(([subCategory, items]) => (

@@ -31,7 +31,7 @@ const EntertainmentSection = ({ subCategory, title, items }: Props) => {
   const rightArticles = items.slice(3, 5);
 
   return (
-    <div className="mb-10">
+    <div className="mb-2">
       <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-300 pb-2">{title}</h2>
 
       <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5 2xl:mt-20 lg:mt-12 mt-8">
@@ -49,22 +49,15 @@ const EntertainmentSection = ({ subCategory, title, items }: Props) => {
                 />
                 <div className="py-2 px-1">
                   <div className="lg:leading-6 2xl:leading-5">
-                    <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
+                    <h3 className="lg:font-semibold font-bold text-[15px] lg:text-[18px] capitalize font-libertinus">
                       {item.title}
                     </h3>
                   </div>
-                  <div className="flex justify-between text-xs text-gray-500 mt-4">
-                    <div className="flex items-center">
-                      <p className="w-1 h-5 badge-secondary mr-2"></p>
-                      {subCategory}
-                    </div>
-
-
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1">
+                  
+                  <p className="text-sm text-gray-500 mt-1">
                     {formatDate(item.createdAt)}
                   </p>
-                  <div className='flex justify-between text-xs text-gray-400'>
+                  <div className='flex justify-between text-sm pb-2 text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
@@ -89,21 +82,21 @@ const EntertainmentSection = ({ subCategory, title, items }: Props) => {
             />
             <div className="py-2 px-1">
               <div className="lg:leading-6 2xl:leading-5">
-                <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[20px]">
+                      <h3 className="lg:font-semibold font-bold text-[15px] lg:text-[20px] capitalize font-libertinus">
                   {mainArticle.title}
                 </h3>
               </div>
-              <div className="flex justify-between text-xs text-gray-500 mt-4">
-                <div className="flex items-center">
-                  <p className="w-1 h-5 badge-secondary mr-2"></p>
+              <div className="flex justify-between text-sm text-gray-500 ">
+                {/* <div className="flex items-center">
+                  <p className="w-1 h-5 badge-error mr-2"></p>
                   {subCategory}
-                </div>
+                </div> */}
                 <div className="flex items-center">
                   {new Date(mainArticle.createdAt).toLocaleDateString()}
                 </div>
 
               </div>
-              <div className='flex justify-between text-xs text-gray-400'>
+              <div className='flex justify-between text-sm text-gray-400'>
                 <p>{mainArticle?.author ? `Author: ${mainArticle.author}` : ''}</p>
                 <p>{mainArticle?.source ? `Source: ${mainArticle.source}` : ''}</p>
               </div>
@@ -131,20 +124,20 @@ const EntertainmentSection = ({ subCategory, title, items }: Props) => {
                 />
                 <div className="py-2 px-1">
                   <div className="lg:leading-6 2xl:leading-5">
-                    <h3 className="lg:font-semibold font-bold text-[12px] lg:text-[16px]">
+                    <h3 className="lg:font-semibold font-bold text-[15px] lg:text-[18px] capitalize font-libertinus">
                       {item.title}
                     </h3>
                   </div>
-                  <div className="flex justify-between text-xs text-gray-500 mt-4">
-                    <div className="flex items-center">
-                      <p className="w-1 h-5 badge-secondary mr-2"></p>
+                     <div className="flex justify-between text-sm text-gray-500 ">
+                    {/* <div className="flex items-center">
+                      <p className="w-1 h-5 badge-error mr-2"></p>
                       {subCategory}
-                    </div>
+                    </div> */}
                     <div className="flex items-center">
                       {new Date(item.createdAt).toLocaleDateString()}
                     </div>
                   </div>
-                  <div className='flex justify-between text-xs text-gray-400'>
+                  <div className='flex justify-between text-sm pb-2 text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
@@ -160,7 +153,7 @@ const EntertainmentSection = ({ subCategory, title, items }: Props) => {
       </div>
 
       <div className="text-right mt-6">
-        <Link href={`/Technology/${subCategory}`}>
+        <Link href={`/Entertainment/${subCategory}`}>
           <button className="text-blue-600 hover:underline font-semibold">See All</button>
         </Link>
       </div>

@@ -46,7 +46,7 @@ export default async function Blog() {
   return (
     <div className="md:pl-[85px] md:pr-[10px] w-full lg:px-7 md:pt-0 md:py-10 px-2 md:px-0">
       <div className="py-3 flex items-center">
-        <p className="w-3 h-6 badge-secondary mr-2"></p>
+        <p className="w-3 h-6 badge-error mr-2"></p>
         <p className="text-3xl font-bold">Blog</p>
       </div>
 
@@ -76,7 +76,7 @@ export default async function Blog() {
                 </p>
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                    <p className="w-1 h-5 badge-error mr-2"></p>
                     {post.category}
                   </div>
                   <div className="mt-4 flex items-center">
@@ -112,7 +112,7 @@ export default async function Blog() {
                 </p>
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                    <p className="w-1 h-5 badge-error mr-2"></p>
                     {post.category}
                   </div>
                   <div className="mt-4 flex items-center">
@@ -149,7 +149,7 @@ export default async function Blog() {
                 </p>
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
+                    <p className="w-1 h-5 badge-error mr-2"></p>
                     {blogPosts[4].category}
                   </div>
                   <div className="mt-4 flex items-center">
