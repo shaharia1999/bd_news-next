@@ -43,3 +43,44 @@ const PoliticsPage = async () => {
 };
 
 export default PoliticsPage;
+export async function generateMetadata() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+
+  const res = await serverFetchData<{ news: NewsItem[] }>(
+    'news?category=Politics&limit=1&page=1',
+    {
+      cache: 'default',
+      next: { revalidate: 300 },
+    }
+  );
+
+  const latest = res?.news?.[0];
+
+  const title = 'Latest Political News | NewsUs';
+  const description =
+    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
+    'Get the latest political news, analysis, and updates from around the world.';
+
+  const image = latest?.mainImage?.startsWith('http')
+    ? latest.mainImage
+    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/politics`,
+      type: 'website',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+

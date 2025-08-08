@@ -161,3 +161,43 @@ const formatDate = (dateStr: string) =>
     </div>
   );
 }
+export async function generateMetadata({ params }: { params: Promise<PageProps>}){
+   const { subcategory, page } = await params;
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News - Entertainment | NewsUs`;
+  const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUs.`;
+
+  const res = await serverFetchData<{
+    news: NewsItem[];
+  }>(
+    `news?subCategory=${subcategory}&limit=1&page=1`,
+    {
+      cache: 'default',
+      next: { revalidate: 300 },
+    }
+  );
+
+  const latest = res?.news?.[0];
+  const image = latest?.mainImage?.startsWith('http')
+    ? latest.mainImage
+    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/entertainment/${subcategory}`,
+      type: 'article',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}

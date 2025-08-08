@@ -19,7 +19,8 @@ type Datatype = {
   subcategory: string;
   page?: string
 }
-// export const dynamic = 'force-dynamic';
+
+
 export default async function SubCategoryPage( { params }: { params: Promise<Datatype> }) {
   const { subcategory } = await params;
   const currentPage = parseInt('1', 10);
@@ -204,4 +205,43 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
       )}
     </div>
   );
+}
+
+export async function generateMetadata( { params }: { params: Promise<Datatype> }) {
+  const { subcategory } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  // const subcategory = await params.subcategory;
+
+  const res = await serverFetchData<{ news: NewsItem[] }>(
+    `news?subCategory=${subcategory}&limit=1&page=1`,
+    { cache: 'default', next: { revalidate: 300 } }
+  );
+
+  const latest = res?.news?.[0];
+  const title = latest?.title || `Latest ${subcategory} News | NewsUs`;
+  const description =
+    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
+    `Get the latest updates and headlines from the ${subcategory} category.`;
+
+  const image = latest?.mainImage?.startsWith('http')
+    ? latest.mainImage
+    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/subcategory/${subcategory}`,
+      type: 'article',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
 }

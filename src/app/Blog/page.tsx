@@ -13,6 +13,8 @@ interface NewsItem {
   createdAt: string;
 }
 
+
+
 const EntertainmenPage = async () => {
   const subCategories = subCategoriesMap['Blog'];
   const data: { [key: string]: NewsItem[] } = {};
@@ -46,3 +48,30 @@ const EntertainmenPage = async () => {
 };
 
 export default EntertainmenPage;
+
+export async function generateMetadata() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+
+  const title = 'Blog Categories - Latest Articles | NewsUs';
+  const description =
+    'Explore the latest articles across all blog subcategories. Stay informed with curated blogs from various topics like tech, lifestyle, health, and more.';
+  const image = `${siteUrl}/default-og.jpg`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/blog`,
+      type: 'website',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}

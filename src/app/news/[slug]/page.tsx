@@ -31,6 +31,51 @@ interface Params {
 
 }
 
+export async function generateMetadata({ params }: { params: Promise<Params>}) {
+  const { slug } = await params;
+
+
+  const response = await serverFetchData<{ data: NewsItem }>(
+    `news/${slug}`,
+    {
+      cache: 'default',
+      next: { revalidate: 300 },
+    }
+  );
+
+  const post = response?.data;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+
+  const title = post?.title || 'News Details | NewsUS';
+  const description =
+    post?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
+    'Read the full news article and latest updates from NewsUS.';
+  const image = post?.mainImage?.startsWith('http')
+    ? post.mainImage
+    : `${siteUrl}${post?.mainImage || '/default-og.jpg'}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/news/${slug}`,
+      type: 'article',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+    alternates: {
+      canonical: `${siteUrl}/news/${slug}`,
+    },
+  };
+}
+
 export default async function Page({ params }: { params: Promise<Params>}) {
   const { slug } = await params;
 

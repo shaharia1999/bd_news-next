@@ -45,3 +45,30 @@ const EntertainmenPage = async () => {
 };
 
 export default EntertainmenPage;
+export async function generateMetadata() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+
+  const title = 'Entertainment News - Movies, Celebrities & TV | NewsUs';
+  const description =
+    'Get the latest entertainment news, celebrity gossip, movie updates, and TV highlights. Stay entertained with trending stories on NewsUs.';
+  const image = `${siteUrl}/default-og.jpg`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/entertainment`,
+      type: 'website',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+

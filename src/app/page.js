@@ -10,14 +10,33 @@ import { serverFetchData } from "./lib/serverFetch";
 
 
 
-export async function generateMetadata() {
-  const news = await serverFetchData(
-    'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
-    'no-store'
+
+
+
+export default function Home() {
+  return (
+    <div className="w-full">
+      <BreakingNews />
+      <HomeNews />
+      <Sports />
+      <Magazine />
+      <Education />
+      <Blog />
+    </div>
   );
-  const latest = news?.[0];
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
-  const title = latest?.title || 'Latest News Headlines | Your Site Name';
+}
+export async function generateMetadata() {
+  const data = await serverFetchData(
+    'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
+    {
+      cache: 'default',
+      next: { revalidate: 300 },
+    }
+  );
+
+  const latest = data?.news?.[0]; // ✅ fixed here
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const title = latest?.title || 'Latest News Headlines | NewsUS';
   const description =
     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
     'Get the latest breaking news and updates on current events from around the world.';
@@ -41,18 +60,8 @@ export async function generateMetadata() {
       description,
       images: [image],
     },
+    alternates: {
+      canonical: siteUrl,
+    },
   };
-}
-
-export default function Home() {
-  return (
-    <div className="w-full">
-      <BreakingNews />
-      <HomeNews />
-      <Sports />
-      <Magazine />
-      <Education />
-      <Blog />
-    </div>
-  );
 }

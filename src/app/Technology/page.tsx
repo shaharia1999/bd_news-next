@@ -44,3 +44,44 @@ const TechnologyPage = async () => {
 };
 
 export default TechnologyPage;
+export async function generateMetadata() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+
+  const res = await serverFetchData<{ news: NewsItem[] }>(
+    'news?category=Technology&limit=1&page=1',
+    {
+      cache: 'default',
+      next: { revalidate: 300 },
+    }
+  );
+
+  const latest = res?.news?.[0];
+
+  const title = 'Latest Tech News | NewsUs';
+  const description =
+    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
+    'Stay updated with the latest technology news, gadget launches, and software updates.';
+
+  const image = latest?.mainImage?.startsWith('http')
+    ? latest.mainImage
+    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/technology`,
+      type: 'website',
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+
