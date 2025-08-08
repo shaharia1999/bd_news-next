@@ -19,7 +19,7 @@
 //   return (
 //     <div className="fixed top-0 left-0 w-full z-50 bg-[#121D45] text-white shadow-md">
 //       <div className="flex items-center justify-between px-6 py-4">
-//         <p className="text-2xl font-bold">News<span className="text-red-500">Bd</span></p>
+//         <p className="text-2xl font-bold">News<span className="text-red-500">Us</span></p>
 
 //         {/* Main nav items */}
 //         <div className="flex gap-6">
@@ -99,13 +99,13 @@ const Navbar = () => {
               <HiOutlineMenu />
             </button>
             <Link href='/' className="text-2xl font-bold">
-              News<span className="text-red-500">Bd</span>
+              News<span className="text-red-500">Us</span>
             </Link>
           </div>
 
           {/* Desktop layout */}
           <div className="hidden md:flex justify-between items-center w-full">
-            <Link href='/' className="text-2xl font-bold">News<span className="text-red-500">Bd</span>
+            <Link href='/' className="text-2xl font-bold">News<span className="text-red-500">Us</span>
             </Link>
 
             <div className="flex gap-6">
@@ -152,7 +152,7 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-300">
           <Link href='/' className="text-xl font-bold text-black">
-          News<span className="text-red-500">Bd</span></Link>
+          News<span className="text-red-500">Us</span></Link>
           <button onClick={() => setMobileMenuOpen(false)} className="text-3xl text-gray-600">
             <HiX />
           </button>
