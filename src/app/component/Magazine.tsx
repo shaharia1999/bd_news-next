@@ -30,7 +30,10 @@ export default async function Magazine() {
   // );
   const { news } = await serverFetchData<NewsApiResponse>(
     'news?category=Entertainment&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
-    'no-store'
+        {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
   );
   if (!news || news.length === 0) return null;
 
@@ -54,6 +57,7 @@ export default async function Magazine() {
       <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5">
         {/* Main Column */}
         <div className="lg:col-span-4 md:col-span-4">
+           <Link      href={`/news/${mainNews.slug}`}>
           <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
             <Image
               src={mainNews.mainImage}
@@ -62,6 +66,7 @@ export default async function Magazine() {
               style={{ objectFit: 'cover' }}
             />
           </div>
+          </Link>
           <div className="py-2 px-1">
             <Link
               href={`/news/${mainNews.slug}`}
@@ -94,6 +99,8 @@ export default async function Magazine() {
         {/* Left Column */}
         <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
           {leftNews.map((item) => (
+                            <Link      href={`/news/${item.slug}`} key={item._id}>
+
             <div key={item._id}>
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
@@ -129,12 +136,15 @@ export default async function Magazine() {
             <span className='text-blue-500'>learn more</span>
               </div>
             </div>
+            </Link>
           ))}
         </div>
 
         {/* Right Column */}
         <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
           {rightNews.map((item) => (
+                            <Link      href={`/news/${item.slug}`} key={item._id}>
+
             <div key={item._id}>
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
@@ -170,6 +180,7 @@ export default async function Magazine() {
                 <span className='text-blue-500'>learn more</span>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

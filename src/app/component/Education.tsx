@@ -12,8 +12,8 @@ interface News {
   category: string;
   createdAt: string;
   images?: string[];
-  visitCount?: number |string;
-  author?:string;
+  visitCount?: number | string;
+  author?: string;
   source?: string;
 }
 
@@ -29,9 +29,12 @@ export default async function Education() {
   //   "news?category=Education&sortBy=createdAt&sortOrder=desc&limit=8&page=1",
   //   "no-store"
   // );
- const {news }= await serverFetchData<NewsApiResponse>(
+  const { news } = await serverFetchData<NewsApiResponse>(
     'news?category=Technology&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
-    'no-store'
+    {
+      cache: 'default',
+      next: { revalidate: 300 }
+    }
   );
   if (!news || news.length === 0) return null;
 
@@ -51,44 +54,47 @@ export default async function Education() {
       <div className="All-News grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
         {news.map((item) => (
           <article key={item._id}>
-            <div className="car bg-base-100 md:h-auto lg:h-[400px] 2xl:h-[450px]">
-              <figure>
-                <Image
-                  src={item.mainImage}
-                  width={500}
-                  height={500}
-                  alt={item.title}
-                  className="2xl:h-72 md:h-52 w-full object-cover"
-                />
-              </figure>
-              <div className="py-2 px-1">
-                <div className="lg:leading-6 2xl:leading-5">
-                  <Link
-                    href={`/news/${item.slug}`}
-                    className="font-bold text-[12px] lg:text-[16px]"
-                  >
-                    {truncate(item.title, 90)}
-                  </Link>
-                </div>
-                <div className="flex justify-between">
-                  <div className="mt-4 flex items-center">
-                    <p className="w-1 h-5 badge-secondary mr-2"></p>
-                    {item.category}
+            <Link href={`/news/${item.slug}`} key={item._id}>
+
+              <div className="car bg-base-100 md:h-auto lg:h-[400px] 2xl:h-[450px]">
+                <figure>
+                  <Image
+                    src={item.mainImage}
+                    width={500}
+                    height={500}
+                    alt={item.title}
+                    className="2xl:h-72 md:h-52 w-full object-cover"
+                  />
+                </figure>
+                <div className="py-2 px-1">
+                  <div className="lg:leading-6 2xl:leading-5">
+                    <Link
+                      href={`/news/${item.slug}`}
+                      className="font-bold text-[12px] lg:text-[16px]"
+                    >
+                      {truncate(item.title, 90)}
+                    </Link>
                   </div>
-                  <div className="mt-4 flex items-center">
-                    {formatDate(item.createdAt)}
+                  <div className="flex justify-between">
+                    <div className="mt-4 flex items-center">
+                      <p className="w-1 h-5 badge-secondary mr-2"></p>
+                      {item.category}
+                    </div>
+                    <div className="mt-4 flex items-center">
+                      {formatDate(item.createdAt)}
+                    </div>
                   </div>
+                  <div className='flex justify-between text-xs text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+
+                  <RenderHTMLWithImagesServer description={item.description} limit={30}
+                  />
+                  <span className='text-blue-500'>learn more</span>
                 </div>
-                 <div className='flex justify-between text-xs text-gray-400'>
-                                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
-                                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
-                                  </div>
-                                    
-                                <RenderHTMLWithImagesServer description={item.description} limit={30}
-                              />
-                            <span className='text-blue-500'>learn more</span>
               </div>
-            </div>
+            </Link>
           </article>
         ))}
       </div>

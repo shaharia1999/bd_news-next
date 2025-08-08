@@ -17,23 +17,27 @@ interface NewsItem {
   source?: string;
 }
 interface PageProps {
-  params: { subcategory: string };
-  searchParams?: { page?: string };
+   subcategory: string 
+    page?: string 
 }
-const formatDate = (dateStr: string) =>
-  new Date(dateStr).toLocaleDateString("en-GB");
-export default async function SubCategoryPage({ params, searchParams }: PageProps) {
-  const { subcategory } = params;
-  const currentPage = parseInt(searchParams?.page || '1', 10);
+export default async function SubCategoryPage({ params }: { params: Promise<PageProps>}){
+   const { subcategory, page } = await params;
+
+  // const page = searchParams?.page;
+  const currentPage = parseInt(page || '1', 10);
 
   const validSubs = subCategoriesMap['Technology'].map((s) => s.toLowerCase());
-
+const formatDate = (dateStr: string) =>
+  new Date(dateStr).toLocaleDateString("en-GB");
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
   const res = await serverFetchData<{
     news: NewsItem[];
     pages: number;
-  }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`, 'no-store'); // Increased limit to 12 for the layout
+  }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`,   {
+    cache: 'no-store',
+    next: { revalidate: 300 }
+  }); // Increased limit to 12 for the layout
 
   const news = res?.news || [];
   const totalPages = res?.pages || 1;

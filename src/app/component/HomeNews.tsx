@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { serverFetchData } from '../lib/serverFetch';
 import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
+import Link from 'next/link';
 
 interface News {
   _id: string;
@@ -27,13 +28,15 @@ interface NewsApiResponse {
 export default async function HomeNews() {
   const {news }= await serverFetchData<NewsApiResponse>(
     'news?sortBy=createdAt&sortOrder=desc&limit=6&page=1',
-    'no-store'
+        {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
   );
 
   if (!news || news.length === 0) return null;
 
-  const truncate = (text: string, maxLength: number) =>
-    text?.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+
 
   return (
     <div className="md:pl-[85px] md:pr-[10px] w-full lg:px-7 md:pt-0 md:py-10 px-2 md:px-0">
@@ -43,6 +46,8 @@ export default async function HomeNews() {
       </div>
       <div className="All-News grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
         {news?.map((item) => (
+                            <Link      href={`/news/${item.slug}`} key={item._id}>
+
           <article key={item._id}>
             <div className="car bg-base-100  2xl:h-auto">
               <figure className="relative w-full 2xl:h-96 md:h-60 aspect-[4/3]">
@@ -84,6 +89,7 @@ export default async function HomeNews() {
               </div>
             </div>
           </article>
+          </Link>
         ))}
       </div>
     </div>

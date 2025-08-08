@@ -27,7 +27,10 @@ interface NewsApiResponse {
 export default async function Sports() {
   const {news} = await serverFetchData<NewsApiResponse>(
     'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
-    'no-store'
+        {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
   );
 
   if (!news || news.length === 0) return null;
@@ -53,6 +56,8 @@ export default async function Sports() {
         {/* Left Column */}
         <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
           {leftNews.map((item) => (
+                            <Link      href={`/news/${item.slug}`} key={item._id}>
+
             <div key={item._id} className="w-full">
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
@@ -88,6 +93,7 @@ export default async function Sports() {
             <span className='text-blue-500'>learn more</span>
               </div>
             </div>
+            </Link>
           ))}
         </div>
 
@@ -95,12 +101,14 @@ export default async function Sports() {
         {
           mainNews &&     <div className="lg:col-span-4 md:col-span-4">
           <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
+             <Link      href={`/news/${mainNews.slug}`}>
             <Image
               src={mainNews.mainImage}
               alt={mainNews.title}
               fill
               style={{ objectFit: 'cover' }}
             />
+            </Link>
           </div>
           <div className="py-2 px-1">
             <Link
@@ -134,6 +142,8 @@ export default async function Sports() {
         {/* Right Column */}
         <div className="lg:col-span-2 md:col-span-3 grid grid-cols-1 gap-3">
           {rightNews.map((item) => (
+                        <Link      href={`/news/${item.slug}`} key={item._id}>
+
             <div key={item._id}>
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
@@ -169,6 +179,7 @@ export default async function Sports() {
             <span className='text-blue-500'>learn more</span>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

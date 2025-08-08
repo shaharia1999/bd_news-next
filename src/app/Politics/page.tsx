@@ -18,7 +18,10 @@ const PoliticsPage = async () => {
   for (const sub of subCategories) {
     const res = await serverFetchData<{ news: NewsItem[] }>(
       `news?subCategory=${sub}&limit=8&page=1`,
-      'no-store'
+         {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
     );
     data[sub] = res?.news ?? [];
   }

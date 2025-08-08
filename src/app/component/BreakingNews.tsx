@@ -2,6 +2,7 @@
 import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
 import { serverFetchData } from '../lib/serverFetch';
+import Link from 'next/link';
 // import { serverFetchData } from '@/lib/serverFetch';
 
 interface News {
@@ -29,7 +30,10 @@ interface NewsApiResponse {
 export default async function BreakingNews() {
   const {news }= await serverFetchData<NewsApiResponse>(
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=10&page=1',
-    'no-store'
+        {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
   );
   console.log('Breaking news data:', news);
   if (!news || news.length === 0) return null;
@@ -48,6 +52,7 @@ export default async function BreakingNews() {
           {bannerNews && (
             <article className="text-white relative">
               <div className="relative w-full aspect-[16/9] 2xl:aspect-[16/9] lg:aspect-[16/9] md:aspect-[4/3]">
+               <Link      href={`/news/${bannerNews.slug}`}>
                 <Image
                   src={bannerNews.mainImage}
                   alt={bannerNews.title}
@@ -56,6 +61,7 @@ export default async function BreakingNews() {
                   style={{ objectFit: 'cover' }}
                   priority
                 />
+                </Link>
               </div>
               <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full bg-gradient-to-t from-black/70 to-transparent">
                 <a
@@ -75,8 +81,10 @@ export default async function BreakingNews() {
           )}
 
           <Marquee speed={50}>
+       
             <div className="flex gap-3 px-2 2xl:py-10 lg:py-3 mt-2 lg:mt-0">
               {marqueeNews.map((item) => (
+                <Link   href={`/news/${item.slug}`} key={item._id}>
                 <div
                   key={item._id}
                   className="min-w-[300px] text-white relative 2xl:h-[250px] lg:h-[200px]"
@@ -105,6 +113,7 @@ export default async function BreakingNews() {
                     /> */}
                   </div>
                 </div>
+                </Link>
               ))}
             </div>
           </Marquee>
@@ -114,6 +123,7 @@ export default async function BreakingNews() {
         <div className="lg:col-span-4 mt-2 lg:mt-0 px-2 md:px-0">
           <article className="grid grid-cols-2 grid-rows-2 2xl:gap-5 gap-2">
             {sideNews.map((item) => (
+                <Link      href={`/news/${item.slug}`} key={item._id}>
               <div key={item._id} className="car bg-base-100 2xl:h-96">
                 <figure className="relative w-full aspect-[4/3]">
                   <Image
@@ -150,6 +160,7 @@ export default async function BreakingNews() {
               
             {/* <span className='text-blue-500'>learn more</span> */}
               </div>
+              </Link>
             ))}
           </article>
         </div>

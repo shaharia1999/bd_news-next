@@ -20,7 +20,10 @@ const EntertainmenPage = async () => {
   for (const sub of subCategories) {
     const res = await serverFetchData<{ news: NewsItem[] }>(
       `news?subCategory=${sub}&limit=8&page=1`,
-      'no-store'
+        {
+    cache: 'no-store',
+    next: { revalidate: 300 }
+  }
     );
     console.log(res);
     data[sub] = res?.news ?? [];

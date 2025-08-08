@@ -30,7 +30,10 @@ export default async function Blog() {
   // );
  const {blogPosts} = await serverFetchData<NewsApiResponse>(
     'news?category=Blog&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
-    'no-store'
+      {
+    cache: 'default',
+    next: { revalidate: 300 }
+  }
   );
   if (!blogPosts || blogPosts.length === 0) return null;
 

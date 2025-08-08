@@ -26,17 +26,20 @@ interface NewsApiResponse {
 }
 
 interface Params {
-  params: {
+
     slug: string;
-  };
+
 }
 
-export default async function Page({ params }: Params) {
-  const { slug } = params;
+export default async function Page({ params }: { params: Promise<Params>}) {
+  const { slug } = await params;
 
   const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(
     `news/${slug}`,
-    "no-store"
+      {
+    cache: 'no-store',
+    next: { revalidate: 300 }
+  }
   );
 
   const post = response?.data;
@@ -47,13 +50,19 @@ export default async function Page({ params }: Params) {
   // Fetch subCategory posts
   const subcetagory = await serverFetchData<NewsApiResponse>(
     `news?subCategory=${post.subCategory}&limit=20&page=1&excludeSlug=${slug}`,
-    "no-store"
+      {
+    cache: 'no-store',
+    next: { revalidate: 300 }
+  }
   );
 
   // Fetch category posts
   const category = await serverFetchData<NewsApiResponse>(
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
-    "no-store"
+      {
+    cache: 'no-store',
+    next: { revalidate: 300 }
+  }
   );
 
   const formatDate = (dateStr: string) =>
