@@ -15,7 +15,7 @@ const Footer = () => {
           <p className="text-sm leading-relaxed">
             Written and managed by Md Shaharia and{' '}
             <a
-              href="https://www.facebook.com/jahir.shah"
+              href="https://www.facebook.com/jahir.shah.783745"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
