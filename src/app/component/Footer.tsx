@@ -1,15 +1,15 @@
 const Footer = () => {
   return (
-    <footer className="bg-[#121212] text-gray-300 px-4 py-10 mt-10">
+    <footer className="bg-[#121212] text-gray-300 px-4 py-10 ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* About */}
+
         <div>
           <h2 className="text-xl font-semibold mb-2">About</h2>
           <p className="text-sm leading-relaxed">
             We are dedicated to delivering the latest news, blogs, and insights on politics, health, technology, and more. Our mission is to provide accurate and trustworthy information to our readers.
           </p>
         </div>
-        {/* Author */}
+     
         <div>
           <h2 className="text-xl font-semibold mb-2">Author</h2>
           <p className="text-sm leading-relaxed">
