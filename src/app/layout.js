@@ -10,6 +10,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+          <meta name="google-site-verification" content="UYTNkdzJ3B4ahGpq5dimzr4mkxf1uLefMFjq0KetDkw" />
+
       <body className="relative font-publicsans">
         <div>
           <Navber></Navber>

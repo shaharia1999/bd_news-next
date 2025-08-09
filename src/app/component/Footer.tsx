@@ -9,14 +9,24 @@ const Footer = () => {
             We are dedicated to delivering the latest news, blogs, and insights on politics, health, technology, and more. Our mission is to provide accurate and trustworthy information to our readers.
           </p>
         </div>
-
         {/* Author */}
         <div>
           <h2 className="text-xl font-semibold mb-2">Author</h2>
           <p className="text-sm leading-relaxed">
-            Written and managed by Md Shaharia, a passionate writer and front-end developer at Wornar Company. All content is curated with accuracy and responsibility.
+            Written and managed by Md Shaharia and{' '}
+            <a
+              href="https://www.facebook.com/jahir.shah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Jahir Shah
+            </a>
+            , passionate writers and front-end developers at Wornar Company. All content is curated with accuracy and responsibility.
           </p>
         </div>
+
+
 
         {/* Contact Us */}
         <div>
