@@ -129,7 +129,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
               priority
             />
             <div className="flex justify-between mt-3  text-gray-600">
-              <p className="font-semibold">{post.category}</p>
+              {/* <p className="font-semibold">{post.category}</p> */}
               <p>{formatDate(post.createdAt)}</p>
             </div>
                           <div className='flex justify-between text-sm text-gray-400'>
@@ -150,7 +150,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
           {/* SubCategory Section */}
           <div className="flex-1 overflow-y-auto max-h-[80vh] pr-1">
             <h2 className="text-xl font-semibold mb-3">
-              More in {post.subCategory}
+              More
             </h2>
             {subcetagory?.news?.length ? (
               subcetagory.news.map((item) => (
@@ -191,7 +191,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
       </div>
         <div>
             <h2 className="text-xl font-semibold mt-5">
-              Explore more in {post.category}
+              Explore more 
             </h2>
             <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
               {category?.news?.length ? (
