@@ -191,7 +191,7 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/entertainment/${subcategory}`,
+      url: `${siteUrl}/Sports/${subcategory}`,
       type: 'article',
       images: [{ url: image }],
     },
@@ -200,6 +200,9 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
       title,
       description,
       images: [image],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Sports/${subcategory}`,
     },
   };
 }

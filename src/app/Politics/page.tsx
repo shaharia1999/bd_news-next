@@ -71,7 +71,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/politics`,
+      url: `${siteUrl}/Politics`,
       type: 'website',
       images: [{ url: image }],
     },
@@ -80,6 +80,9 @@ export async function generateMetadata() {
       title,
       description,
       images: [image],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Politics`,
     },
   };
 }

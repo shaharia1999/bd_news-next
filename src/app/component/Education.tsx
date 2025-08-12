@@ -45,7 +45,7 @@ export default async function Education() {
     text?.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
   return (
-    <div className=" md:pr-[10px] w-full lg:px-7 lg:pb-32 pb-20">
+    <div className=" px-3 md:px-4 2xl:mt-5 lg:mt-5 mt-2 w-full lg:px-7 pb-20">
       <div className="py-3 flex items-center">
         <p className="w-3 h-6 badge-error mr-2"></p>
         <p className="lg:text-3xl font-bold font-libertinus">Technology</p>

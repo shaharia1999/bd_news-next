@@ -73,7 +73,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/sports`,
+      url: `${siteUrl}/Sports`,
       type: 'website',
       images: [{ url: image }],
     },
@@ -82,6 +82,9 @@ export async function generateMetadata() {
       title,
       description,
       images: [image],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Sports`,
     },
   };
 }
