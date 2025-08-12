@@ -52,7 +52,6 @@ export async function generateMetadata() {
 
   const subCategories = subCategoriesMap['Entertainment'] || [];
   const categoryList = subCategories.join(', ');
-
   // Optionally fetch latest trending entertainment news title
   const {news} = await serverFetchData<{ news: NewsItem[] }>(
     'news?category=Entertainment&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
