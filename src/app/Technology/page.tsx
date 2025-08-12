@@ -45,7 +45,7 @@ const TechnologyPage = async () => {
 
 export default TechnologyPage;
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
   const res = await serverFetchData<{ news: NewsItem[] }>(
     'news?category=Technology&limit=1&page=1',

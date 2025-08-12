@@ -50,7 +50,7 @@ const EntertainmenPage = async () => {
 export default EntertainmenPage;
 
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
   const title = 'Blog Categories - Latest Articles | NewsUs';
   const description =

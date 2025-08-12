@@ -167,7 +167,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
 export async function generateMetadata({ params }: { params: Promise<PageProps>}){
    const { subcategory, page } = await params;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
   const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News - Entertainment | NewsUs`;
   const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUs.`;
 

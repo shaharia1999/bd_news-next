@@ -35,7 +35,7 @@ export default function Home() {
 //   );
 
 //   const latest = data?.news?.[0]; // ✅ fixed here
-//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 //   const title = latest?.title || 'Latest News Headlines | NewsUS';
 //   const description =
 //     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }) {
   );
 
   const latest = data?.news?.[0];
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
   
   // Dynamically set the canonical URL based on the current page.
   // For the homepage, it's just the siteUrl. For other pages, add the path.

@@ -48,7 +48,7 @@ const TrendingPage = async () => {
 export default TrendingPage;
 
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
   const res = await serverFetchData<{ news: NewsItem[] }>(
     'news?category=Tranding&limit=1&page=1',

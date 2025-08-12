@@ -209,7 +209,7 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
 
 export async function generateMetadata( { params }: { params: Promise<Datatype> }) {
   const { subcategory } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
   // const subcategory = await params.subcategory;
 
   const res = await serverFetchData<{ news: NewsItem[] }>(

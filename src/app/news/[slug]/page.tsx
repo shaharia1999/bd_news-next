@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<Params>}) {
   );
 
   const post = response?.data;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
   const title = post?.title || 'News Details | NewsUS';
   const description =
