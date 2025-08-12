@@ -55,20 +55,26 @@ export async function generateMetadata() {
     'news?category=Poem&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 },
+      next: { revalidate: 300 }, // revalidate every 5 minutes
     }
   );
 
   const latest = res?.news?.[0];
+  const title = latest?.title || 'Latest Poems | NewsUs';
+  // const title = 'Latest Poems | NewsUs';
 
-  const title = 'Latest Poems | NewsUs';
+  // Clean description from HTML tags and trim to 150 chars, fallback default if none
   const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Discover the latest poems and poetry updates from around the world.';
+    latest?.description
+      ? latest.description.replace(/<[^>]*>/g, '').slice(0, 150)
+      : 'Discover the latest poems and poetry updates from around the world.';
 
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // Compose full image URL or fallback
+  const image = latest?.mainImage
+    ? latest.mainImage.startsWith('http')
+      ? latest.mainImage
+      : `${siteUrl}${latest.mainImage}`
+    : `${siteUrl}/default-og.jpg`;
 
   return {
     title,
@@ -91,4 +97,5 @@ export async function generateMetadata() {
     },
   };
 }
+
 

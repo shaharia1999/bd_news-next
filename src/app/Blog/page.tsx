@@ -49,12 +49,15 @@ const EntertainmenPage = async () => {
 
 export default EntertainmenPage;
 
+
+
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const subCategories = subCategoriesMap['Blog'] || [];
+  const categoriesList = subCategories.join(', ');
 
-  const title = 'Blog Categories - Latest Articles | NewsUs';
-  const description =
-    'Explore the latest articles across all blog subcategories. Stay informed with curated blogs from various topics like tech, lifestyle, health, and more.';
+  const title = `Blog Categories - Latest Articles on ${categoriesList} | NewsUs`;
+  const description = `Explore the latest articles across blog categories like ${categoriesList}. Stay informed with curated blogs on tech, lifestyle, health, and more.`;
   const image = `${siteUrl}/default-og.jpg`;
 
   return {
@@ -78,3 +81,4 @@ export async function generateMetadata() {
     },
   };
 }
+

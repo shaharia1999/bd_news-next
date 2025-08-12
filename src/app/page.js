@@ -67,9 +67,14 @@ export default function Home() {
 // }
 // This example is for a dynamic page, like app/news/[slug]/page.tsx
 export async function generateMetadata({ params }) {
-  // If you're on a dynamic route, get the slug or ID from params.
-  const pageSlug = params.slug; 
+  const pageSlug = params?.slug;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
+  // Define categories for fallback metadata
+  const categories = ['Breaking News', 'Sports', 'Magazine', 'Education', 'Blog'];
+  const categoryList = categories.join(', ');
+
+  // Fetch latest trending news
   const data = await serverFetchData(
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
     {
@@ -79,16 +84,16 @@ export async function generateMetadata({ params }) {
   );
 
   const latest = data?.news?.[0];
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-  
-  // Dynamically set the canonical URL based on the current page.
-  // For the homepage, it's just the siteUrl. For other pages, add the path.
+
+  // Dynamically set the canonical URL
   const canonicalUrl = pageSlug ? `${siteUrl}/news/${pageSlug}` : siteUrl;
 
-  const title = latest?.title || 'Latest News Headlines | NewsUS';
+  // Use latest news data if available, else fallback to categories metadata
+  const title =
+    latest?.title || `Latest News and Updates on ${categoryList} | NewsUS`;
   const description =
     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Get the latest breaking news and updates on current events from around the world.';
+    `Stay informed with breaking news, sports updates, magazines, education insights, and blog articles. Latest headlines from around the world.`;
   const image = latest?.mainImage?.startsWith('http')
     ? latest.mainImage
     : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
@@ -99,7 +104,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: canonicalUrl, // Use the dynamic URL here
+      url: canonicalUrl,
       type: 'website',
       images: [{ url: image }],
     },
@@ -110,7 +115,8 @@ export async function generateMetadata({ params }) {
       images: [image],
     },
     alternates: {
-      canonical: canonicalUrl, // Use the dynamic URL here
+      canonical: canonicalUrl,
     },
   };
 }
+

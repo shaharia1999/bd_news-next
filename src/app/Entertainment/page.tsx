@@ -45,12 +45,28 @@ const EntertainmenPage = async () => {
 };
 
 export default EntertainmenPage;
+
+
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
-  const title = 'Entertainment News - Movies, Celebrities & TV | NewsUs';
+  const subCategories = subCategoriesMap['Entertainment'] || [];
+  const categoryList = subCategories.join(', ');
+
+  // Optionally fetch latest trending entertainment news title
+  const {news} = await serverFetchData<{ news: NewsItem[] }>(
+    'news?category=Entertainment&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
+    { cache: 'default' }
+  );
+  const latestTitle = news?.[0]?.title;
+
+  const title =
+    latestTitle ||
+    `Entertainment News - Movies, Celebrities & TV | NewsUs`;
+
   const description =
-    'Get the latest entertainment news, celebrity gossip, movie updates, and TV highlights. Stay entertained with trending stories on NewsUs.';
+    `Get the latest entertainment news, celebrity gossip, movie updates, and TV highlights. Trending stories on ${categoryList}.`;
+
   const image = `${siteUrl}/default-og.jpg`;
 
   return {
@@ -59,7 +75,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/entertainment`,
+      url: `${siteUrl}/Entertainment`,
       type: 'website',
       images: [{ url: image }],
     },
@@ -69,6 +85,10 @@ export async function generateMetadata() {
       description,
       images: [image],
     },
+    alternates: {
+      canonical: `${siteUrl}/Entertainment`,
+    },
   };
 }
+
 

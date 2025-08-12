@@ -60,7 +60,8 @@ export async function generateMetadata() {
 
   const latest = res?.news?.[0];
 
-  const title = 'Trending News | NewsUs';
+  // const title = 'Trending News | NewsUs';
+  const title = latest?.title || 'Latest Trending News | NewsUs';
   const description =
     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
     'Catch up on the latest trending news, viral stories, and hot topics right now.';

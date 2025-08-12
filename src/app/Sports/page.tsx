@@ -57,8 +57,8 @@ export async function generateMetadata() {
   );
 
   const latest = res?.news?.[0];
-
-  const title = 'Latest Sports News | NewsUs';
+  const title = latest?.title || 'Latest Sports News | NewsUs';
+  // const title = 'Latest Sports News | NewsUs';
   const description =
     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
     'Stay updated with the latest sports news, scores, and highlights from around the world.';

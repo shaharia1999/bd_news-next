@@ -56,8 +56,8 @@ export async function generateMetadata() {
   );
 
   const latest = res?.news?.[0];
-
-  const title = 'Latest Tech News | NewsUs';
+  const title = latest?.title || 'Latest Technology News | NewsUs';
+  // const title = 'Latest Tech News | NewsUs';
   const description =
     latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
     'Stay updated with the latest technology news, gadget launches, and software updates.';

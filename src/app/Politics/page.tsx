@@ -50,20 +50,25 @@ export async function generateMetadata() {
     'news?category=Politics&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 },
+      next: { revalidate: 300 }, // ISR: revalidate every 5 minutes
     }
   );
 
   const latest = res?.news?.[0];
 
-  const title = 'Latest Political News | NewsUs';
+ const title =
+    latest.title ||
+    `Latest Political News | NewsUs`;
   const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Get the latest political news, analysis, and updates from around the world.';
+    latest?.description
+      ? latest.description.replace(/<[^>]*>/g, '').slice(0, 150)
+      : 'Get the latest political news, analysis, and updates from around the world.';
 
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  const image = latest?.mainImage
+    ? latest.mainImage.startsWith('http')
+      ? latest.mainImage
+      : `${siteUrl}${latest.mainImage}`
+    : `${siteUrl}/default-og.jpg`;
 
   return {
     title,
@@ -86,4 +91,5 @@ export async function generateMetadata() {
     },
   };
 }
+
 
