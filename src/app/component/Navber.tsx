@@ -79,7 +79,7 @@ const subCategoriesMap: { [key: string]: string[] } = {
   Entertainment: ['Hollywood', 'Bollywood', 'Others', 'Story'],
   Blog: ['Health', 'Food', 'Finance', 'Travel', 'Story', 'Inspire', 'History', 'Novel', 'Person', 'Others'],
   Poem: ['Romantic', 'Nature', 'Patriotic', 'Spiritual', 'Others'],
-  Tranding: ['Viral News', 'Internet Trends', 'Social Media', 'Memes', 'Others'],
+  Tranding: ['Viral', 'Internet', 'Social', 'Memes', 'Others'],
 };
 
 const Navbar = () => {

@@ -153,7 +153,7 @@ const PoliticsSection = ({ subCategory, title, items }: Props) => {
       </div>
 
       <div className="text-right mt-6">
-        <Link href={`/Technology/${subCategory}`}>
+        <Link href={`/Politics/${subCategory}`}>
           <button className="text-blue-600 hover:underline font-semibold">See All</button>
         </Link>
       </div>
