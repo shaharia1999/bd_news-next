@@ -87,10 +87,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
                 </h3>
               </div>
               <div className="flex justify-between text-sm text-gray-500 ">
-                {/* <div className="flex items-center">
-                  <p className="w-1 h-5 badge-error mr-2"></p>
-                  {subCategory}
-                </div> */}
+                
                 <div className="flex items-center">
                   {new Date(mainArticle.createdAt).toLocaleDateString()}
                 </div>
