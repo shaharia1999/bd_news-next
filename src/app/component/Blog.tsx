@@ -107,11 +107,13 @@ export default async function Blog() {
                     href={`/news/${post.slug}`}
                     className="lg:font-semibold font-bold text-[12px] lg:text-[16px]"
                   >
-                    {truncate(post.title, 80)}
+                    {/* {truncate(post.title, 80)} */}
+                    <RenderHTMLWithImagesServer description={post.title} limit={80}></RenderHTMLWithImagesServer>
                   </Link>
                 </div>
                 <p className="2xl:mt-3 mt-1 lg:leading-3 2xl:leading-4 text-[12px] 2xl:text-[14px]">
-                  {truncate(post.description, 150)}
+                  {/* {truncate(post.description, 150)} */}
+                  <RenderHTMLWithImagesServer description={post.description} limit={150}></RenderHTMLWithImagesServer>
                 </p>
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
@@ -144,11 +146,13 @@ export default async function Blog() {
                     href={`/news/${news[4].slug}`}
                     className="lg:font-semibold font-bold text-[12px] lg:text-[20px]"
                   >
-                    {truncate(news[4].title, 100)}
+                    {/* {truncate(news[4].title, 100)} */}
+                    <RenderHTMLWithImagesServer description={news[4].title} limit={100}></RenderHTMLWithImagesServer>
                   </Link>
                 </div>
                 <p className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] lg:text-[14px]">
-                  {truncate(news[4].description, 300)}
+                  {/* {truncate(news[4].description, 300)} */}
+                 <RenderHTMLWithImagesServer description={news[4].description} limit={300}></RenderHTMLWithImagesServer>
                 </p>
                 <div className="flex justify-between">
                   <div className="mt-4 flex items-center">
