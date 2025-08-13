@@ -21,7 +21,7 @@ const SportsPage = async () => {
       `news?subCategory=${sub}&limit=8&page=1`,
           {
     cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }
     );
     console.log(res);
@@ -52,7 +52,7 @@ export async function generateMetadata() {
     'news?category=Sports&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 },
+      next: { revalidate: 100 },
     }
   );
 

@@ -33,7 +33,7 @@ export default async function Education() {
     'news?category=Technology&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 }
+      next: { revalidate: 100 }
     }
   );
   if (!news || news.length === 0) return null;

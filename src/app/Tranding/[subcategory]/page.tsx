@@ -34,7 +34,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
     pages: number;
   }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`,  {
    cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }); // Increased limit to 12 for the layout
 
   const news = res?.news || [];
@@ -175,7 +175,7 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
     `news?subCategory=${subcategory}&limit=1&page=1`,
     {
       cache: 'default',
-      next: { revalidate: 300 },
+      next: { revalidate: 100 },
     }
   );
 

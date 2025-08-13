@@ -29,7 +29,7 @@ export default async function Sports() {
     'news?category=Sports&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 }
+      next: { revalidate: 100 }
     }
   );
 

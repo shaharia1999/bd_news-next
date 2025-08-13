@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<Params>}) {
     `news/${slug}`,
     {
       cache: 'default',
-      next: { revalidate: 300 },
+      next: { revalidate: 100 },
     }
   );
 
@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
     `news/${slug}`,
       {
    cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }
   );
 
@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
     `news?subCategory=${post.subCategory}&limit=20&page=1&excludeSlug=${slug}`,
       {
    cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }
   );
 
@@ -106,7 +106,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
       {
    cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }
   );
 

@@ -22,7 +22,7 @@ const PoemPage = async () => {
       `news?subCategory=${sub}&limit=8&page=1`,
           {
     cache: 'default',
-    next: { revalidate: 300 }
+    next: { revalidate: 100 }
   }
     );
     data[sub] = res?.news ?? [];
@@ -55,7 +55,7 @@ export async function generateMetadata() {
     'news?category=Poem&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 300 }, // revalidate every 5 minutes
+      next: { revalidate: 100 }, // revalidate every 5 minutes
     }
   );
 
