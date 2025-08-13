@@ -4,14 +4,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
         <div>
-          <h2 className="text-xl font-semibold mb-2">About</h2>
+          <h1 className="text-xl font-semibold mb-2">About</h1>
           <p className="text-sm leading-relaxed">
             We are dedicated to delivering the latest news, blogs, and insights on politics, health, technology, and more. Our mission is to provide accurate and trustworthy information to our readers.
           </p>
         </div>
      
         <div>
-          <h2 className="text-xl font-semibold mb-2">Author</h2>
+          <h1 className="text-xl font-semibold mb-2">Author</h1>
           <p className="text-sm leading-relaxed">
             Written and managed by Md Shaharia and{' '}
             <a
@@ -30,7 +30,7 @@ const Footer = () => {
 
         {/* Contact Us */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
+          <h1 className="text-xl font-semibold mb-2">Contact Us</h1>
           <ul className="text-sm leading-relaxed space-y-1">
             <li>Email: adeptshaharia@gmail.com</li>
             <li>Phone: +8801707018322</li>
@@ -40,7 +40,7 @@ const Footer = () => {
 
         {/* Privacy Policy */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">Privacy Policy</h2>
+          <h1 className="text-xl font-semibold mb-2">Privacy Policy</h1>
           <p className="text-sm leading-relaxed">
             We respect your privacy. Your data is never shared. Cookies are used only to improve user experience and show relevant ads.
           </p>

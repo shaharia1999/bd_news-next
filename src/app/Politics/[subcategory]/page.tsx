@@ -80,9 +80,9 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
                 />
               </div>
               <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full z-10">
-                   <h2 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200 capitalize font-libertinus">
+                   <h1 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200 capitalize font-libertinus">
                   {item.title}
-                </h2>
+                </h1>
                 {/* <p className="mt-3 text-sm hidden lg:block">
                   {truncate(item.description, 150)}
                 </p> */}

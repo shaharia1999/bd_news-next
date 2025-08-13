@@ -149,9 +149,9 @@ export default async function Page({ params }: { params: Promise<Params>}) {
         <aside className="lg:col-span-1 col-span-4 flex flex-col space-y-8">
           {/* SubCategory Section */}
           <div className="flex-1 overflow-y-auto max-h-[80vh] pr-1">
-            <h2 className="text-xl font-semibold mb-3">
+            <h1 className="text-xl font-semibold mb-3">
               More
-            </h2>
+            </h1>
             {subcetagory?.news?.length ? (
               subcetagory.news.map((item) => (
                 <Link
@@ -190,9 +190,9 @@ export default async function Page({ params }: { params: Promise<Params>}) {
         </aside>
       </div>
         <div>
-            <h2 className="text-xl font-semibold mt-5">
+            <h1 className="text-xl font-semibold mt-5">
               Explore more 
-            </h2>
+            </h1>
             <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
               {category?.news?.length ? (
                 category.news.map((item) => (

@@ -32,7 +32,7 @@ const PoliticsSection = ({ subCategory, title, items }: Props) => {
 
   return (
     <div className="mb-2">
-      <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-300 pb-2">{title}</h2>
+      <h1 className="text-2xl font-bold mb-6 border-b-2 border-gray-300 pb-2">{title}</h1>
 
       <div className="grid lg:grid-cols-8 md:grid-cols-10 grid-cols-1 gap-5 2xl:mt-20 lg:mt-12 mt-8">
         {/* Left Section - up to 2 articles */}
