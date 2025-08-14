@@ -32,7 +32,7 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
   `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
   {
    cache: 'default',
-    next: { revalidate: 100 }
+    next: { revalidate: 60 }
   }
 );
   // const res = await serverFetchData<{

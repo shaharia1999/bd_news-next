@@ -30,7 +30,7 @@ export default function Home() {
 //     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
 //     {
 //       cache: 'default',
-//       next: { revalidate: 100 },
+//       next: { revalidate: 60 },
 //     }
 //   );
 
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }) {
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 100 },
+      next: { revalidate: 60 },
     }
   );
 

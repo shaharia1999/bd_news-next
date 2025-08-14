@@ -33,7 +33,7 @@ export default async function Blog() {
     'news?category=Blog&sortBy=createdAt&sortOrder=desc&limit=6&page=1',
       {
     cache: 'default',
-    next: { revalidate: 100 }
+    next: { revalidate: 60 }
   }
   );
   // console.log(news);

@@ -21,7 +21,7 @@ const TechnologyPage = async () => {
       `news?subCategory=${sub}&limit=8&page=1`,
            {
     cache: 'default',
-    next: { revalidate: 100 }
+    next: { revalidate: 60 }
   }
     );
     data[sub] = res?.news ?? [];
@@ -51,7 +51,7 @@ export async function generateMetadata() {
     'news?category=Technology&limit=1&page=1',
     {
       cache: 'default',
-      next: { revalidate: 100 },
+      next: { revalidate: 60 },
     }
   );
 

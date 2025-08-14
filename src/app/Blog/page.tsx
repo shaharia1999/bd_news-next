@@ -24,7 +24,7 @@ const EntertainmenPage = async () => {
       `news?subCategory=${sub}&limit=8&page=1`,
         {
    cache: 'default',
-    next: { revalidate: 100 }
+    next: { revalidate: 60 }
   }
     );
     // console.log(res);

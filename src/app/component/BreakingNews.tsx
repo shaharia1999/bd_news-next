@@ -32,7 +32,7 @@ export default async function BreakingNews() {
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=10&page=1',
         {
     cache: 'default',
-    next: { revalidate: 100 }
+    next: { revalidate: 60 }
   }
   );
   // console.log('Breaking news data:', news);
