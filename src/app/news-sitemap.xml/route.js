@@ -1,11 +1,5 @@
-// This file should be placed at `app/news-sitemap.xml/route.js`.
-// This is the correct convention for creating a dynamic sitemap
-// using the Next.js App Router.
-
-// The dynamic nature of this file ensures it's always up-to-date.
-// It will be re-generated every time a crawler requests the URL.
-// The `Date.now() - 48 * 60 * 60 * 1000` is used to filter for articles
-// published in the last 48 hours, which is a requirement for Google News.
+require('dotenv').config();
+/** @type {import('next-sitemap').IConfig} */
 
 const SITE_URL = 'https://www.newsus.shop';
 const PUBLICATION_NAME = 'Shaharia'; // Replace with your publication's name
