@@ -1,10 +1,26 @@
+// This file should be placed at `app/news-sitemap.xml/route.js`.
+// This is the correct convention for creating a dynamic sitemap
+// using the Next.js App Router.
 
+// The dynamic nature of this file ensures it's always up-to-date.
+// It will be re-generated every time a crawler requests the URL.
+// The `Date.now() - 48 * 60 * 60 * 1000` is used to filter for articles
+// published in the last 48 hours, which is a requirement for Google News.
 
 const SITE_URL = 'https://www.newsus.shop';
 const PUBLICATION_NAME = 'Shaharia'; // Replace with your publication's name
 const PUBLICATION_LANGUAGE = 'en'; // Use the appropriate ISO language code, e.g., 'bn' for Bengali
 
 function generateNewsSitemapXml(posts) {
+  // If there are no posts, return an empty but valid XML sitemap.
+  // This prevents the "Missing XML tag" error.
+  if (!posts || posts.length === 0) {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+              xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+      </urlset>`;
+  }
+
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">`;
@@ -14,6 +30,12 @@ function generateNewsSitemapXml(posts) {
   const recentPosts = posts.filter(post => new Date(post.publishedAt) >= twoDaysAgo);
 
   recentPosts.forEach(post => {
+    // Sanitize title to avoid XML parsing errors from special characters
+    const sanitizedTitle = post.title.replace(/&/g, '&amp;')
+                                      .replace(/</g, '&lt;')
+                                      .replace(/>/g, '&gt;')
+                                      .replace(/"/g, '&quot;')
+                                      .replace(/'/g, '&apos;');
     xml += `
       <url>
         <loc>${SITE_URL}/news/${post.slug}</loc>
@@ -23,7 +45,7 @@ function generateNewsSitemapXml(posts) {
             <news:language>${PUBLICATION_LANGUAGE}</news:language>
           </news:publication>
           <news:publication_date>${post.publishedAt}</news:publication_date>
-          <news:title>${post.title}</news:title>
+          <news:title>${sanitizedTitle}</news:title>
         </news:news>
       </url>`;
   });
