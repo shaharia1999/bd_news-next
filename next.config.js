@@ -17,6 +17,10 @@ const nextConfig = {
         permanent: true, // 301 redirect
       },
     ];
+    
+  },
+   env: {
+    NEXT_PUBLIC_API_URL: 'https://ecommerce-web-ago1.vercel.app', // backend API
   },
 };
 
