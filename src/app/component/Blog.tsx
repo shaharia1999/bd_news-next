@@ -36,7 +36,7 @@ export default async function Blog() {
     next: { revalidate: 100 }
   }
   );
-  console.log(news);
+  // console.log(news);
   if (!news || news.length === 0) return null;
 
   const formatDate = (dateStr: string) =>

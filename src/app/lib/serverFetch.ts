@@ -58,7 +58,7 @@ export async function serverFetchData<T>(
     config.body = JSON.stringify(json);
   }
 
-  console.log(`Fetching data from: ${API_BASE_URL}/${endpoint}`);
+  // console.log(`Fetching data from: ${API_BASE_URL}/${endpoint}`);
   try {
     const response = await fetch(`${API_BASE_URL}/${endpoint}`, config);
 
@@ -68,7 +68,7 @@ export async function serverFetchData<T>(
     }
 
     const json = await response.json();
-    console.log('Fetched data successfully.');
+    // console.log('Fetched data successfully.');
     return json;
   } catch (error) {
     console.error('Failed to fetch data:', error);

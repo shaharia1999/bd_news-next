@@ -24,7 +24,7 @@ const EntertainmenPage = async () => {
     next: { revalidate: 100 }
   }
     );
-    console.log(res);
+    // console.log(res);
     data[sub] = res?.news ?? [];
   }
 

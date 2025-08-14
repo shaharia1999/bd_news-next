@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
   );
 
   const post = response?.data;
-  console.log(post);
+  // console.log(post);
   if (!post) {
     return <p className="p-4">Post not found</p>;
   }

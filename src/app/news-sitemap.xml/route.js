@@ -1,5 +1,9 @@
-require('dotenv').config();
-/** @type {import('next-sitemap').IConfig} */
+// This file should be placed at `app/news-sitemap.xml/route.js`.
+
+// The dynamic nature of this file ensures it's always up-to-date.
+// It will be re-generated every time a crawler requests the URL.
+// The `Date.now() - 48 * 60 * 60 * 1000` is used to filter for articles
+// published in the last 48 hours, which is a requirement for Google News.
 
 const SITE_URL = 'https://www.newsus.shop';
 const PUBLICATION_NAME = 'Shaharia'; // Replace with your publication's name
@@ -9,6 +13,7 @@ function generateNewsSitemapXml(posts) {
   // If there are no posts, return an empty but valid XML sitemap.
   // This prevents the "Missing XML tag" error.
   if (!posts || posts.length === 0) {
+    console.log('No recent posts found. Returning empty news sitemap XML.');
     return `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
               xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -21,7 +26,12 @@ function generateNewsSitemapXml(posts) {
 
   // Filter posts to include only those published in the last 48 hours
   const twoDaysAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
-  const recentPosts = posts.filter(post => new Date(post.publishedAt) >= twoDaysAgo);
+  const recentPosts = posts.filter(post => {
+    const postDate = new Date(post.publishedAt);
+    return postDate >= twoDaysAgo;
+  });
+
+  console.log(`Found ${recentPosts.length} recent posts for the news sitemap.`);
 
   recentPosts.forEach(post => {
     // Sanitize title to avoid XML parsing errors from special characters
@@ -52,11 +62,14 @@ function generateNewsSitemapXml(posts) {
 // For Next.js App Router (using the `app` directory)
 export const GET = async () => {
   try {
-    const apiRes = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/news?limit=1000`
-    );
+    const apiUrl = 'https://ecommerce-web-ago1.vercel.app/news?limit=1000';
+    console.log(`Fetching data from API: ${apiUrl}`);
+
+    const apiRes = await fetch(apiUrl);
     const data = await apiRes.json();
     const posts = data?.news || [];
+
+    console.log(`Successfully fetched ${posts.length} posts from the API.`);
 
     const xml = generateNewsSitemapXml(posts);
 

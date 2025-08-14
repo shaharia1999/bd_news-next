@@ -35,7 +35,7 @@ export default async function BreakingNews() {
     next: { revalidate: 100 }
   }
   );
-  console.log('Breaking news data:', news);
+  // console.log('Breaking news data:', news);
   if (!news || news.length === 0) return null;
 
   const bannerNews = news[0];
