@@ -56,7 +56,7 @@ export default async function Education() {
           <article key={item._id}>
             <Link href={`/news/${item.slug}`} key={item._id}>
 
-              <div className="car bg-base-100 md:h-auto lg:h-[400px] 2xl:h-[450px]">
+              <div className="car bg-base-100 md:h-auto ">
                 <figure>
                   <Image
                     src={item.mainImage}
