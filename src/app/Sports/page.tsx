@@ -47,45 +47,75 @@ const SportsPage = async () => {
 export default SportsPage;
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const subCategories = subCategoriesMap['Sports'] || [];
+  const categoriesList = subCategories.join(', ');
 
-  const res = await serverFetchData<{ news: NewsItem[] }>(
-    'news?category=Sports&limit=1&page=1',
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  const title = `Latest Sports News, Scores & Updates | NewsUS`;
+  const description = `Stay updated with the latest sports news, scores, match highlights, and updates across categories like ${categoriesList}. Follow breaking sports stories, tournaments, and expert analysis from around the world.`;
+  const image = `${siteUrl}/sports-og.jpg`;
 
-  const latest = res?.news?.[0];
-  const title = latest?.title || 'Latest Sports News | NewsUs';
-  // const title = 'Latest Sports News | NewsUs';
-  const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Stay updated with the latest sports news, scores, and highlights from around the world.';
-
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // Enhanced keywords for SEO
+  const keywords = subCategories
+    .concat([
+      'Sports news',
+      'Latest scores',
+      'Match highlights',
+      'Sports analysis',
+      'Sports updates',
+      'NewsUS',
+      'Live scores',
+      'Sports 2025',
+      'Football news',
+      'Cricket news',
+      'Basketball updates',
+    ])
+    .join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Sports`,
       type: 'website',
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest sports news, scores, and highlights",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest sports news, scores, and highlights",
+        },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/Sports`,
     },
   };
 }
+
 

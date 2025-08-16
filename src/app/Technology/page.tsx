@@ -46,41 +46,70 @@ const TechnologyPage = async () => {
 export default TechnologyPage;
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const subCategories = subCategoriesMap['Technology'] || [];
+  const categoriesList = subCategories.join(', ');
 
-  const res = await serverFetchData<{ news: NewsItem[] }>(
-    'news?category=Technology&limit=1&page=1',
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  const title = `Latest Technology News, Gadgets & Software Updates | NewsUS`;
+  const description = `Stay updated with the latest technology news, gadget launches, software updates, and trends across categories like ${categoriesList}. Explore expert reviews, tech innovations, and breaking updates from the world of technology.`;
+  const image = `${siteUrl}/technology-og.jpg`;
 
-  const latest = res?.news?.[0];
-  const title = latest?.title || 'Latest Technology News | NewsUs';
-  // const title = 'Latest Tech News | NewsUs';
-  const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Stay updated with the latest technology news, gadget launches, and software updates.';
-
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // Enhanced keywords for SEO
+  const keywords = subCategories
+    .concat([
+      'Technology news',
+      'Gadget launches',
+      'Software updates',
+      'Tech trends',
+      'Latest technology',
+      'NewsUS',
+      'Tech reviews',
+      'AI updates',
+      'Mobile technology',
+      'Tech 2025',
+      'Innovation news',
+    ])
+    .join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Technology`,
       type: 'website',
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest technology news, gadgets, and software updates",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest technology news, gadgets, and software updates",
+        },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/Technology`,

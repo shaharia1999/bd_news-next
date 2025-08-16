@@ -169,43 +169,69 @@ fill
 }
 
 
-export async function generateMetadata({ params }: { params: Promise<PageProps>}){
-   const { subcategory, page } = await params;
-
+export async function generateMetadata({ params }: { params: Promise<PageProps>}) {
+  const { subcategory } =  await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News - Entertainment | NewsUs`;
-  const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUs.`;
 
-  const res = await serverFetchData<{
-    news: NewsItem[];
-  }>(
-    `news?subCategory=${subcategory}&limit=1&page=1`,
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  // ✅ SEO Title & Description
+  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News & Updates - Entertainment | NewsUS`;
+  const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUS. Stay informed with curated stories on movies, TV, celebrities, and trending entertainment events.`;
 
-  const latest = res?.news?.[0];
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // ✅ Default Open Graph & Twitter Image
+  const image = `${siteUrl}/default-og.jpg`;
+
+  // ✅ Advanced Keywords for Google Discover & Ranking
+  const keywords = [
+    subcategory,
+    'Entertainment',
+    'Movies',
+    'Celebrities',
+    'TV shows',
+    'Latest entertainment news',
+    'Trending stories',
+    'Hollywood updates',
+    'Movie news',
+    'TV highlights',
+    'Entertainment 2025',
+    'Entertainment blogs',
+    'NewsUS',
+  ].join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/entertainment/${subcategory}`,
-      type: 'article',
-      images: [{ url: image }],
+      url: `${siteUrl}/Entertainment/${subcategory}`,
+      type: 'website',
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} entertainment news and updates` },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} entertainment news and updates` },
+      ],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Entertainment/${subcategory}`,
     },
   };
 }
+

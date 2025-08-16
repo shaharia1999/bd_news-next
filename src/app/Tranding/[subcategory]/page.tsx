@@ -167,46 +167,64 @@ fill
     </div>
   );
 }
-export async function generateMetadata({ params }: { params: Promise<PageProps>}){
-   const { subcategory, page } = await params;
-
+export async function generateMetadata({ params }: { params: Promise<PageProps>}) {
+  const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News - Entertainment | NewsUs`;
-  const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUs.`;
 
-  const res = await serverFetchData<{
-    news: NewsItem[];
-  }>(
-    `news?subCategory=${subcategory}&limit=1&page=1`,
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  // ✅ SEO Title & Description
+  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News & Updates - Trending | NewsUS`;
+  const description = `Catch the latest ${subcategory} news, viral stories, and trending topics. Stay informed with curated updates and top trending stories in the Trending category at NewsUS.`;
 
-  const latest = res?.news?.[0];
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // ✅ Default Open Graph & Twitter Image
+  const image = `${siteUrl}/default-og.jpg`;
+
+  // ✅ Advanced Keywords for Google Discover & Ranking
+  const keywords = [
+    subcategory,
+    'Trending News',
+    'Viral Stories',
+    'Latest Trending',
+    'Top Stories',
+    'NewsUS',
+    'Trending 2025',
+    `${subcategory} Updates`,
+    'Hot Topics',
+  ].join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Tranding/${subcategory}`,
-      type: 'article',
-      images: [{ url: image }],
+      url: `${siteUrl}/Trending/${subcategory}`,
+      type: 'website',
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} trending news and updates` },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} trending news and updates` },
+      ],
     },
     alternates: {
-      canonical: `${siteUrl}/Tranding/${subcategory}`,
+      canonical: `${siteUrl}/Trending/${subcategory}`,
     },
   };
 }

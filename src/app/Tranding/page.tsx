@@ -46,46 +46,76 @@ const TrendingPage = async () => {
 };
 
 export default TrendingPage;
-
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const subCategories = subCategoriesMap['Trending'] || [];
+  const categoriesList = subCategories.join(', ');
 
-  const res = await serverFetchData<{ news: NewsItem[] }>(
-    'news?category=Tranding&limit=1&page=1',
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  const title = `Latest Trending News, Viral Stories & Hot Topics | NewsUS`;
+  const description = `Catch up on the latest trending news, viral stories, hot topics, and updates across categories like ${categoriesList}. Stay informed with breaking news, popular stories, and trending events worldwide.`;
+  const image = `${siteUrl}/trending-og.jpg`;
 
-  const latest = res?.news?.[0];
-
-  // const title = 'Trending News | NewsUs';
-  const title = latest?.title || 'Latest Trending News | NewsUs';
-  const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Catch up on the latest trending news, viral stories, and hot topics right now.';
-
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // Enhanced keywords for SEO
+  const keywords = subCategories
+    .concat([
+      'Trending news',
+      'Viral stories',
+      'Hot topics',
+      'Breaking news',
+      'Popular stories',
+      'NewsUS',
+      'Top trends',
+      'Trending 2025',
+      'Viral updates',
+      'Latest news online',
+    ])
+    .join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/trending`,
+      url: `${siteUrl}/Trending`,
       type: 'website',
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest trending news and viral stories",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest trending news and viral stories",
+        },
+      ],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Trending`,
     },
   };
 }
+
 

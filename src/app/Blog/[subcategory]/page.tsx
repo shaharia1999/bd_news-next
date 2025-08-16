@@ -218,38 +218,61 @@ export default async function SubCategoryPage({ params }: { params: Promise<Data
 export async function generateMetadata({ params }: { params: Promise<Datatype> }) {
   const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-  // const subcategory = await params.subcategory;
 
-  const res = await serverFetchData<{ news: NewsItem[] }>(
-    `news?subCategory=${subcategory}&limit=1&page=1`,
-    { cache: 'default', next: { revalidate: 100 } }
-  );
+  // ✅ SEO Title & Description
+  const title = `${subcategory} Articles & Updates - NewsUS`;
+  const description = `Discover curated articles, tips, and latest updates in the ${subcategory} category. Stay informed on ${subcategory}, lifestyle, tech, and more with NewsUS.`;
+  
+  // ✅ Default Open Graph & Twitter Image
+  const image = `${siteUrl}/default-og.jpg`;
 
-  const latest = res?.news?.[0];
-  const title = latest?.title || `Latest ${subcategory} News | NewsUs`;
-  const description =
-    latest?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    `Get the latest updates and headlines from the ${subcategory} category.`;
-
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // ✅ Advanced Keywords for Google Discover & Ranking
+  const keywords = [
+    subcategory,
+    'NewsUS',
+    `${subcategory} articles`,
+    `${subcategory} blogs`,
+    'latest blogs',
+    'trending stories',
+    'daily updates',
+    'curated content',
+    `${subcategory} insights`,
+    `${subcategory} news`,
+  ].join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
+    // ✅ Structured data for Google Discover & News
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Blog/${subcategory}`,
-      type: 'article',
-      images: [{ url: image }],
+      type: 'website',
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} news and articles` },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
       images: [image],
+    },
+    alternates: {
+      canonical: `${siteUrl}/Blog/${subcategory}`,
     },
   };
 }

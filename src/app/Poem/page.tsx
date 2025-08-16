@@ -50,52 +50,75 @@ export default PoemPage;
 
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const subCategories = subCategoriesMap['Poem'] || [];
+  const categoriesList = subCategories.join(', ');
 
-  const res = await serverFetchData<{ news: any[] }>(
-    'news?category=Poem&limit=1&page=1',
-    {
-      cache: 'default',
-      next: { revalidate: 60 }, // revalidate every 5 minutes
-    }
-  );
+  const title = `Latest Poems - Updates on ${categoriesList} | NewsUS`;
+  const description = `Explore the latest poems, poetry updates, and featured works across categories like ${categoriesList}. Stay inspired with curated poetry from talented writers around the world.`;
+  const image = `${siteUrl}/default-og.jpg`;
 
-  const latest = res?.news?.[0];
-  const title = latest?.title || 'Latest Poems | NewsUs';
-  // const title = 'Latest Poems | NewsUs';
-
-  // Clean description from HTML tags and trim to 150 chars, fallback default if none
-  const description =
-    latest?.description
-      ? latest.description.replace(/<[^>]*>/g, '').slice(0, 150)
-      : 'Discover the latest poems and poetry updates from around the world.';
-
-  // Compose full image URL or fallback
-  const image = latest?.mainImage
-    ? latest.mainImage.startsWith('http')
-      ? latest.mainImage
-      : `${siteUrl}${latest.mainImage}`
-    : `${siteUrl}/default-og.jpg`;
+  // Enhanced keywords for SEO
+  const keywords = subCategories
+    .concat([
+      'Poems',
+      'Poetry',
+      'Latest Poems',
+      'Trending Poems',
+      'Poetry Updates',
+      'NewsUS',
+      'Featured Poems',
+      'Poetry 2025',
+      'Poem Blog',
+      'Poetry Collections',
+    ])
+    .join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Poem`,
       type: 'website',
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest poems and poetry updates",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Latest poems and poetry updates",
+        },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/Poem`,
     },
   };
 }
+
 
 

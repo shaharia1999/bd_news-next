@@ -49,45 +49,77 @@ export default EntertainmenPage;
 
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-
   const subCategories = subCategoriesMap['Entertainment'] || [];
-  const categoryList = subCategories.join(', ');
-  // Optionally fetch latest trending entertainment news title
-  const {news} = await serverFetchData<{ news: NewsItem[] }>(
-    'news?category=Entertainment&sortBy=createdAt&sortOrder=desc&limit=1&page=1',
-    { cache: 'default' }
-  );
-  const latestTitle = news?.[0]?.title;
+  const categoriesList = subCategories.join(', ');
 
-  const title =
-    latestTitle ||
-    `Entertainment News - Movies, Celebrities & TV | NewsUs`;
-
-  const description =
-    `Get the latest entertainment news, celebrity gossip, movie updates, and TV highlights. Trending stories on ${categoryList}.`;
-
+  const title = `Entertainment News - Latest Updates on ${categoriesList} | NewsUS`;
+  const description = `Explore the latest entertainment news, celebrity gossip, movie updates, and TV highlights across categories like ${categoriesList}. Stay informed with curated stories on movies, celebrities, TV shows, and trending entertainment events.`;
   const image = `${siteUrl}/default-og.jpg`;
+
+  // Enhanced keywords for SEO
+  const keywords = subCategories
+    .concat([
+      'Entertainment',
+      'Movies',
+      'Celebrities',
+      'TV shows',
+      'Latest entertainment news',
+      'Trending stories',
+      'Hollywood updates',
+      'Movie news',
+      'TV highlights',
+      'Celebrity gossip',
+      'Entertainment 2025',
+      'Entertainment blogs',
+    ])
+    .join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Entertainment`,
       type: 'website',
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Entertainment news and updates",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "Entertainment news and updates",
+        },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/Entertainment`,
     },
   };
 }
+
 
 

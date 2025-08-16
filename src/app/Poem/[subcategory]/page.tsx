@@ -217,46 +217,67 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
     </div>
   );
 }
-export async function generateMetadata({ params }: { params: Promise<PageProps> }) {
-  const { subcategory, page } = await params;
-
+export async function generateMetadata({ params }: { params: Promise<PageProps>}) {
+  const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News - Entertainment | NewsUs`;
-  const description = `Explore the latest ${subcategory} news, updates, and trends in the entertainment world at NewsUs.`;
 
-  const res = await serverFetchData<{
-    news: NewsItem[];
-  }>(
-    `news?subCategory=${subcategory}&limit=1&page=1`,
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
+  // ✅ SEO Title & Description
+  const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} Poems & Updates - NewsUS`;
+  const description = `Explore the latest ${subcategory} poems, poetry updates, and featured works across categories like ${subcategory}. Stay inspired with curated poetry from talented writers around the world.`;
 
-  const latest = res?.news?.[0];
-  const image = latest?.mainImage?.startsWith('http')
-    ? latest.mainImage
-    : `${siteUrl}${latest?.mainImage || '/default-og.jpg'}`;
+  // ✅ Default Open Graph & Twitter Image
+  const image = `${siteUrl}/default-og.jpg`;
+
+  // ✅ Advanced Keywords for Google Discover & Ranking
+  const keywords = [
+    subcategory,
+    'Poems',
+    'Poetry',
+    'Latest Poems',
+    'Trending Poems',
+    'Poetry Updates',
+    'NewsUS',
+    'Featured Poems',
+    'Poetry 2025',
+    'Poem Blog',
+    'Poetry Collections',
+  ].join(', ');
 
   return {
     title,
     description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title,
       description,
       url: `${siteUrl}/Poem/${subcategory}`,
-      type: 'article',
-      images: [{ url: image }],
+      type: 'website',
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} poems and poetry updates` },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        { url: image, width: 1200, height: 630, alt: `${subcategory} poems and poetry updates` },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/Poem/${subcategory}`,
     },
   };
 }
+

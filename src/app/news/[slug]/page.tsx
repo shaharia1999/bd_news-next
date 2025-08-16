@@ -26,55 +26,10 @@ interface NewsApiResponse {
 }
 
 interface Params {
-
     slug: string;
-
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params>}) {
-  const { slug } = await params;
 
-
-  const response = await serverFetchData<{ data: NewsItem }>(
-    `news/${slug}`,
-    {
-      cache: 'default',
-      next: { revalidate: 60 },
-    }
-  );
-
-  const post = response?.data;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
-
-  const title = post?.title || 'News Details | NewsUS';
-  const description =
-    post?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
-    'Read the full news article and latest updates from NewsUS.';
-  const image = post?.mainImage?.startsWith('http')
-    ? post.mainImage
-    : `${siteUrl}${post?.mainImage || '/default-og.jpg'}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `${siteUrl}/news/${slug}`,
-      type: 'article',
-      images: [{ url: image }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [image],
-    },
-    alternates: {
-      canonical: `${siteUrl}/news/${slug}`,
-    },
-  };
-}
 
 export default async function Page({ params }: { params: Promise<Params>}) {
   const { slug } = await params;
@@ -236,4 +191,123 @@ export default async function Page({ params }: { params: Promise<Params>}) {
           </div>
     </div>
   );
+}
+// export async function generateMetadata({ params }: { params: Promise<Params>}) {
+//   const { slug } = await params;
+
+
+//   const response = await serverFetchData<{ data: NewsItem }>(
+//     `news/${slug}`,
+//     {
+//       cache: 'default',
+//       next: { revalidate: 60 },
+//     }
+//   );
+
+//   const post = response?.data;
+//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+
+//   const title = post?.title || 'News Details | NewsUS';
+//   const description =
+//     post?.description?.replace(/<[^>]*>/g, '')?.slice(0, 150) ||
+//     'Read the full news article and latest updates from NewsUS.';
+//   const image = post?.mainImage?.startsWith('http')
+//     ? post.mainImage
+//     : `${siteUrl}${post?.mainImage || '/default-og.jpg'}`;
+
+//   return {
+//     title,
+//     description,
+//     openGraph: {
+//       title,
+//       description,
+//       url: `${siteUrl}/news/${slug}`,
+//       type: 'article',
+//       images: [{ url: image }],
+//     },
+//     twitter: {
+//       card: 'summary_large_image',
+//       title,
+//       description,
+//       images: [image],
+//     },
+//     alternates: {
+//       canonical: `${siteUrl}/news/${slug}`,
+//     },
+//   };
+// }
+export async function generateMetadata({ params }: { params: Promise<Params> }) {
+  const { slug } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+
+  // Fetch the news post
+  const response = await serverFetchData<{ data: NewsItem }>(
+    `news/${slug}`,
+    {
+      cache: 'default',
+      next: { revalidate: 60 },
+    }
+  );
+
+  const post = response?.data;
+
+  // ✅ Title & Description
+  const title = post?.title || 'News Details | NewsUS';
+  const description =
+    post?.description?.replace(/<[^>]*>/g, '').slice(0, 150) ||
+    'Read the full news article and latest updates from NewsUS.';
+
+  // ✅ Image URL
+  const image = post?.mainImage?.startsWith('http')
+    ? post.mainImage
+    : `${siteUrl}${post?.mainImage || '/default-og.jpg'}`;
+
+  // ✅ Keywords for SEO & Google Discover
+  const keywords = [
+    post?.title,
+    post?.category,
+    'NewsUS',
+    'Latest News',
+    'Top Stories',
+    'Breaking News',
+    'Daily Updates',
+    'Trending News',
+  ].filter(Boolean).join(', ');
+
+  return {
+    title,
+    description,
+    keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/news/${slug}`,
+      type: 'article',
+      images: [
+        { url: image, width: 1200, height: 630, alt: title },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [
+        { url: image, width: 1200, height: 630, alt: title },
+      ],
+    },
+    alternates: {
+      canonical: `${siteUrl}/news/${slug}`,
+    },
+  };
 }
