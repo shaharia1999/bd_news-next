@@ -70,7 +70,7 @@ export default async function Blog() {
                     href={`/news/${post.slug}`}
                     className="lg:font-semibold font-bold text-[12px] lg:text-[16px]"
                   >
-                    {truncate(post.title, 80)}
+                    <h2>{truncate(post.title, 80)}</h2>
                   </Link>
                 </div>
                 <p className="2xl:mt-3 mt-1 lg:leading-3 2xl:leading-4 text-[12px] 2xl:text-[14px]">
@@ -107,7 +107,7 @@ export default async function Blog() {
                     href={`/news/${post.slug}`}
                     className="lg:font-semibold font-bold text-[12px] lg:text-[16px]"
                   >
-                    {/* {truncate(post.title, 80)} */}
+                    {/* <h2>{truncate(post.title, 80)}</h2> */}
                     <RenderHTMLWithImagesServer description={post.title} limit={80}></RenderHTMLWithImagesServer>
                   </Link>
                 </div>

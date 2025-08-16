@@ -115,7 +115,7 @@ export default async function Magazine() {
                   href={`/news/${item.slug}`}
                   className="lg:font-semibold font-bold text-[16px] lg:text-[18px] block lg:leading-6 2xl:leading-5 capitalize font-libertinus"
                 >
-                  {truncate(item.title, 80)}
+                  <h2>{truncate(item.title, 80)}</h2>
                 </Link>
                 <div className="flex justify-between text-sm text-gray-500">
                   {/* <div className="mt-4 flex items-center">
@@ -159,7 +159,7 @@ export default async function Magazine() {
                   href={`/news/${item.slug}`}
                   className="lg:font-semibold font-bold text-[16px] lg:text-[18px] block lg:leading-6 2xl:leading-5 capitalize font-libertinus"
                 >
-                  {truncate(item.title, 80)}
+                  <h2>{truncate(item.title, 80)}</h2>
                 </Link>
                 <div className="flex justify-between text-sm">
                   {/* <div className="mt-4 flex items-center">

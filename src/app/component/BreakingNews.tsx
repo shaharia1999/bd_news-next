@@ -138,7 +138,7 @@ export default async function BreakingNews() {
                     href={`/news/${item.slug}`}
                     className="font-bold font-libertinus text-[14px] 2xl:text-[16px] block leading-5 hover:text-primary capitalize"
                   >
-                    {item.title}
+                    <h1>{item.title}</h1>
                   </a>
                  
                 </div>

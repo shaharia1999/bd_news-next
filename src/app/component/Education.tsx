@@ -72,7 +72,7 @@ export default async function Education() {
                       href={`/news/${item.slug}`}
                       className="font-bold text-[16px] lg:text-[18px] capitalize font-libertinus"
                     >
-                      {truncate(item.title, 90)}
+                      <h2>{truncate(item.title, 90)}</h2>
                     </Link>
                   </div>
                   <div className="flex justify-between text-gray-500 text-sm">
