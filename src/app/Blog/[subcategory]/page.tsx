@@ -21,20 +21,20 @@ type Datatype = {
 }
 
 
-export default async function SubCategoryPage( { params }: { params: Promise<Datatype> }) {
+export default async function SubCategoryPage({ params }: { params: Promise<Datatype> }) {
   const { subcategory } = await params;
   const currentPage = parseInt('1', 10);
 
   const validSubs = subCategoriesMap['Blog'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
-const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
-  `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
-  {
-   cache: 'default',
-    next: { revalidate: 60 }
-  }
-);
+  const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
+    `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
+  );
   // const res = await serverFetchData<{
   //   news: NewsItem[];
   //   pages: number;
@@ -78,7 +78,7 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
               <Link key={item._id} href={`/news/${item.slug}`} className="block group">
                 <div className="relative">
                   <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                     src={item.mainImage}
                     width={1000}
@@ -104,7 +104,10 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
               <Link key={item._id} href={`/news/${item.slug}`} className="block">
                 <div className="flex items-start space-x-3 border-b pb-4 hover:opacity-80">
                   <div className="w-20 h-16 flex-shrink-0">
-                    <img
+                    <Image
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                       src={item.mainImage}
                       alt={item.title}
                       className="w-full h-full object-cover rounded"
@@ -139,7 +142,10 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
           {gridNews.map((item) => (
             <Link key={item._id} href={`/news/${item.slug}`} className="block">
               <div className="border rounded overflow-hidden hover:shadow-lg h-full flex flex-col">
-                <img
+                <Image
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item.mainImage}
                   alt={item.title}
                   className="w-full h-40 object-cover"
@@ -209,7 +215,7 @@ const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
   );
 }
 
-export async function generateMetadata( { params }: { params: Promise<Datatype> }) {
+export async function generateMetadata({ params }: { params: Promise<Datatype> }) {
   const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
   // const subcategory = await params.subcategory;
@@ -235,7 +241,7 @@ export async function generateMetadata( { params }: { params: Promise<Datatype> 
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/subcategory/${subcategory}`,
+      url: `${siteUrl}/Blog/${subcategory}`,
       type: 'article',
       images: [{ url: image }],
     },

@@ -58,8 +58,8 @@
 //         {/* Right side icons */}
 //         <div className="flex items-center gap-3">
 //           <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
- src="/Toggle button.png" width={40} height={40} alt="Toggle Dark" />
+//   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//  src="/Toggle button.png" width={40} height={40} alt="Toggle Dark" />
 //         </div>
 //       </div>
 //     </div>

@@ -57,7 +57,7 @@ export default async function HomeNews() {
                   src={item?.mainImage}
                   alt={item?.title}
                   fill
-                  sizes="(min-width: 1536px) 500px, (min-width: 768px) 400px, 300px"
+                  // sizes="(min-width: 1536px) 500px, (min-width: 768px) 400px, 300px"
                   style={{ objectFit: 'cover' }}
                 />
               </figure>

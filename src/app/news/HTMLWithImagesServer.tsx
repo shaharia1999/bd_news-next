@@ -50,7 +50,7 @@
 //             {showImage && (
 //               <div className="my-4">
 //                 <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
 //                   src={images[imageIndex++]}
 //                   alt={`Image ${imageIndex}`}
@@ -113,7 +113,10 @@ export function RenderHTMLWithImagesServer({ description, images = [], limit }: 
   const imagesHtml = images
     .map(
       (src) =>
-        `<img src="${src}" alt="News Image" style="margin-top: 1rem; max-width: 100%; border-radius: 8px;" />`
+        `<Image
+fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ src="${src}" alt="News Image" style="margin-top: 1rem; max-width: 100%; border-radius: 8px;" />`
     )
     .join("");
 

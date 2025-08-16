@@ -105,7 +105,10 @@ const formatDate = (dateStr: string) =>
         {otherNews.map((item) => (
           <Link key={item._id} href={`/news/${item.slug}`} className="block">
             <div className="border p-3 rounded h-full flex flex-col">
-              <img
+              <Image
+fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                 src={item.mainImage}
                 alt={item.title}
                 className="w-full h-40 object-cover mb-2 rounded"

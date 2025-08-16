@@ -41,7 +41,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
             {leftArticles.map((item) => (
               <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
                 <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   src={item.mainImage}
                   alt={item.title}
@@ -55,7 +55,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
                       {item.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-sm text-gray-500 mt-1">
                     {formatDate(item.createdAt)}
                   </p>
@@ -76,7 +76,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
         <div className="lg:col-span-4 md:col-span-4">
           <Link href={`/news/${mainArticle.slug}`} className="block group">
             <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
               src={mainArticle.mainImage}
               alt={mainArticle.title}
@@ -86,12 +86,12 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
             />
             <div className="py-2 px-1">
               <div className="lg:leading-6 2xl:leading-5">
-                      <h3 className="lg:font-semibold font-bold text-[15px] lg:text-[20px] capitalize font-libertinus">
+                <h3 className="lg:font-semibold font-bold text-[15px] lg:text-[20px] capitalize font-libertinus">
                   {mainArticle.title}
                 </h3>
               </div>
               <div className="flex justify-between text-sm text-gray-500 ">
-                
+
                 <div className="flex items-center">
                   {new Date(mainArticle.createdAt).toLocaleDateString()}
                 </div>
@@ -117,7 +117,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
             {rightArticles.map((item) => (
               <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
                 <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   src={item.mainImage}
                   alt={item.title}
@@ -131,7 +131,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
                       {item.title}
                     </h3>
                   </div>
-                     <div className="flex justify-between text-sm text-gray-500 ">
+                  <div className="flex justify-between text-sm text-gray-500 ">
                     {/* <div className="flex items-center">
                       <p className="w-1 h-5 badge-error mr-2"></p>
                       {subCategory}
@@ -144,10 +144,10 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
-                    
-                <RenderHTMLWithImagesServer description={item.description} limit={50}
-              />
-            <span className='text-blue-500'>learn more</span>
+
+                  <RenderHTMLWithImagesServer description={item.description} limit={50}
+                  />
+                  <span className='text-blue-500'>learn more</span>
                 </div>
               </Link>
             ))}
