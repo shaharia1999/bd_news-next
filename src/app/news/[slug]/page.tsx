@@ -122,6 +122,8 @@ export default async function Page({ params }: { params: Promise<Params>}) {
           <article>
             <h1 className="lg:text-3xl font-bold mb-4">{post.title}</h1>
             <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
               className="2xl:h-[500px] lg:h-[500px] md:h-[400px] w-full object-cover rounded-md"
               alt={post.title}
               src={post.mainImage}
@@ -161,6 +163,8 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                   className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200 mb-4"
                 >
                   <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                     src={item.mainImage}
                     alt={item.title}
                     width={300}
@@ -203,6 +207,8 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                     className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200"
                   >
                     <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                       src={item.mainImage}
                       alt={item.title}
                       width={300}

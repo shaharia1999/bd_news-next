@@ -76,6 +76,8 @@ const gridNews = news.slice(5);
         <Link key={item._id} href={`/news/${item.slug}`} className="block group">
           <div className="relative">
             <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
               src={item.mainImage}
               width={1000}
               height={600}

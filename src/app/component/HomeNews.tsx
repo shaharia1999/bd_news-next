@@ -52,6 +52,8 @@ export default async function HomeNews() {
             <div className="car bg-base-100  2xl:h-auto">
               <figure className="relative w-full 2xl:h-96 md:h-60 aspect-[4/3]">
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item?.mainImage}
                   alt={item?.title}
                   fill

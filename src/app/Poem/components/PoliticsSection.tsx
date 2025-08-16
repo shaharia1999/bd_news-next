@@ -40,6 +40,8 @@ const PoemSection = ({ subCategory, title, items }: Props) => {
             {leftArticles.map((item) => (
               <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item.mainImage}
                   alt={item.title}
                   width={500}
@@ -79,6 +81,8 @@ const PoemSection = ({ subCategory, title, items }: Props) => {
         <div className="lg:col-span-4 md:col-span-4">
           <Link href={`/news/${mainArticle.slug}`} className="block group">
             <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
               src={mainArticle.mainImage}
               alt={mainArticle.title}
               width={400}
@@ -121,6 +125,8 @@ const PoemSection = ({ subCategory, title, items }: Props) => {
             {rightArticles.map((item) => (
               <Link key={item._id} href={`/news/${item.slug}`} className="block group w-full">
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item.mainImage}
                   alt={item.title}
                   width={500}

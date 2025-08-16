@@ -61,6 +61,8 @@ export default async function Sports() {
               <div key={item._id} className="w-full">
                 <div className="relative w-full h-52 2xl:h-80">
                   <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                     src={item.mainImage}
                     alt={item?.title}
                     fill
@@ -103,6 +105,8 @@ export default async function Sports() {
             <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
               <Link href={`/news/${mainNews.slug}`}>
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={mainNews.mainImage}
                   alt={mainNews.title}
                   fill
@@ -147,6 +151,8 @@ export default async function Sports() {
               <div key={item._id}>
                 <div className="relative w-full h-52 2xl:h-80">
                   <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                     src={item.mainImage}
                     alt={item.title}
                     fill

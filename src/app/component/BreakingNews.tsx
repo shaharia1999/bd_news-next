@@ -54,10 +54,11 @@ export default async function BreakingNews() {
               <div className="relative w-full aspect-[16/9] 2xl:aspect-[16/9] lg:aspect-[16/9] md:aspect-[4/3]">
                <Link      href={`/news/${bannerNews.slug}`}>
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={bannerNews.mainImage}
                   alt={bannerNews.title}
                   fill
-                  sizes="(min-width: 1536px) 800px, (min-width: 1024px) 640px, 480px"
                   style={{ objectFit: 'cover' }}
                   priority
                 />
@@ -94,10 +95,11 @@ export default async function BreakingNews() {
                 >
                   <div className="relative w-full h-full aspect-[4/3]">
                     <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                       src={item.mainImage}
                       alt={item.title}
                       fill
-                      sizes="(min-width: 1536px) 300px, (min-width: 1024px) 250px, 200px"
                       style={{ objectFit: 'cover' }}
                     />
                   </div>
@@ -126,6 +128,8 @@ export default async function BreakingNews() {
               ">
                 <figure className="relative w-full overflow-hidden 2xl:h-96 lg:h-[200px] md:h-[200px] h-[150px] aspect-[4/3]">
                   <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                     src={item.mainImage}
                     alt={item.title}
                     fill

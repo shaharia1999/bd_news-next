@@ -50,6 +50,8 @@
 //             {showImage && (
 //               <div className="my-4">
 //                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
 //                   src={images[imageIndex++]}
 //                   alt={`Image ${imageIndex}`}
 //                   width={800}

@@ -59,6 +59,8 @@ export default async function Education() {
               <div className="car bg-base-100 md:h-auto ">
                 <figure>
                   <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                     src={item.mainImage}
                     width={500}
                     height={500}

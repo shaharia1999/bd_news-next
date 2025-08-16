@@ -58,6 +58,8 @@ export default async function Blog() {
           {news.slice(0, 2).map((post) => (
             <div key={post._id}>
               <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                 src={post.mainImage}
                 alt={post.title}
                 width={500}
@@ -95,6 +97,8 @@ export default async function Blog() {
           {news.slice(2, 4).map((post) => (
             <div key={post._id}>
               <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                 src={post.mainImage}
                 alt={post.title}
                 width={500}
@@ -134,6 +138,8 @@ export default async function Blog() {
           {news[4] && (
             <>
               <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                 src={news[4].mainImage}
                 alt={news[4].title}
                 width={800}

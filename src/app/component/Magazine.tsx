@@ -60,6 +60,8 @@ export default async function Magazine() {
            <Link      href={`/news/${mainNews.slug}`}>
           <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
             <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
               src={mainNews.mainImage}
               alt={mainNews.title}
               fill
@@ -104,6 +106,8 @@ export default async function Magazine() {
             <div key={item._id}>
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item.mainImage}
                   alt={item.title}
                   fill
@@ -148,6 +152,8 @@ export default async function Magazine() {
             <div key={item._id}>
               <div className="relative w-full h-52 2xl:h-80">
                 <Image
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   src={item.mainImage}
                   alt={item.title}
                   fill
