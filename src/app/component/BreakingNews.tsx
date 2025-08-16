@@ -40,7 +40,7 @@ export default async function BreakingNews() {
 
   const bannerNews = news[0];
   const marqueeNews = news.slice(1, 5);
-  const sideNews = news.slice(1, 4);
+  const sideNews = news.slice(1, 5);
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString('en-GB');
 
