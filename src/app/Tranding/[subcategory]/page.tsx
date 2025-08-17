@@ -209,7 +209,7 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Trending/${subcategory}`,
+      url: `${siteUrl}/Trnding/${subcategory}`,
       type: 'website',
       images: [
         { url: image, width: 1200, height: 630, alt: `${subcategory} trending news and updates` },
@@ -224,7 +224,7 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
       ],
     },
     alternates: {
-      canonical: `${siteUrl}/Trending/${subcategory}`,
+      canonical: `${siteUrl}/Tranding/${subcategory}`,
     },
   };
 }
