@@ -108,7 +108,8 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
                 <div className="flex items-start space-x-3 border-b pb-4 hover:opacity-80">
                   <div className="w-20 h-16 flex-shrink-0">
                     <Image
-                      fill
+                      width={1000} // Adjust width and height as needed
+                      height={600}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                       src={item.mainImage}
