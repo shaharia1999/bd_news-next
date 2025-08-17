@@ -209,7 +209,7 @@ export async function generateMetadata({ params }: { params: Promise<PageProps>}
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Trnding/${subcategory}`,
+      url: `${siteUrl}/Tranding/${subcategory}`,
       type: 'website',
       images: [
         { url: image, width: 1200, height: 630, alt: `${subcategory} trending news and updates` },
