@@ -73,7 +73,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
               <div className="m-0 p-0 w-full relative after:absolute after:inset-0 after:bg-slate-800 after:opacity-40 after:transition-opacity after:duration-300 group-hover:after:opacity-60">
                 <Image
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
+                fill
                   src={item.mainImage}
                   width={1000} // Adjust width and height as needed
                   height={600}
