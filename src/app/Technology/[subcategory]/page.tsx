@@ -17,25 +17,25 @@ interface NewsItem {
   source?: string;
 }
 interface PageProps {
-   subcategory: string 
-    page?: string 
+  subcategory: string
+  page?: string
 }
-export default async function SubCategoryPage({ params }: { params: Promise<PageProps>}){
-   const { subcategory, page } = await params;
+export default async function SubCategoryPage({ params }: { params: Promise<PageProps> }) {
+  const { subcategory, page } = await params;
 
   // const page = searchParams?.page;
   const currentPage = parseInt(page || '1', 10);
 
   const validSubs = subCategoriesMap['Technology'].map((s) => s.toLowerCase());
-const formatDate = (dateStr: string) =>
-  new Date(dateStr).toLocaleDateString("en-GB");
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString("en-GB");
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
 
   const res = await serverFetchData<{
     news: NewsItem[];
     pages: number;
-  }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`,   {
-   cache: 'default',
+  }>(`news?subCategory=${subcategory}&limit=12&page=${currentPage}`, {
+    cache: 'default',
     next: { revalidate: 60 }
   }); // Increased limit to 12 for the layout
 
@@ -70,7 +70,7 @@ const formatDate = (dateStr: string) =>
             <article className="text-white relative group">
               <div className="m-0 p-0 w-full relative after:absolute after:inset-0 after:bg-slate-800 after:opacity-40 after:transition-opacity after:duration-300 group-hover:after:opacity-60">
                 <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   src={item.mainImage}
                   width={1000} // Adjust width and height as needed
@@ -80,7 +80,7 @@ const formatDate = (dateStr: string) =>
                 />
               </div>
               <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full z-10">
-                   <h1 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200 capitalize font-libertinus">
+                <h1 className="2xl:text-5xl lg:text-3xl md:text-2xl text-shadow-md font-bold hover:text-gray-200 capitalize font-libertinus">
                   {item.title}
                 </h1>
 
@@ -93,9 +93,9 @@ const formatDate = (dateStr: string) =>
               <p>{item?.author ? `Author: ${item.author}` : ''}</p>
               <p>{item?.source ? `Source: ${item.source}` : ''}</p>
             </div>
-              <RenderHTMLWithImagesServer description={item.description} limit={50}
-              />
-               <span className='text-blue-500'>learn more</span>
+            <RenderHTMLWithImagesServer description={item.description} limit={50}
+            />
+            <span className='text-blue-500'>learn more</span>
           </Link>
         ))}
       </div>
@@ -106,8 +106,9 @@ const formatDate = (dateStr: string) =>
           <Link key={item._id} href={`/news/${item.slug}`} className="block">
             <div className="border p-3 rounded h-full flex flex-col">
               <Image
-fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                width={1000} // Adjust width and height as needed
+                height={600}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                 src={item.mainImage}
                 alt={item.title}
@@ -117,10 +118,10 @@ fill
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                 <p>{item?.source ? `Source: ${item.source}` : ''}</p>
               </div>
-                <h3 className="font-semibold text-sm mt-2 font-libertinus text-[16px] lg-text-[18px] capitalize">{item.title}</h3>
+              <h3 className="font-semibold text-sm mt-2 font-libertinus text-[16px] lg-text-[18px] capitalize">{item.title}</h3>
               <RenderHTMLWithImagesServer description={item.description} limit={50}
               />
-                          <span className='text-blue-500'>learn more</span>
+              <span className='text-blue-500'>learn more</span>
 
             </div>
           </Link>
@@ -166,7 +167,7 @@ fill
     </div>
   );
 }
-export async function generateMetadata({ params }: { params: Promise<PageProps>}) {
+export async function generateMetadata({ params }: { params: Promise<PageProps> }) {
   const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 

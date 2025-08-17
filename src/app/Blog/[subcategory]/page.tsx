@@ -105,7 +105,8 @@ export default async function SubCategoryPage({ params }: { params: Promise<Data
                 <div className="flex items-start space-x-3 border-b pb-4 hover:opacity-80">
                   <div className="w-20 h-16 flex-shrink-0">
                     <Image
-                      fill
+                      width={1000} // Adjust width and height as needed
+                      height={600}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                       src={item.mainImage}
@@ -143,7 +144,8 @@ export default async function SubCategoryPage({ params }: { params: Promise<Data
             <Link key={item._id} href={`/news/${item.slug}`} className="block">
               <div className="border rounded overflow-hidden hover:shadow-lg h-full flex flex-col">
                 <Image
-                  fill
+                  width={1000} // Adjust width and height as needed
+                  height={600}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   src={item.mainImage}
@@ -222,7 +224,7 @@ export async function generateMetadata({ params }: { params: Promise<Datatype> }
   // ✅ SEO Title & Description
   const title = `${subcategory} Articles & Updates - NewsUS`;
   const description = `Discover curated articles, tips, and latest updates in the ${subcategory} category. Stay informed on ${subcategory}, lifestyle, tech, and more with NewsUS.`;
-  
+
   // ✅ Default Open Graph & Twitter Image
   const image = `${siteUrl}/default-og.jpg`;
 

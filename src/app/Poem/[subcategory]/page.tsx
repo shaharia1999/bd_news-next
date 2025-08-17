@@ -146,7 +146,8 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
             <Link key={item._id} href={`/news/${item.slug}`} className="block">
               <div className="border rounded overflow-hidden hover:shadow-lg h-full flex flex-col">
                 <Image
-                  fill
+                  width={1000} // Adjust width and height as needed
+                  height={600}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   src={item.mainImage}
@@ -217,7 +218,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
     </div>
   );
 }
-export async function generateMetadata({ params }: { params: Promise<PageProps>}) {
+export async function generateMetadata({ params }: { params: Promise<PageProps> }) {
   const { subcategory } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
 
