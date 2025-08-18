@@ -19,11 +19,15 @@ interface PageProps {
   subcategory: string
   page?: string
 }
-export default async function SubCategoryPage({ params }: { params: Promise<PageProps> }) {
-  const { subcategory, page } = await params;
-
-  // const page = searchParams?.page;
-  const currentPage = parseInt(page || '1', 10);
+export default async function SubCategoryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<PageProps>;              // params as Promise
+  searchParams: { page?: string };        // query string
+}) {
+  const { subcategory } = await params;   // await your Promise<Datatype>
+  const currentPage = parseInt(searchParams.page || '1', 10); // use searchParams
 
   const validSubs = subCategoriesMap['Entertainment'].map((s) => s.toLowerCase());
 
@@ -104,7 +108,7 @@ export default async function SubCategoryPage({ params }: { params: Promise<Page
           <Link key={item._id} href={`/news/${item.slug}`} className="block">
             <div className="border p-3 rounded h-full flex flex-col">
               <Image
-                fill
+              
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 width={1000} // Adjust width and height as needed
                 height={600}

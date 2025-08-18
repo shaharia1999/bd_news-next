@@ -21,10 +21,15 @@ type Datatype = {
 }
 
 
-export default async function SubCategoryPage({ params }: { params: Promise<Datatype> }) {
-  const { subcategory } = await params;
-  const currentPage = parseInt('1', 10);
-
+export default async function SubCategoryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<Datatype>;              
+  searchParams: { page?: string };        
+}) {
+  const { subcategory } = await params;   
+  const currentPage = parseInt(searchParams.page || '1', 10); 
   const validSubs = subCategoriesMap['Blog'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();

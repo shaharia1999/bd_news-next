@@ -6,7 +6,7 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-semibold mb-2">About</h2>
           <p className="text-sm leading-relaxed">
-            We are dedicated to delivering the latest news, blogs, and insights on politics, health, technology, and more. Our mission is to provide accurate and trustworthy information to our readers.
+            We are dedicated to delivering the latest news, blogs, and insights on politics, health, technology, and more. Our mission is to provide accurate and trustworthy information to our readers..
           </p>
         </div>
 

@@ -26,20 +26,20 @@ interface NewsApiResponse {
 }
 
 interface Params {
-    slug: string;
+  slug: string;
 }
 
 
 
-export default async function Page({ params }: { params: Promise<Params>}) {
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
 
   const response = await serverFetchData<{ data: NewsItem; visitCount: number }>(
     `news/${slug}`,
-      {
-   cache: 'default',
-    next: { revalidate: 60 }
-  }
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
   );
 
   const post = response?.data;
@@ -51,19 +51,19 @@ export default async function Page({ params }: { params: Promise<Params>}) {
   // Fetch subCategory posts
   const subcetagory = await serverFetchData<NewsApiResponse>(
     `news?subCategory=${post.subCategory}&limit=20&page=1&excludeSlug=${slug}`,
-      {
-   cache: 'default',
-    next: { revalidate: 60 }
-  }
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
   );
 
   // Fetch category posts
   const category = await serverFetchData<NewsApiResponse>(
     `news?category=${post.category}&limit=20&excludeSlug=${slug}`,
-      {
-   cache: 'default',
-    next: { revalidate: 60 }
-  }
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
   );
 
   const formatDate = (dateStr: string) =>
@@ -77,7 +77,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
           <article>
             <h1 className="lg:text-3xl font-bold mb-4">{post.title}</h1>
             <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
               className="2xl:h-[500px] lg:h-[500px] md:h-[400px] w-full object-cover rounded-md"
               alt={post.title}
@@ -90,10 +90,10 @@ export default async function Page({ params }: { params: Promise<Params>}) {
               {/* <p className="font-semibold">{post.category}</p> */}
               <p>{formatDate(post.createdAt)}</p>
             </div>
-                          <div className='flex justify-between text-sm text-gray-400'>
-                <p>{post?.author ? `Author: ${post.author}` : ''}</p>
-                <p>{post?.source ? `Source: ${post.source}` : ''}</p>
-              </div>
+            <div className='flex justify-between text-sm text-gray-400'>
+              <p>{post?.author ? `Author: ${post.author}` : ''}</p>
+              <p>{post?.source ? `Source: ${post.source}` : ''}</p>
+            </div>
             <div className="prose max-w-none">
               <RenderHTMLWithImagesServer
                 description={post.description}
@@ -118,7 +118,7 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                   className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200 mb-4"
                 >
                   <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                     src={item.mainImage}
                     alt={item.title}
@@ -133,10 +133,10 @@ export default async function Page({ params }: { params: Promise<Params>}) {
                     <p className="text-sm text-gray-500 mt-1">
                       {formatDate(item.createdAt)}
                     </p>
-                                  <div className='flex justify-between text-sm text-gray-400'>
-                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
-                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
-              </div>
+                    <div className='flex justify-between text-sm text-gray-400'>
+                      <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                      <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                    </div>
                   </div>
                 </Link>
               ))
@@ -146,49 +146,49 @@ export default async function Page({ params }: { params: Promise<Params>}) {
           </div>
 
           {/* Category Section - Grid layout */}
-        
+
         </aside>
       </div>
-        <div>
-            <h1 className="text-xl font-semibold mt-5">
-              Explore more 
-            </h1>
-            <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
-              {category?.news?.length ? (
-                category.news.map((item) => (
-                  <Link
-                    key={item._id}
-                    href={`/news/${item.slug}`}
-                    className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200"
-                  >
-                    <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      <div>
+        <h1 className="text-xl font-semibold mt-5">
+          Explore more
+        </h1>
+        <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
+          {category?.news?.length ? (
+            category.news.map((item) => (
+              <Link
+                key={item._id}
+                href={`/news/${item.slug}`}
+                className="block border border-gray-200 rounded-md overflow-hidden hover:shadow-md transition-shadow duration-200"
+              >
+                <Image
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
-                      src={item.mainImage}
-                      alt={item.title}
-                      width={300}
-                      height={180}
-                      className="w-full object-cover"
-                    />
-                    <div className="p-3">
-                      <h3 className="font-semibold text-sm line-clamp-2 font-libertinus capitalize">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-gray-500 mt-1">
-                        {formatDate(item.createdAt)}
-                      </p>
-                                    <div className='flex justify-between text-sm text-gray-400'>
-                <p>{item?.author ? `Author: ${item.author}` : ''}</p>
-                <p>{item?.source ? `Source: ${item.source}` : ''}</p>
-              </div>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <p>No more posts found.</p>
-              )}
-            </div>
-          </div>
+                  src={item.mainImage}
+                  alt={item.title}
+                  width={300}
+                  height={180}
+                  className="w-full object-cover"
+                />
+                <div className="p-3">
+                  <h3 className="font-semibold text-sm line-clamp-2 font-libertinus capitalize">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {formatDate(item.createdAt)}
+                  </p>
+                  <div className='flex justify-between text-sm text-gray-400'>
+                    <p>{item?.author ? `Author: ${item.author}` : ''}</p>
+                    <p>{item?.source ? `Source: ${item.source}` : ''}</p>
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p>No more posts found.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
