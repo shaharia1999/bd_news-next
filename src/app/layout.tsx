@@ -65,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
         {/* Schema.org JSON-LD for Organization */}
         <script
           type="application/ld+json"
