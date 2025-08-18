@@ -20,21 +20,21 @@ type Datatype = {
   page?: string
 }
 
-
 export default async function SubCategoryPage({
   params,
   searchParams,
 }: {
-  params: Promise<Datatype>;              
-  searchParams: { page?: string };        
+  params: Promise<Datatype>;                  // route params
+  searchParams: Promise<{ page?: string }>;   // query params also as Promise
 }) {
-  const { subcategory } = await params;   
-  const currentPage = parseInt(searchParams.page || '1', 10); 
+  const { subcategory } = await params;               // await path params
+  const { page } = await searchParams;               // await search params
+  const currentPage = parseInt(page || '1', 10);    // use dynamic page
   const validSubs = subCategoriesMap['Blog'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
   const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
-    `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
+    `news?subCategory=${subcategory}&limit=&page=${currentPage}`,
     {
       cache: 'default',
       next: { revalidate: 60 }

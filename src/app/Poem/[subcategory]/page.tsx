@@ -20,16 +20,17 @@ interface PageProps {
   subcategory: string
   page?: string
 }
+
 export default async function SubCategoryPage({
   params,
   searchParams,
 }: {
-  params: Promise<PageProps>;              // params as Promise
-  searchParams: { page?: string };        // query string
+  params: Promise<PageProps>;                  // route params
+  searchParams: Promise<{ page?: string }>;   // query params also as Promise
 }) {
-  const { subcategory } = await params;   // await your Promise<Datatype>
-  const currentPage = parseInt(searchParams.page || '1', 10); // use searchParams
-
+  const { subcategory } = await params;               // await path params
+  const { page } = await searchParams;               // await search params
+  const currentPage = parseInt(page || '1', 10);    // use dynamic page
   const validSubs = subCategoriesMap['Poem'].map((s) => s.toLowerCase());
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
