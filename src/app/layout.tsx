@@ -84,6 +84,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6058153331113323"
+     crossOrigin="anonymous"></script>
       </head>
       <body className="relative font-publicsans bg-gray-50 text-gray-900">
         {/* Google Analytics */}
