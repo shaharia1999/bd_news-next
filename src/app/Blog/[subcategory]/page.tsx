@@ -34,7 +34,7 @@ export default async function SubCategoryPage({
 
   if (!validSubs.includes(subcategory.toLowerCase())) return notFound();
   const res = await serverFetchData<{ news: NewsItem[]; pages: number; }>(
-    `news?subCategory=${subcategory}&limit=&page=${currentPage}`,
+    `news?subCategory=${subcategory}&limit=12&page=${currentPage}`,
     {
       cache: 'default',
       next: { revalidate: 60 }
