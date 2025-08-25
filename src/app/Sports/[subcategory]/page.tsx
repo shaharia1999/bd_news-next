@@ -83,7 +83,8 @@ export default async function SubCategoryPage({
                   src={item.mainImage}
                   width={1000} // Adjust width and height as needed
                   height={600}
-                  className="2xl:h-[500px] lg:h-[320px] md:h-[300px] w-full object-cover"
+                      className="w-full h-full object-cover rounded"
+
                   alt={item.title}
                 />
               </div>
@@ -120,7 +121,7 @@ export default async function SubCategoryPage({
                   height={600}
                 src={item.mainImage}
                 alt={item.title}
-                className="w-full h-40 object-cover mb-2 rounded"
+                className="w-full  object-cover mb-2 rounded"
               />
               <div className='flex justify-between text-sm text-gray-400'>
                 <p>{item?.author ? `Author: ${item.author}` : ''}</p>

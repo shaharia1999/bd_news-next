@@ -158,7 +158,7 @@ export default async function SubCategoryPage({
 
                   src={item.mainImage}
                   alt={item.title}
-                  className="w-full h-40 object-cover"
+                  className="w-full  object-cover"
                 />
                 <div className="p-3 flex flex-col justify-between flex-grow">
                   <div>

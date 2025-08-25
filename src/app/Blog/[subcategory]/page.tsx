@@ -87,9 +87,9 @@ export default async function SubCategoryPage({
 
                     src={item.mainImage}
                     width={1000}
-                    height={600}
+                    height={800}
                     alt={item.title}
-                    className="w-full h-[400px] object-cover rounded"
+                    className="w-full  object-cover rounded"
                   />
                   <div className="absolute bottom-0 left-0 w-full p-5   bg-gradient-to-t from-black via-transparent text-white">
                     <h1 className="text-3xl mt-20 font-bold group-hover:underline">{item.title}</h1>
@@ -108,7 +108,7 @@ export default async function SubCategoryPage({
             {sidebarNews.map((item) => (
               <Link key={item._id} href={`/news/${item.slug}`} className="block">
                 <div className="flex items-start space-x-3 border-b pb-4 hover:opacity-80">
-                  <div className="w-20 h-16 flex-shrink-0">
+                  <div className="w-20 h-20 flex-shrink-0">
                     <Image
                       width={1000} // Adjust width and height as needed
                       height={600}
@@ -155,7 +155,7 @@ export default async function SubCategoryPage({
 
                   src={item.mainImage}
                   alt={item.title}
-                  className="w-full h-40 object-cover"
+                  className="w-full  object-cover"
                 />
                 <div className="p-3 flex flex-col justify-between flex-grow">
                   <div>
