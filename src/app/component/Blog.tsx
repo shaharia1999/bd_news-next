@@ -75,7 +75,7 @@ export default async function Blog() {
                     <h2>{truncate(post.title, 80)}</h2>
                   </Link>
                 </div>
-                <p className="2xl:mt-3 mt-1 lg:leading-3 2xl:leading-4 text-[12px] 2xl:text-[14px]">
+                <p className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] 2xl:text-[14px]">
                  
                       <RenderHTMLWithImagesServer description={post.description} limit={30}></RenderHTMLWithImagesServer>
                 </p>
@@ -115,7 +115,7 @@ export default async function Blog() {
                     <RenderHTMLWithImagesServer description={post.title} limit={80}></RenderHTMLWithImagesServer>
                   </Link>
                 </div>
-                <p className="2xl:mt-3 mt-1 lg:leading-3 2xl:leading-4 text-[12px] 2xl:text-[14px]">
+                <p className="2xl:mt-3 mt-1 lg:leading-5 2xl:leading-4 text-[12px] 2xl:text-[14px]">
                   {/* {truncate(post.description, 150)} */}
                   <RenderHTMLWithImagesServer description={post.description} limit={150}></RenderHTMLWithImagesServer>
                 </p>
