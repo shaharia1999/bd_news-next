@@ -66,6 +66,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+         {/* ✅ Add RSS/Atom Feed link here */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href="https://www.newsus.shop/rss.xml"
+          title="NewsUS RSS Feed"
+        />
         {/* Schema.org JSON-LD for Organization */}
         <script
           type="application/ld+json"
