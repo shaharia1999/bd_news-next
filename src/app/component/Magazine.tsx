@@ -58,13 +58,15 @@ export default async function Magazine() {
         {/* Main Column */}
         <div className="lg:col-span-4 md:col-span-4">
            <Link      href={`/news/${mainNews.slug}`}>
-          <div className="relative w-full h-[300px] md:h-[400px] 2xl:h-[500px]">
+          <div className="relative w-full ">
             <Image
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
               src={mainNews.mainImage}
               alt={mainNews.title}
-              fill
+               width={1000}
+              height={400}
+              className="w-full object-cover"
               style={{ objectFit: 'cover' }}
             />
           </div>
@@ -110,8 +112,8 @@ export default async function Magazine() {
 
                   src={item.mainImage}
                   alt={item.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
+ width={1000}              height={500}
+                                style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="py-2 px-1">
@@ -156,8 +158,8 @@ export default async function Magazine() {
 
                   src={item.mainImage}
                   alt={item.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
+ width={1000}              height={500}
+                                style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="py-2 px-1">

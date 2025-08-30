@@ -62,8 +62,7 @@ export default async function Education() {
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                     src={item.mainImage}
-                    width={500}
-                    height={500}
+     width={1000}                    height={500}
                     alt={item.title}
                     className="2xl:h-72 md:h-52 w-full object-cover"
                   />

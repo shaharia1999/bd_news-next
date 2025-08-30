@@ -62,9 +62,8 @@ export default async function Blog() {
 
                 src={post.mainImage}
                 alt={post.title}
-                width={500}
-                height={300}
-                className="w-full 2xl:h-80 md:h-52 h-72 object-cover"
+ width={1000}                height={500}
+                className="w-full object-cover"
               />
               <div className="py-2 px-1">
                 <div className="lg:leading-6 2xl:leading-5">
@@ -101,9 +100,8 @@ export default async function Blog() {
 
                 src={post.mainImage}
                 alt={post.title}
-                width={500}
-                height={300}
-                className="w-full 2xl:h-80 md:h-52 h-72 object-cover"
+ width={1000}                height={500}
+                className="w-full  object-cover"
               />
               <div className="py-2 px-1">
                 <div className="lg:leading-6 2xl:leading-5">

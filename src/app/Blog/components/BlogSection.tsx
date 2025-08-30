@@ -45,8 +45,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
 
                   src={item.mainImage}
                   alt={item.title}
-                  width={500}
-                  height={300}
+   width={1000}                  height={300}
                   className="w-full 2xl:h-80 lg:h-52 object-cover"
                 />
                 <div className="py-2 px-1">
@@ -121,8 +120,7 @@ const BlogSection = ({ subCategory, title, items }: Props) => {
 
                   src={item.mainImage}
                   alt={item.title}
-                  width={500}
-                  height={300}
+   width={1000}                  height={300}
                   className="w-full 2xl:h-80 lg:h-52 object-cover"
                 />
                 <div className="py-2 px-1">

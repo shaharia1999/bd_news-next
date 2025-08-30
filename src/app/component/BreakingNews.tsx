@@ -126,13 +126,14 @@ export default async function BreakingNews() {
                 <Link      href={`/news/${item.slug}`} key={item._id}>
               <div key={item._id} className="car bg-base-100 
               ">
-                <figure className="relative w-full overflow-hidden 2xl:h-96 lg:h-[200px] md:h-[200px] h-[150px] aspect-[4/3]">
+                <figure className="relative w-full overflow-hidden">
                   <Image
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                     src={item.mainImage}
                     alt={item.title}
-                    fill
+                     width={200}   height={100}
+                    // fill
                       // sizes="(min-width: 1536px) 300px, (min-width: 1024px) 250px, 200px"
                       style={{ objectFit: 'cover'}}
                   />
