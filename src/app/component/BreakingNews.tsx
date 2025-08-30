@@ -132,7 +132,7 @@ export default async function BreakingNews() {
                     src={item.mainImage}
                     alt={item.title}
                      width={200}   height={100}
-                    // fill
+                  
                       // sizes="(min-width: 1536px) 300px, (min-width: 1024px) 250px, 200px"
                       style={{ objectFit: 'cover'}}
                   />
