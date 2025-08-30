@@ -118,7 +118,6 @@ export default async function BreakingNews() {
             </div>
           </Marquee>
         </div>
-
         {/* Sidebar */}
         <div className="lg:col-span-4 mt-2 lg:mt-0 ">
           <article className="grid grid-cols-2 grid-rows-2 2xl:gap-5 gap-2">
