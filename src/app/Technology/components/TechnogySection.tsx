@@ -82,7 +82,7 @@ const TechnologySection = ({ subCategory, title, items }: Props) => {
               alt={mainArticle.title}
               width={400}
               height={400}
-              className="w-full object-cover h-[300px] md:h-[400px] 2xl:h-[500px]"
+              className="w-full object-cover "
             />
             <div className="py-2 px-1">
               <div className="lg:leading-6 2xl:leading-5">
