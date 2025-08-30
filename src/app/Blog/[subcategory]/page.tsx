@@ -92,7 +92,7 @@ export default async function SubCategoryPage({
                     className="w-full  object-cover rounded"
                   />
                   <div className="absolute bottom-0 left-0 w-full p-5   bg-gradient-to-t from-black via-transparent text-white">
-                    <h1 className="text-3xl mt-20 font-bold group-hover:underline">{item.title}</h1>
+                    <h1 className="lg:text-3xl text:1xl mt-20 font-bold group-hover:underline">{item.title}</h1>
                     {/* <p
                       className="mt-2 text-sm"
                       dangerouslySetInnerHTML={{ __html: truncate(item.description, 150) }}
