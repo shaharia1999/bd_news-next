@@ -7,4 +7,3 @@ Host: https://bd-news-next.vercel.app
 
 # Sitemaps
 Sitemap: https://bd-news-next.vercel.app/sitemap.xml
-Sitemap: https://bd-news-next.vercel.app/api/news-sitemap.xml

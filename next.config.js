@@ -1,37 +1,26 @@
-// /** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Fixes the 308 Error by ensuring Google doesn't hit trailing slash redirects
-  trailingSlash: false, 
-
   images: {
-    domains: ['images.pexels.com', 'i.ibb.co.com'], 
+    domains: ['images.pexels.com', 'i.ibb.co.com'], // existing domains
   },
-
   async redirects() {
     return [
-      // 1. Domain Redirect (Existing)
       {
         source: '/:path*',
         has: [
           {
             type: 'host',
-            value: 'newsus.shop',
+            value: 'newsus.shop', // non-www domain
           },
         ],
-        destination: 'https://bd-news-next.vercel.app/:path*',
-        permanent: true,
-      },
-      // 2. Fix the "Tranding" Typo (New)
-      {
-        source: '/Tranding',
-        destination: '/Trending',
-        permanent: true,
+        destination: 'https://bd-news-next.vercel.app/:path*', // redirect to www
+        permanent: true, // 301 redirect
       },
     ];
+    
   },
-
-  env: {
-    NEXT_PUBLIC_API_URL: 'https://ecommerce-web-ago1.vercel.app',
+   env: {
+    NEXT_PUBLIC_API_URL: 'https://ecommerce-web-ago1.vercel.app', // backend API
   },
 };
 

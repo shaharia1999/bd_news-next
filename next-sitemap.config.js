@@ -1,31 +1,37 @@
 require('dotenv').config();
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://bd-news-next.vercel.app',
   generateRobotsTxt: true,
-  generateIndexSitemap: false, // Fixes the "sitemap-0" issue
+  generateIndexSitemap: false, 
   changefreq: 'hourly',
   priority: 0.7,
 
   additionalPaths: async (config) => {
-    const categories = ['Blog', 'Entertainment', 'Sports', 'Politics', 'Technology', 'Tranding'];
+    // Fixed "Tranding" to "Trending"
+    const categories = ['Blog', 'Entertainment', 'Sports', 'Politics', 'Technology', 'Trending'];
     let allUrls = [];
+
+    // Use the production API URL; fallback to avoid ECONNREFUSED if env is missing
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ecommerce-web-ago1.vercel.app';
 
     for (const cat of categories) {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/news?subCategory=${cat}&limit=1000&page=1`
+          `${baseUrl}/news?subCategory=${cat}&limit=1000&page=1`
         );
-        const json = await res.json();
+        
+        if (!res.ok) {
+          console.warn(`Failed to fetch category ${cat}: ${res.statusText}`);
+          continue;
+        }
 
-        // API থেকে news অ্যারে এক্সট্রাক্ট
+        const json = await res.json();
         const posts = json?.news || [];
 
         if (posts.length > 0) {
-          // সিঙ্গেল নিউজ লিঙ্ক
           const newsUrls = posts.map((post) => `/news/${post.slug}`);
-
-          // সাব-ক্যাটাগরি লিঙ্ক (যদি থাকে)
           const subCategoryUrls = posts
             .filter((p) => p.subCategorySlug)
             .map((p) => `/${cat}/${p.subCategorySlug}`);
@@ -33,7 +39,7 @@ module.exports = {
           allUrls.push(...newsUrls, ...subCategoryUrls);
         }
       } catch (err) {
-        console.error(`Error fetching category ${cat}:`, err);
+        console.error(`Error fetching category ${cat}:`, err.message);
       }
     }
 
