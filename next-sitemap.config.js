@@ -1,7 +1,7 @@
 require('dotenv').config();
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.newsus.shop',
+  siteUrl: 'https://bd-news-next.vercel.app',
   generateRobotsTxt: true,
   changefreq: 'hourly',
   priority: 0.7,
