@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.newsus.shop
+Host: https://bd-news-next.vercel.app
 
 # Sitemaps
-Sitemap: https://www.newsus.shop/sitemap.xml
-Sitemap: https://www.newsus.shop/api/news-sitemap.xml
+Sitemap: https://bd-news-next.vercel.app/sitemap.xml
+Sitemap: https://bd-news-next.vercel.app/api/news-sitemap.xml
