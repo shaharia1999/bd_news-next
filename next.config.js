@@ -10,7 +10,7 @@ const nextConfig = {
         has: [
           {
             type: 'host',
-            value: 'newsus.shop', // non-www domain
+            value: 'bd-news-next.vercel.app', // non-www domain
           },
         ],
         destination: 'https://bd-news-next.vercel.app/:path*', // redirect to www
