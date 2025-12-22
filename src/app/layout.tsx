@@ -60,8 +60,6 @@ export const metadata: Metadata = {
     google: "D_r6_5MOFhQqkLKQwOmMBjBPWL37UhsjrFX7nebGFr0",
   },
 };
-  
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
