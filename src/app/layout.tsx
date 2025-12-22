@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     images: ["https://www.newsus.shop/og-image.jpg"],
   },
   verification: {
-    google: "UYTNkdzJ3B4ahGpq5dimzr4mkxf1uLefMFjq0KetDkw",
+    google: "D_r6_5MOFhQqkLKQwOmMBjBPWL37UhsjrFX7nebGFr0",
   },
 };
 
@@ -65,7 +65,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <meta name="google-site-verification" content="D_r6_5MOFhQqkLKQwOmMBjBPWL37UhsjrFX7nebGFr0" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
          {/* ✅ Add RSS/Atom Feed link here */}
         <link
