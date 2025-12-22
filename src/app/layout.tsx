@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.newsus.shop/",
+    canonical: "https://bd-news-next.vercel.app/",
   },
   openGraph: {
     title: "NewsUS: Latest Breaking & Trending News Today",
     description:
       "Daily updates on breaking and trending news across politics, sports, technology, entertainment, and more. Stay informed with NewsUS.",
-    url: "https://www.newsus.shop/",
+    url: "https://bd-news-next.vercel.app/",
     siteName: "NewsUS",
     images: [
       {
-        url: "https://www.newsus.shop/og-image.jpg",
+        url: "https://bd-news-next.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "NewsUS - Latest Breaking & Trending News",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "NewsUS: Latest Breaking & Trending News Today",
     description:
       "Get the latest trending stories updated daily. Follow NewsUS for breaking news in politics, sports, tech, and entertainment.",
-    images: ["https://www.newsus.shop/og-image.jpg"],
+    images: ["https://bd-news-next.vercel.app/og-image.jpg"],
   },
   verification: {
     google: "D_r6_5MOFhQqkLKQwOmMBjBPWL37UhsjrFX7nebGFr0",
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           rel="alternate"
           type="application/rss+xml"
-          href="https://www.newsus.shop/rss.xml"
+          href="https://bd-news-next.vercel.app/rss.xml"
           title="NewsUS RSS Feed"
         />
         {/* Schema.org JSON-LD for Organization */}
@@ -80,8 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "NewsMediaOrganization",
               name: "NewsUS",
-              url: "https://www.newsus.shop/",
-              logo: "https://www.newsus.shop/logo.png",
+              url: "https://bd-news-next.vercel.app/",
+              logo: "https://bd-news-next.vercel.app/logo.png",
               sameAs: [
                 "https://www.facebook.com/newsus",
                 "https://twitter.com/newsus",

@@ -176,7 +176,7 @@ export default async function SubCategoryPage({
 }
 export async function generateMetadata({ params }: { params: Promise<PageProps> }) {
   const { subcategory } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
 
   // ✅ SEO Title & Description
   const title = `${subcategory.charAt(0).toUpperCase() + subcategory.slice(1)} News & Updates - Trending | NewsUS`;

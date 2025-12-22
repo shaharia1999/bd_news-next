@@ -48,7 +48,7 @@ export default EntertainmenPage;
 
 
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
   const subCategories = subCategoriesMap['Entertainment'] || [];
   const categoriesList = subCategories.join(', ');
 

@@ -26,7 +26,7 @@ export default function Home() {
   );
 }
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bd-news-next.vercel.app";
 
   const title = "NewsUS: Top Breaking News & Trending Stories Today";
   const description =

@@ -205,7 +205,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 //   );
 
 //   const post = response?.data;
-//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
 
 //   const title = post?.title || 'News Details | NewsUS';
 //   const description =
@@ -238,7 +238,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 // }
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
 
   // Fetch the news post
   const response = await serverFetchData<{ data: NewsItem }>(
