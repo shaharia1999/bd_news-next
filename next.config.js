@@ -1,26 +1,32 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Fixes the 308 Error in Google Search Console by preventing trailing slash conflicts
+  trailingSlash: false, 
+
   images: {
-    domains: ['images.pexels.com', 'i.ibb.co.com'], // existing domains
+    domains: ['images.pexels.com', 'i.ibb.co.com'],
   },
+
   async redirects() {
     return [
+      // Redirect the misspelled "Tranding" to the correct "Trending"
       {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'newsus.shop', // non-www domain
-          },
-        ],
-        destination: 'https://bd-news-next.vercel.app/:path*', // redirect to www
-        permanent: true, // 301 redirect
+        source: '/Tranding',
+        destination: '/Trending',
+        permanent: true,
+      },
+      // Optional: Catch any sub-pages under the misspelled path
+      {
+        source: '/Tranding/:path*',
+        destination: '/Trending/:path*',
+        permanent: true,
       },
     ];
-    
   },
-   env: {
-    NEXT_PUBLIC_API_URL: 'https://ecommerce-web-ago1.vercel.app', // backend API
+
+  env: {
+    // Correct production API URL
+    NEXT_PUBLIC_API_URL: 'https://ecommerce-web-ago1.vercel.app', 
   },
 };
 
