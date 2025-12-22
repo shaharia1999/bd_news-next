@@ -15,7 +15,7 @@ interface News {
   createdAt: string;
   images?: string[];
   visitCount?: number | string;
-  author?: string;  
+  author?: string;
   source?: string;
 }
 
@@ -28,12 +28,12 @@ interface NewsApiResponse {
 
 
 export default async function BreakingNews() {
-  const {news }= await serverFetchData<NewsApiResponse>(
+  const { news } = await serverFetchData<NewsApiResponse>(
     'news?category=Tranding&sortBy=createdAt&sortOrder=desc&limit=10&page=1',
-        {
-    cache: 'default',
-    next: { revalidate: 60 }
-  }
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
   );
   // console.log('Breaking news data:', news);
   if (!news || news.length === 0) return null;
@@ -52,16 +52,16 @@ export default async function BreakingNews() {
           {bannerNews && (
             <article className="text-white relative">
               <div className="relative w-full aspect-[16/9] 2xl:aspect-[16/9] lg:aspect-[16/9] md:aspect-[4/3]">
-               <Link      href={`/news/${bannerNews.slug}`}>
-                <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                <Link href={`/news/${bannerNews.slug}`}>
+                  <Image
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
-                  src={bannerNews.mainImage}
-                  alt={bannerNews.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
+                    src={bannerNews.mainImage}
+                    alt={bannerNews.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                  />
                 </Link>
               </div>
               <div className="flex px-5 md:pb-20 pb-10 absolute bottom-0 left-0 flex-col w-full
@@ -83,36 +83,36 @@ export default async function BreakingNews() {
           )}
 
           <Marquee speed={50}>
-       
+
             <div className="flex gap-3  2xl:py-10 lg:py-3 mt-2 lg:mt-0">
               {marqueeNews.map((item) => (
-                <Link   href={`/news/${item.slug}`} key={item._id}>
-                <div
-                  key={item._id}
-                  className="min-w-[300px] text-white relative
+                <Link href={`/news/${item.slug}`} key={item._id}>
+                  <div
+                    key={item._id}
+                    className="min-w-[300px] text-white relative
                    2xl:h-[250px] md:h-[200px]
                    h-[150px]"
-                >
-                  <div className="relative w-full h-full aspect-[4/3]">
-                    <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  >
+                    <div className="relative w-full h-full aspect-[4/3]">
+                      <Image
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
-                      src={item.mainImage}
-                      alt={item.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
+                        src={item.mainImage}
+                        alt={item.title}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full bg-gradient-to-t from-black/80 to-transparent">
+                      <Link
+                        href={`/news/${item.slug}`}
+                        className="text-[16px] 2xl:text-[18px] font-bold hover:text-gray-200 capitalize font-libertinus"
+                      >
+                        {item.title}
+                      </Link>
+
+                    </div>
                   </div>
-                  <div className="flex px-5 pb-3 absolute bottom-0 left-0 flex-col w-full bg-gradient-to-t from-black/80 to-transparent">
-                    <a
-                      href={`/news/${item.slug}`}
-                      className="text-[16px] 2xl:text-[18px] font-bold hover:text-gray-200 capitalize font-libertinus"
-                    >
-                      {item.title}
-                    </a>
-              
-                  </div>
-                </div>
                 </Link>
               ))}
             </div>
@@ -122,47 +122,47 @@ export default async function BreakingNews() {
         <div className="lg:col-span-4 mt-2 lg:mt-0 ">
           <article className="grid grid-cols-2 grid-rows-2 2xl:gap-5 gap-2">
             {sideNews.map((item) => (
-                <Link      href={`/news/${item.slug}`} key={item._id}>
-              <div key={item._id} className="car bg-base-100 
+              <Link href={`/news/${item.slug}`} key={item._id}>
+                <div key={item._id} className="car bg-base-100 
               ">
-                <figure className="relative w-full overflow-hidden">
-                  <Image
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  <figure className="relative w-full overflow-hidden">
+                    <Image
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
-                    src={item.mainImage}
-                    alt={item.title}
-                     width={200}   height={100}
-                  
+                      src={item.mainImage}
+                      alt={item.title}
+                      width={200} height={100}
+
                       // sizes="(min-width: 1536px) 300px, (min-width: 1024px) 250px, 200px"
-                      style={{ objectFit: 'cover'}}
-                  />
-                </figure>
-                <div className="pt-2 px-1">
-                  <a
-                    href={`/news/${item.slug}`}
-                    className="font-bold font-libertinus text-[14px] 2xl:text-[16px] block leading-5 hover:text-primary capitalize"
-                  >
-                    <h1>{item.title}</h1>
-                  </a>
-                 
-                </div>
-                <div className="flex justify-between text-sm">
-                  <div className=" flex items-center text-gray-500">
-                    <p className="w-1 h-5 badge-error mr-2"></p>
-                     Breaking
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </figure>
+                  <div className="pt-2 px-1">
+                    <a
+                      href={`/news/${item.slug}`}
+                      className="font-bold font-libertinus text-[14px] 2xl:text-[16px] block leading-5 hover:text-primary capitalize"
+                    >
+                      <h1>{item.title}</h1>
+                    </a>
+
                   </div>
-                  <div className=" flex items-center text-gray-500 text-sm">
-                    {formatDate(item.createdAt)}
+                  <div className="flex justify-between text-sm">
+                    <div className=" flex items-center text-gray-500">
+                      <p className="w-1 h-5 badge-error mr-2"></p>
+                      Breaking
+                    </div>
+                    <div className=" flex items-center text-gray-500 text-sm">
+                      {formatDate(item.createdAt)}
+                    </div>
                   </div>
-                </div>
-                 <div className='flex justify-between text-sm pb-2 text-gray-400'>
+                  <div className='flex justify-between text-sm pb-2 text-gray-400'>
                     <p>{item?.author ? `Author: ${item.author}` : ''}</p>
                     <p>{item?.source ? `Source: ${item.source}` : ''}</p>
                   </div>
-                    
-              
-            {/* <span className='text-blue-500'>learn more</span> */}
-              </div>
+
+
+                  {/* <span className='text-blue-500'>learn more</span> */}
+                </div>
               </Link>
             ))}
           </article>

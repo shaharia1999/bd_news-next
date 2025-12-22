@@ -7,4 +7,3 @@ Host: https://www.newsus.shop
 
 # Sitemaps
 Sitemap: https://www.newsus.shop/sitemap.xml
-Sitemap: https://www.newsus.shop/api/news-sitemap.xml
