@@ -3,6 +3,7 @@ require('dotenv').config();
 module.exports = {
   siteUrl: 'https://bd-news-next.vercel.app',
   generateRobotsTxt: true,
+  generateIndexSitemap: false, // Fixes the "sitemap-0" issue
   changefreq: 'hourly',
   priority: 0.7,
 
