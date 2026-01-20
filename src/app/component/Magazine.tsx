@@ -112,8 +112,8 @@ export default async function Magazine() {
 
                   src={item.mainImage}
                   alt={item.title}
- width={1000}              height={500}
-                                style={{ objectFit: 'cover' }}
+                  fill
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="py-2 px-1">
@@ -158,8 +158,8 @@ export default async function Magazine() {
 
                   src={item.mainImage}
                   alt={item.title}
- width={1000}              height={500}
-                                style={{ objectFit: 'cover' }}
+                  fill
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="py-2 px-1">
