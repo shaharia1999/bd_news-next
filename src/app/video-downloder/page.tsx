@@ -1,10 +1,11 @@
 'use client'
 import React from 'react'
-import InstagramDownloader from './_component/Instragram'
+import QRCodeShortener from './_component/QRCodeShortener'
+
 
 const page = () => {
   return (
-    <div><InstagramDownloader/></div>
+    <div><QRCodeShortener/></div>
   )
 }
 

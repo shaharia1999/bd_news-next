@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { LuInstagram, LuDownload, LuShare2 } from "react-icons/lu";
 
+
 const VideoPlayer = ({ src }: { src: string }) => (
   <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-200">
     <video src={src} controls className="w-full h-full object-cover" />
@@ -58,6 +59,7 @@ const InstagramDownloader = () => {
   };
 
   return (
+    <>
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="relative w-full max-w-lg mx-auto bg-white rounded-3xl shadow-xl p-8 space-y-6 transform transition-all duration-300 hover:scale-105">
         <div className="relative flex items-center bg-gray-50 rounded-full p-2 shadow-inner">
@@ -110,6 +112,7 @@ const InstagramDownloader = () => {
         {message && <div className="text-center mt-4 text-sm text-red-500">{message}</div>}
       </div>
     </div>
+    </>
   );
 };
 
