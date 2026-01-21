@@ -3,6 +3,7 @@ import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
 import { serverFetchData } from '../lib/serverFetch';
 import Link from 'next/link';
+import AffiliatePopup from './AfilitateCart';
 // import { serverFetchData } from '@/lib/serverFetch';
 
 interface News {
@@ -17,6 +18,14 @@ interface News {
   visitCount?: number | string;
   author?: string;
   source?: string;
+  
+  // Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
 }
 
 interface NewsApiResponse {
@@ -43,6 +52,7 @@ export default async function BreakingNews() {
   const sideNews = news.slice(1, 5);
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString('en-GB');
+{/* Helper to ensure link is absolute */}
 
   return (
     <div className="px-3 md:px-4 2xl:mt-5 lg:mt-5 mt-2 w-full lg:px-7 ">
@@ -55,11 +65,10 @@ export default async function BreakingNews() {
                 <Link href={`/news/${bannerNews.slug}`}>
                   <Image
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
                     src={bannerNews.mainImage}
                     alt={bannerNews.title}
+                   
                     fill
-                    style={{ objectFit: 'cover' }}
                     priority
                   />
                 </Link>
@@ -72,13 +81,22 @@ export default async function BreakingNews() {
                 >
                   {bannerNews.title}
                 </a>
-                {/* <p
-                  className="mt-3 text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: truncate(bannerNews.description, 200),
-                  }}
-                /> */}
+               
               </div>
+ {bannerNews.affiliateLink && (
+  <AffiliatePopup
+    link={bannerNews.affiliateLink}
+    image={bannerNews.affiliateimage}
+    title={bannerNews.affiliateDiscount}
+    price={bannerNews.affiliateprice}
+    originalPrice={bannerNews.affiliateoriginalprice}
+    // discount={bannerNews.affiliateDiscount}
+    rating={bannerNews.affiliateRating}
+    position="top-right"
+    animation="zoom"
+  />
+)}
+
             </article>
           )}
 

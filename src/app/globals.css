@@ -72,4 +72,38 @@ body {
   height: 100%;
   bottom: 0;
 }
-/* test */
+/* UPDATED */
+/* Smooth vertical movement */
+@keyframes moveY {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* Smooth horizontal movement */
+@keyframes moveX {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* Slight diagonal movement */
+@keyframes moveXY {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(4px, -4px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Infinite movement versions */
+.animate-fadeIn {
+  animation: moveY 3s ease-in-out infinite;
+}
+
+.animate-slideIn {
+  animation: moveX 2.5s ease-in-out infinite;
+}
+
+.animate-zoomIn {
+  animation: moveXY 3.2s ease-in-out infinite;
+}
+
