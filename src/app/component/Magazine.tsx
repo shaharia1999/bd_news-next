@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { serverFetchData } from '../lib/serverFetch';
 import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
+import AffiliatePopup from './AfilitateCart';
 
 interface News {
   _id: string;
@@ -15,6 +16,13 @@ interface News {
   visitCount?: number | string;
   author?: string;
   source?: string;
+// Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
 }
 
 interface NewsApiResponse {
@@ -36,7 +44,9 @@ export default async function Magazine() {
   }
   );
   if (!news || news.length === 0) return null;
-
+ const affiliateNews = news?.filter(
+    (item) => item.affiliateLink
+  );
   const mainNews = news[0];
   const leftNews = news.slice(1, 3);
   const rightNews = news.slice(3, 5);
@@ -98,6 +108,23 @@ export default async function Magazine() {
             />
             <span className='text-blue-500'>learn more</span>
           </div>
+           {affiliateNews.slice(0, 1).map((item, index) => (
+                        <div key={item._id} className="relative w-full">
+                          <AffiliatePopup
+                            link={item.affiliateLink!}
+                            image={item.affiliateimage!}
+                            title={item.affiliateDiscount}
+                            price={item.affiliateprice}
+                            originalPrice={item.affiliateoriginalprice}
+                            rating={item.affiliateRating}
+                            wrapperClass="relative w-full" // mobile responsive
+                            animation="zoom"
+                            imageSize="lg"
+                            maxTitleLength={45}
+                            ctaText="Buy Now"
+                          />
+                        </div>
+                      ))}
         </div>
 
         {/* Left Column */}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { serverFetchData } from '../lib/serverFetch';
 import { RenderHTMLWithImagesServer } from '../news/HTMLWithImagesServer';
 import Link from 'next/link';
+import AffiliatePopup from './AfilitateCart';
 
 interface News {
   _id: string;
@@ -16,6 +17,13 @@ interface News {
   visitCount?: number | string;
   author?: string;
   source?: string;
+  // Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
 }
 
 interface NewsApiResponse {
@@ -35,7 +43,9 @@ export default async function HomeNews() {
   );
 
   if (!news || news.length === 0) return null;
-
+ const affiliateNews = news?.filter(
+    (item) => item.affiliateLink
+  );
 
 
   return (
@@ -45,11 +55,12 @@ export default async function HomeNews() {
         <p className="lg:text-3xl text-2xl font-bold">News</p>
       </div>
       <div className="All-News grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
-        {news?.map((item) => (
+        {news?.map((item,index) => (
+          <>
           <Link href={`/news/${item.slug}`} key={item._id}>
 
             <article key={item._id}>
-              <div className="car bg-base-100  2xl:h-auto">
+              <div className="car   2xl:h-auto">
                 <figure className="relative  w-full h-52 2xl:h-80">
                   <Image
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -91,8 +102,28 @@ export default async function HomeNews() {
                   <span className='text-blue-500'>learn more</span>
                 </div>
               </div>
+                 {/* Insert affiliate card every 3 items */}
+     
             </article>
           </Link>
+           {affiliateNews[index] && (
+        <div className="relative w-full">
+          <AffiliatePopup
+            link={affiliateNews[index].affiliateLink!}
+            image={affiliateNews[index].affiliateimage!}
+            title={affiliateNews[index].affiliateDiscount}
+            price={affiliateNews[index].affiliateprice}
+            originalPrice={affiliateNews[index].affiliateoriginalprice}
+            rating={affiliateNews[index].affiliateRating}
+            wrapperClass="relative"
+            animation="zoom"
+            imageSize="lg"
+            maxTitleLength={45}
+            ctaText="Buy Now"
+          />
+        </div>
+      )}
+          </>
         ))}
       </div>
     </div>

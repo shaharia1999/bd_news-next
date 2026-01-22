@@ -19,6 +19,7 @@ interface News {
   author?: string;
   source?: string;
 
+
   // Affiliate fields
   affiliateLink?: string;
   affiliateimage?: string;
@@ -55,10 +56,10 @@ export default async function BreakingNews() {
   {/* Helper to ensure link is absolute */ }
 
   return (
-    <div className="px-3 md:px-4 2xl:mt-5 lg:mt-5 mt-2 w-full lg:px-7 ">
+    <div className="px-3 md:px-4 2xl:mt-5 lg:mt-5 mt-2 w-full lg:px-7 bg-white">
       <div className="lg:gap-x-8 lg:grid lg:grid-cols-12">
         {/* Left Section */}
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-8 relative">
           {bannerNews && (
             <article className="text-white relative">
               <div className="relative w-full aspect-[16/9] 2xl:aspect-[16/9] lg:aspect-[16/9] md:aspect-[4/3]">
@@ -74,7 +75,7 @@ export default async function BreakingNews() {
                 </Link>
               </div>
               <div className="flex px-5 md:pb-20 pb-10 absolute bottom-0 left-0 flex-col w-full
-               bg-gradient-to-t from-black/90 to-transparent">
+               bg-gradient-to-t from-black/90 to-transparent ">
                 <a
                   href={`/news/${bannerNews.slug}`}
                   className="2xl:text-5xl lg:text-3xl mt-20 md:text-2xl text-[18px] font-bold hover:text-gray-200 uppercase font-libertinus"
@@ -83,6 +84,7 @@ export default async function BreakingNews() {
                 </a>
 
               </div>
+
               {bannerNews.affiliateLink && (
                 <AffiliatePopup
                   link={bannerNews.affiliateLink}
@@ -90,13 +92,16 @@ export default async function BreakingNews() {
                   title={bannerNews.affiliateDiscount}
                   price={bannerNews.affiliateprice}
                   originalPrice={bannerNews.affiliateoriginalprice}
-                  // discount={bannerNews.affiliateDiscount}
+                  wrapperClass="absolute top-2 right-2"
                   rating={bannerNews.affiliateRating}
                   position="top-right"
                   animation="zoom"
+                  discount="50% OFF"
+                  imageSize="lg"
+                  maxTitleLength={45}
+                  ctaText="Buy Now"
                 />
               )}
-
             </article>
           )}
 
@@ -137,11 +142,11 @@ export default async function BreakingNews() {
           </Marquee>
         </div>
         {/* Sidebar */}
-        <div className="lg:col-span-4 mt-2 lg:mt-0 ">
+        <div className="lg:col-span-4 mt-2 lg:mt-0 bg-white">
           <article className="grid grid-cols-2 grid-rows-2 2xl:gap-5 gap-2">
             {sideNews.map((item) => (
               <Link href={`/news/${item.slug}`} key={item._id}>
-                <div key={item._id} className="car bg-base-100 
+                <div key={item._id} className="car  
               ">
                   <figure className="relative w-full overflow-hidden">
                     <Image

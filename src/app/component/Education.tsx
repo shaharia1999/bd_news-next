@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { serverFetchData } from "../lib/serverFetch";
 import { RenderHTMLWithImagesServer } from "../news/HTMLWithImagesServer";
+import AffiliatePopup from "./AfilitateCart";
 
 interface News {
   _id: string;
@@ -15,6 +16,13 @@ interface News {
   visitCount?: number | string;
   author?: string;
   source?: string;
+// Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
 }
 
 interface NewsApiResponse {
@@ -37,7 +45,9 @@ export default async function Education() {
     }
   );
   if (!news || news.length === 0) return null;
-
+ const affiliateNews = news?.filter(
+    (item) => item.affiliateLink
+  );
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("en-GB");
 
@@ -52,11 +62,13 @@ export default async function Education() {
       </div>
 
       <div className="All-News grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
-        {news.map((item) => (
+        {news.map((item,index) => (
+               <>
           <article key={item._id}>
+       
             <Link href={`/news/${item.slug}`} key={item._id}>
 
-              <div className="car bg-base-100 md:h-auto ">
+              <div className="car  md:h-auto ">
                 <figure>
                   <Image
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -96,7 +108,26 @@ export default async function Education() {
                 </div>
               </div>
             </Link>
+              {affiliateNews[index] && (
+        <div className="relative w-full">
+          <AffiliatePopup
+            link={affiliateNews[index].affiliateLink!}
+            image={affiliateNews[index].affiliateimage!}
+            title={affiliateNews[index].affiliateDiscount}
+            price={affiliateNews[index].affiliateprice}
+            originalPrice={affiliateNews[index].affiliateoriginalprice}
+            rating={affiliateNews[index].affiliateRating}
+            wrapperClass="relative"
+            animation="zoom"
+            imageSize="lg"
+            maxTitleLength={45}
+            ctaText="Buy Now"
+          />
+        </div>
+      )}
+           
           </article>
+           </>
         ))}
       </div>
     </div>

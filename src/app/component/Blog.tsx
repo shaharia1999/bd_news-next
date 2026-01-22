@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { serverFetchData } from "../lib/serverFetch";
 import { RenderHTMLWithImagesServer } from "../news/HTMLWithImagesServer";
+import AffiliatePopup from "./AfilitateCart";
 
 interface News {
   _id: string;
@@ -15,6 +16,13 @@ interface News {
   visitCount?: number |string;
   author?:string;
   source?: string;
+  // Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
 }
 
 interface NewsApiResponse {
@@ -38,7 +46,9 @@ export default async function Blog() {
   );
   // console.log(news);
   if (!news || news.length === 0) return null;
-
+ const affiliateNews = news?.filter(
+    (item) => item.affiliateLink
+  );
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("en-GB");
 
@@ -170,6 +180,23 @@ export default async function Blog() {
               </div>
             </>
           )}
+           {affiliateNews.slice(0, 1).map((item, index) => (
+              <div key={item._id} className="relative w-full">
+                <AffiliatePopup
+                  link={item.affiliateLink!}
+                  image={item.affiliateimage!}
+                  title={item.affiliateDiscount}
+                  price={item.affiliateprice}
+                  originalPrice={item.affiliateoriginalprice}
+                  rating={item.affiliateRating}
+                  wrapperClass="relative w-full" // mobile responsive
+                  animation="zoom"
+                  imageSize="lg"
+                  maxTitleLength={45}
+                  ctaText="Buy Now"
+                />
+              </div>
+            ))}
         </div>
       </div>
     </div>

@@ -60,51 +60,70 @@ export default async function QRPage() {
   ];
   return (
     <main className="min-h-screen bg-gray-50 px-4 md:px-10 py-2 max-w-6xl mx-auto">
-     
+
       {/* Hero Section */}
       <div className='relative'>
-        
-      <section className="text-center mb-12 ">
-        
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Free QR Code Generator & URL Shortener
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
-          Instantly generate QR codes and shorten long URLs for marketing, business, social media, or affiliate promotions.
-        </p>
-      </section>
 
-      {/* QR Tool Section (Client Component) */}
-      <section className="bg-white rounded-xl shadow-lg p-6 mb-12">
-        <QRCodeShortener />
-      </section>
+        <section className="text-center mb-12 ">
 
-       {affiliateNews.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-bold mb-4">
-            Sponsored Products
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {affiliateNews.map((item, index) => (
-              <AffiliatePopup
-                key={item._id}
-                link={item.affiliateLink}
-                image={item.affiliateimage}
-                title={item.affiliateDiscount}
-                price={item.affiliateprice}
-                originalPrice={item.affiliateoriginalprice}
-                discount={item.affiliateDiscount}
-                rating={item.affiliateRating}
-                position={positions[index % positions.length]} // ✅ type-safe
-
-              />
-            ))}
-          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Free QR Code Generator & URL Shortener
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+            Instantly generate QR codes and shorten long URLs for marketing, business, social media, or affiliate promotions.
+          </p>
         </section>
-      )}
 
-</div>
+        {/* QR Tool Section (Client Component) */}
+        <section className="bg-white rounded-xl shadow-lg p-6 mb-12">
+          <QRCodeShortener />
+        </section>
+
+        {affiliateNews.length > 0 && (
+          <section className="mt-10">
+
+            {affiliateNews.length > 0 && (
+              <section className="mt-10 relative">
+
+
+                {/* Floating Popups */}
+                {affiliateNews.slice(0, 4).map((item, index) => (
+                  <AffiliatePopup
+                    key={item._id}
+                    link={item.affiliateLink}
+                    image={item.affiliateimage}
+                    title={item.affiliateDiscount || item.title}
+                    price={item.affiliateprice}
+                    originalPrice={item.affiliateoriginalprice}
+                    rating={item.affiliateRating}
+                    width='w-72'
+                     ZIndex='z-50'
+                    // Floating positions
+                    wrapperClass={
+                      index % 5 === 0
+                        ? "fixed top-5 left-5"
+                        : index % 5 === 1
+                          ? "fixed top-5 right-5"
+                          : index % 5 === 2
+                            ? "fixed bottom-5 left-5"
+                            : index % 5 === 3
+                              ? "fixed bottom-5 right-5"
+                              : "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    }
+
+                    animation="zoom"
+                    imageSize="lg"
+                    maxTitleLength={45}
+                    ctaText="Buy Now"
+                  />
+                ))}
+              </section>
+            )}
+
+          </section>
+        )}
+
+      </div>
       {/* Affiliate Highlight Section */}
       <section className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl p-6 mb-12 relative overflow-hidden">
         <div className="grid md:grid-cols-2 gap-6 items-center">
@@ -129,13 +148,23 @@ export default async function QRPage() {
 
           {/* Image */}
           <div className="relative flex justify-center">
-            <Image
-              src="/affiliate-qr-demo.png"
-              alt="Affiliate QR marketing"
-              width={300}
-              height={300}
-              className="rounded-lg animate-float"
-            />
+             {affiliateNews.slice(0, 1).map((item, index) => (
+                                   <div key={item._id} className="relative w-full">
+                                     <AffiliatePopup
+                                       link={item.affiliateLink!}
+                                       image={item.affiliateimage!}
+                                       title={item.affiliateDiscount}
+                                       price={item.affiliateprice}
+                                       originalPrice={item.affiliateoriginalprice}
+                                       rating={item.affiliateRating}
+                                       wrapperClass="relative w-full" // mobile responsive
+                                       animation="zoom"
+                                       imageSize="lg"
+                                       maxTitleLength={45}
+                                       ctaText="Buy Now"
+                                     />
+                                   </div>
+                                 ))}
           </div>
         </div>
       </section>
