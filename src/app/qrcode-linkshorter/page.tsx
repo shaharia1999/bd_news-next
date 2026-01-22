@@ -171,7 +171,7 @@ export default async function QRPage() {
 
       {/* SEO Article Content */}
       <article className="prose max-w-none">
-        <h2>Why Use a QR Code Generator?</h2>
+        <h2 className='font-bold text-2xl'>Why Use a QR Code Generator?</h2>
         <p>
           QR codes allow users to instantly access websites, product pages, payment links, or download files without typing long URLs.
           This is especially useful for affiliate marketing, social media campaigns, and business promotions.
