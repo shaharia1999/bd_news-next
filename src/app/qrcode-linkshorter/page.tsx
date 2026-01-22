@@ -4,13 +4,68 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import QRCodeShortener from './_component/QRCodeShortener';
+import { serverFetchData } from '../lib/serverFetch';
+import AffiliatePopup from '../component/AfilitateCart';
 
-export default function QRPage() {
+
+interface News {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  mainImage: string;
+  category: string;
+  createdAt: string;
+  images?: string[];
+  visitCount?: number | string;
+  author?: string;
+  source?: string;
+
+  // Affiliate fields
+  affiliateLink?: string;
+  affiliateimage?: string;
+  affiliateprice?: string;
+  affiliateoriginalprice?: string;
+  affiliateDiscount?: string;
+  affiliateRating?: string;
+}
+
+interface NewsApiResponse {
+  total: number;
+  page: number;
+  pages: number;
+  news: News[];
+}
+export default async function QRPage() {
+  const { news } = await serverFetchData<NewsApiResponse>(
+    'news?sortBy=createdAt&sortOrder=desc&limit=10&page=1',
+    {
+      cache: 'default',
+      next: { revalidate: 60 }
+    }
+  );
+  // console.log('Breaking news data:', news);
+  if (!news || news.length === 0) return null;
+
+  const affiliateNews = news?.filter(
+    (item) => item.affiliateLink
+  );
+  // positions array with correct type
+  const positions: Array<"top-right" | "top-left" | "bottom-right" | "bottom-left" | "center"> = [
+    "top-left",
+    "top-right",
+    "bottom-left",
+    "bottom-right",
+    "center",
+  ];
   return (
-    <main className="min-h-screen bg-gray-50 px-4 md:px-10 py-10 max-w-6xl mx-auto">
-      
+    <main className="min-h-screen bg-gray-50 px-4 md:px-10 py-2 max-w-6xl mx-auto">
+     
       {/* Hero Section */}
-      <section className="text-center mb-12">
+      <div className='relative'>
+        
+      <section className="text-center mb-12 ">
+        
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Free QR Code Generator & URL Shortener
         </h1>
@@ -21,9 +76,35 @@ export default function QRPage() {
 
       {/* QR Tool Section (Client Component) */}
       <section className="bg-white rounded-xl shadow-lg p-6 mb-12">
-        <QRCodeShortener/>
+        <QRCodeShortener />
       </section>
 
+       {affiliateNews.length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-xl font-bold mb-4">
+            Sponsored Products
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {affiliateNews.map((item, index) => (
+              <AffiliatePopup
+                key={item._id}
+                link={item.affiliateLink}
+                image={item.affiliateimage}
+                title={item.affiliateDiscount}
+                price={item.affiliateprice}
+                originalPrice={item.affiliateoriginalprice}
+                discount={item.affiliateDiscount}
+                rating={item.affiliateRating}
+                position={positions[index % positions.length]} // ✅ type-safe
+
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+</div>
       {/* Affiliate Highlight Section */}
       <section className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl p-6 mb-12 relative overflow-hidden">
         <div className="grid md:grid-cols-2 gap-6 items-center">
@@ -33,7 +114,7 @@ export default function QRPage() {
               Promote Products Using QR Codes
             </h2>
             <p className="text-indigo-100 text-sm mb-4">
-              Convert any affiliate link into a QR code and share it on posters, packaging, websites, or social media to boost conversions.  
+              Convert any affiliate link into a QR code and share it on posters, packaging, websites, or social media to boost conversions.
               Generate your QR code instantly and track clicks easily.
             </p>
             <Link
@@ -63,7 +144,7 @@ export default function QRPage() {
       <article className="prose max-w-none">
         <h2>Why Use a QR Code Generator?</h2>
         <p>
-          QR codes allow users to instantly access websites, product pages, payment links, or download files without typing long URLs. 
+          QR codes allow users to instantly access websites, product pages, payment links, or download files without typing long URLs.
           This is especially useful for affiliate marketing, social media campaigns, and business promotions.
         </p>
 
@@ -78,7 +159,7 @@ export default function QRPage() {
 
         <h2>Short Links for Better Tracking</h2>
         <p>
-          Shortened links look clean, are easier to share, and improve click tracking for affiliate campaigns and marketing analytics. 
+          Shortened links look clean, are easier to share, and improve click tracking for affiliate campaigns and marketing analytics.
           Combine short links with QR codes for maximum impact.
         </p>
 

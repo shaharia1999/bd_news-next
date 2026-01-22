@@ -18,7 +18,7 @@ interface News {
   visitCount?: number | string;
   author?: string;
   source?: string;
-  
+
   // Affiliate fields
   affiliateLink?: string;
   affiliateimage?: string;
@@ -52,7 +52,7 @@ export default async function BreakingNews() {
   const sideNews = news.slice(1, 5);
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString('en-GB');
-{/* Helper to ensure link is absolute */}
+  {/* Helper to ensure link is absolute */ }
 
   return (
     <div className="px-3 md:px-4 2xl:mt-5 lg:mt-5 mt-2 w-full lg:px-7 ">
@@ -67,7 +67,7 @@ export default async function BreakingNews() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     src={bannerNews.mainImage}
                     alt={bannerNews.title}
-                   
+
                     fill
                     priority
                   />
@@ -81,21 +81,21 @@ export default async function BreakingNews() {
                 >
                   {bannerNews.title}
                 </a>
-               
+
               </div>
- {bannerNews.affiliateLink && (
-  <AffiliatePopup
-    link={bannerNews.affiliateLink}
-    image={bannerNews.affiliateimage}
-    title={bannerNews.affiliateDiscount}
-    price={bannerNews.affiliateprice}
-    originalPrice={bannerNews.affiliateoriginalprice}
-    // discount={bannerNews.affiliateDiscount}
-    rating={bannerNews.affiliateRating}
-    position="top-right"
-    animation="zoom"
-  />
-)}
+              {bannerNews.affiliateLink && (
+                <AffiliatePopup
+                  link={bannerNews.affiliateLink}
+                  image={bannerNews.affiliateimage}
+                  title={bannerNews.affiliateDiscount}
+                  price={bannerNews.affiliateprice}
+                  originalPrice={bannerNews.affiliateoriginalprice}
+                  // discount={bannerNews.affiliateDiscount}
+                  rating={bannerNews.affiliateRating}
+                  position="top-right"
+                  animation="zoom"
+                />
+              )}
 
             </article>
           )}

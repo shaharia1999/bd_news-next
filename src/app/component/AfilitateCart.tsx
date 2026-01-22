@@ -11,7 +11,7 @@ type AffiliatePopupProps = {
   discount?: string;
   rating?: string;
 
-  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
+  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left"|"center";
   width?: string; // e.g. "w-64", "w-72"
   bg?: string; // e.g. "bg-gray-900"
   textColor?: string;
@@ -37,12 +37,19 @@ export default function AffiliatePopup({
   textColor = "text-white",
   animation = "fade",
 }: AffiliatePopupProps) {
+  // const posMap = {
+  //   "top-right": "top-5 right-5",
+  //   "top-left": "top-5 left-5",
+  //   "bottom-right": "bottom-5 right-5",
+  //   "bottom-left": "bottom-5 left-5",
+  // };
   const posMap = {
-    "top-right": "top-5 right-5",
-    "top-left": "top-5 left-5",
-    "bottom-right": "bottom-5 right-5",
-    "bottom-left": "bottom-5 left-5",
-  };
+  "top-right": "top-5 right-5",
+  "top-left": "top-5 left-5",
+  "bottom-right": "bottom-5 right-5",
+  "bottom-left": "bottom-5 left-5",
+  "center": "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+};
 
   const animMap = {
     fade: "animate-fadeIn",
