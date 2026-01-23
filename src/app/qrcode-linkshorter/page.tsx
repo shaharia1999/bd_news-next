@@ -87,7 +87,7 @@ export default async function QRPage() {
 
 
                 {/* Floating Popups */}
-                {affiliateNews.slice(0, 4).map((item, index) => (
+                {/* {affiliateNews.slice(0, 4).map((item, index) => (
                   <AffiliatePopup
                     key={item._id}
                     link={item.affiliateLink}
@@ -97,8 +97,7 @@ export default async function QRPage() {
                     originalPrice={item.affiliateoriginalprice}
                     rating={item.affiliateRating}
                     width='w-72'
-                     ZIndex='z-50'
-                    // Floating positions
+                    ZIndex='z-50'
                     wrapperClass={
                       index % 5 === 0
                         ? "fixed top-5 left-5"
@@ -116,7 +115,7 @@ export default async function QRPage() {
                     maxTitleLength={45}
                     ctaText="Buy Now"
                   />
-                ))}
+                ))} */}
               </section>
             )}
 
@@ -148,23 +147,23 @@ export default async function QRPage() {
 
           {/* Image */}
           <div className="relative flex justify-center">
-             {affiliateNews.slice(0, 1).map((item, index) => (
-                                   <div key={item._id} className="relative w-full">
-                                     <AffiliatePopup
-                                       link={item.affiliateLink!}
-                                       image={item.affiliateimage!}
-                                       title={item.affiliateDiscount}
-                                       price={item.affiliateprice}
-                                       originalPrice={item.affiliateoriginalprice}
-                                       rating={item.affiliateRating}
-                                       wrapperClass="relative w-full" // mobile responsive
-                                       animation="zoom"
-                                       imageSize="lg"
-                                       maxTitleLength={45}
-                                       ctaText="Buy Now"
-                                     />
-                                   </div>
-                                 ))}
+            {affiliateNews.slice(0, 1).map((item, index) => (
+              <div key={item._id} className="relative w-full">
+                <AffiliatePopup
+                  link={item.affiliateLink!}
+                  image={item.affiliateimage!}
+                  title={item.affiliateDiscount}
+                  price={item.affiliateprice}
+                  originalPrice={item.affiliateoriginalprice}
+                  rating={item.affiliateRating}
+                  wrapperClass="relative w-full" // mobile responsive
+                  animation="zoom"
+                  imageSize="lg"
+                  maxTitleLength={45}
+                  ctaText="Buy Now"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
