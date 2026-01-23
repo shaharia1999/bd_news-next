@@ -68,7 +68,7 @@ export async function serverFetchData<T>(
     }
 
     const json = await response.json();
-    console.log('Fetched data:', json);
+    // console.log('Fetched data:', json);
     return json;
   } catch (error) {
     console.error('Failed to fetch data:', error);

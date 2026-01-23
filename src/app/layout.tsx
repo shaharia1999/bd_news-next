@@ -65,14 +65,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
-         {/* ✅ Add RSS/Atom Feed link here */}
+        {/* ✅ Add RSS/Atom Feed link here */}
         <link
           rel="alternate"
           type="application/rss+xml"
           href="https://bd-news-next.vercel.app/rss.xml"
           title="NewsUS RSS Feed"
         />
-<script src="https://pl28548063.effectivegatecpm.com/c5/c0/ed/c5c0ed86897038aeee6fa4533abde257.js"></script>
+       
         {/* Schema.org JSON-LD for Organization */}
         <script
           type="application/ld+json"
@@ -92,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6058153331113323"
-     crossOrigin="anonymous"></script>
+          crossOrigin="anonymous"></script>
       </head>
       <body className="relative font-publicsans bg-gray-50 text-gray-900">
         {/* Google Analytics */}
@@ -100,6 +100,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://www.googletagmanager.com/gtag/js?id=G-LJ1L2D3PTF"
           strategy="afterInteractive"
         />
+     
+        <Script
+  src="https://pl28548063.effectivegatecpm.com/c5/c0/ed/c5c0ed86897038aeee6fa4533abde257.js"
+  strategy="afterInteractive"
+/>
+
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];

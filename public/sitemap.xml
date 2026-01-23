@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://bd-news-next.vercel.app/Blog</loc><lastmod>2026-01-20T17:14:32.045Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Poem</loc><lastmod>2026-01-20T17:14:32.046Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Entertainment</loc><lastmod>2026-01-20T17:14:32.046Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Politics</loc><lastmod>2026-01-20T17:14:32.046Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Sports</loc><lastmod>2026-01-20T17:14:32.046Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Technology</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/Tranding</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/about</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/contact</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/privacy-policy</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bd-news-next.vercel.app/video-downloder</loc><lastmod>2026-01-20T17:14:32.047Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Blog</loc><lastmod>2026-01-23T15:56:59.345Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Entertainment</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Poem</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Sports</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Technology</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Tranding</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/about</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/contact</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/Politics</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/qrcode-linkshorter</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bd-news-next.vercel.app/privacy-policy</loc><lastmod>2026-01-23T15:56:59.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
