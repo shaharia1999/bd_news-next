@@ -57,7 +57,8 @@ export const metadata: Metadata = {
     images: ["https://www.newsus.shop/og-image.jpg"],
   },
   verification: {
-    google: "D_r6_5MOFhQqkLKQwOmMBjBPWL37UhsjrFX7nebGFr0",
+    google: "UYTNkdzJ3B4ahGpq5dimzr4mkxf1uLefMFjq0KetDkw",
+    
   },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
