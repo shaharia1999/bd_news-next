@@ -6,4 +6,4 @@ Allow: /
 Host: https://bd-news-next.vercel.app
 
 # Sitemaps
-Sitemap: https://bd-news-next.vercel.app/sitemap.xml
+Sitemap: https://www.newsus.shop/sitemap.xml

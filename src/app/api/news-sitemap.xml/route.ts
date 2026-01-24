@@ -32,7 +32,7 @@ export async function GET() {
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 ${recentPosts.map(post => `
   <url>
-    <loc>https://bd-news-next.vercel.app/news/${post.slug}</loc>
+    <loc>https://www.newsus.shop/news/${post.slug}</loc>
     <news:news>
       <news:publication>
         <news:name>NewsUs</news:name>
