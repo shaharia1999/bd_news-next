@@ -230,7 +230,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/qr-generator`,
+      url: `${siteUrl}/Link-Sortener-Qr-Code`,
       type: 'website',
       siteName: 'NewsUS',
       images: [
@@ -244,7 +244,7 @@ export async function generateMetadata() {
       images: [image],
     },
     alternates: {
-      canonical: `${siteUrl}/qr-generator`,
+      canonical: `${siteUrl}/Link-Sortener-Qr-Code`,
     },
   };
 }

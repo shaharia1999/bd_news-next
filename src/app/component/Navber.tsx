@@ -14,6 +14,7 @@ const subCategoriesMap: { [key: string]: string[] } = {
   Blog: ['Health', 'Food', 'Finance', 'Travel', 'Story', 'Inspire', 'History', 'Novel', 'Person', 'Others'],
   Poem: ['Romantic', 'Nature', 'Patriotic', 'Spiritual', 'Others'],
   Tranding: ['Viral', 'Internet', 'Social', 'Memes', 'Others'],
+  Services: ['Link-Sortener-Qr-Code', 'Youtube-Video-Downloder', 'Instragram-Video-Downloader',],
 };
 
 const Navbar = () => {
