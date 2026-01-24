@@ -101,16 +101,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://www.googletagmanager.com/gtag/js?id=G-LJ1L2D3PTF"
           strategy="afterInteractive"
         />
-{/*      
+     
         <Script
-  src="https://pl28548063.effectivegatecpm.com/c5/c0/ed/c5c0ed86897038aeee6fa4533abde257.js"
-  strategy="afterInteractive"
-/> */}
-   <Script
   src="https://pl28555202.effectivegatecpm.com/9d/52/ee/9d52ee4d4a79f89173bdef263ae31024.js"
   strategy="afterInteractive"
 />
-<script src=""></script>
+   
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
