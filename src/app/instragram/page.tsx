@@ -1,12 +1,10 @@
 import React from 'react'
-import YouTubeDownloader from './_component/YoutubeVideoDownloder'
 import InstagramDownloader from '../qrcode-linkshorter/_component/Instragram'
 
 const page = () => {
   return (
     <div>
-        <YouTubeDownloader/>
-        {/* <InstagramDownloader/> */}
+        <InstagramDownloader/>
     </div>
   )
 }

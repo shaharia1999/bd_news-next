@@ -9,31 +9,31 @@ export default function YouTubeDownloader() {
   const [downloadUrl, setDownloadUrl] = useState('')
   const [title, setTitle] = useState('')
   const [format, setFormat] = useState<Format>('360p')
-
-  const handleDownload = async () => {
-    if (!url) return alert('Please enter a YouTube URL')
-    setLoading(true)
-    setDownloadUrl('')
-    setTitle('')
-
-    try {
-      const res = await fetch('https://ecommerce-web-ago1.vercel.app/download/youtube', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
-      })
-      const data = await res.json()
-
-      if (!res.ok) throw new Error(data.msg || 'Download failed')
-
-      setDownloadUrl(data.downloadUrl)
-      setTitle(data.title)
-    } catch (err: any) {
-      alert(err.message)
-    } finally {
-      setLoading(false)
-    }
+const handleDownload = () => {
+  if (!url) {
+    alert('Please enter a YouTube URL')
+    return
   }
+
+  // Basic YouTube URL validation
+  if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+    alert('Please enter a valid YouTube URL')
+    return
+  }
+
+  // Convert to ssyoutube
+  let downloadLink = url
+
+  if (url.includes('youtube.com')) {
+    downloadLink = url.replace('https://www.youtube.com', 'https://www.ssyoutube.com')
+  } else if (url.includes('youtu.be')) {
+    downloadLink = url.replace('https://youtu.be', 'https://www.ssyoutube.com/watch?v=')
+  }
+
+  // Open in new tab
+  window.open(downloadLink, '_blank')
+}
+
 
   const formats: Format[] = ['360p', '720p', '1080p', 'mp3']
 
@@ -55,7 +55,7 @@ export default function YouTubeDownloader() {
             placeholder="Paste YouTube video link here..."
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
           <button
             onClick={handleDownload}
