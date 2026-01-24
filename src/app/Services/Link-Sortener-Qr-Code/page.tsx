@@ -4,8 +4,10 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import QRCodeShortener from './_component/QRCodeShortener';
-import { serverFetchData } from '../lib/serverFetch';
-import AffiliatePopup from '../component/AfilitateCart';
+import { serverFetchData } from '../../lib/serverFetch';
+import AffiliatePopup from '../../component/AfilitateCart';
+// import { serverFetchData } from '../lib/serverFetch';
+// import AffiliatePopup from '../component/AfilitateCart';
 
 
 interface News {
