@@ -13,7 +13,7 @@ const nextConfig = {
             value: 'newsus.shop', // non-www domain
           },
         ],
-        destination: 'https://bd-news-next.vercel.app/:path*', // redirect to www
+        destination: 'https://www.newsus.shop/:path*', // redirect to www
         permanent: true, // 301 redirect
       },
     ];
