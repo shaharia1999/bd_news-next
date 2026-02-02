@@ -115,14 +115,16 @@ export default async function Sports() {
           mainNews && <div className="lg:col-span-4 md:col-span-4">
             <div className="relative w-full ">
               <Link href={`/news/${mainNews.slug}`}>
-                <Image
+               <Image
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
-                  src={mainNews.mainImage}
-                  alt={mainNews.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                
+                              src={mainNews?.mainImage}
+                              alt={mainNews?.title}
+                              width={400}
+                              height={400}
+                              className="w-full object-cover"
+                            />
+                
               </Link>
             </div>
             <div className="py-2 px-1">
