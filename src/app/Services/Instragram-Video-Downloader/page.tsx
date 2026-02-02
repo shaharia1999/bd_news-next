@@ -4,7 +4,7 @@ import InstagramDownloader from '../Link-Sortener-Qr-Code/_component/Instragram'
 
 // ✅ Server component supports metadata
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
   const title = `Free Instagram Video Downloader | Save Instagram Reels & Videos`;
   const description = `Download Instagram videos, reels, and stories instantly for free. No login required. Save Instagram content to your device easily and share anytime.`;
   const image = `${siteUrl}/instagram-video-og.jpg`;

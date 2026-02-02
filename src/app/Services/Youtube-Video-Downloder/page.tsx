@@ -4,7 +4,7 @@ import YouTubeDownloader from './_component/YoutubeVideoDownloder';
 
 // ✅ Server component supports metadata
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
   const title = `Free YouTube Video Downloader | Save YouTube Videos & Shorts`;
   const description = `Download YouTube videos and shorts instantly for free. No login required. Save your favorite YouTube content to your device and watch offline anytime.`;
   const image = `${siteUrl}/youtube-video-og.jpg`;

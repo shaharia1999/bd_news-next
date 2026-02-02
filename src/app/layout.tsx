@@ -106,6 +106,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   src="https://pl28555202.effectivegatecpm.com/9d/52/ee/9d52ee4d4a79f89173bdef263ae31024.js"
   strategy="afterInteractive"
 />
+        <Script
+  src="https://pl28555202.effectivegatecpm.com/9d/52/ee/9d52ee4d4a79f89173bdef263ae31024.js"
+  strategy="afterInteractive"
+/>
+  <Script
+      src="https://pl28569165.effectivegatecpm.com/4c/14/c8/4c14c8a4492e264292774621dd73efec.js"
+      strategy="afterInteractive"
+    />
+  
    
         <Script id="google-analytics" strategy="afterInteractive">
           {`

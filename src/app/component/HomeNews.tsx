@@ -56,7 +56,7 @@ export default async function HomeNews() {
       </div>
       <div className="All-News grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 gap-3 2xl:gap-8">
         {news?.map((item,index) => (
-          <>
+          <div key={index}>
           <Link href={`/news/${item.slug}`} key={item._id}>
 
             <article key={item._id}>
@@ -123,7 +123,7 @@ export default async function HomeNews() {
           />
         </div>
       )}
-          </>
+          </div>
         ))}
       </div>
     </div>

@@ -26,7 +26,7 @@ export default function Home() {
   );
 }
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bd-news-next.vercel.app";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
 
   const title = "NewsUS: Top Breaking News & Trending Stories Today";
   const description =
@@ -46,12 +46,12 @@ export async function generateMetadata() {
       "entertainment news",
     ],
     alternates: {
-      canonical: siteUrl, // ✅ Added canonical URL
+      canonical: "https://www.newsus.shop", // ✅ Added canonical URL
     },
     openGraph: {
       title,
       description,
-      url: siteUrl,
+      url: "https://www.newsus.shop",
       type: "website",
       images: [{ url: image }],
     },

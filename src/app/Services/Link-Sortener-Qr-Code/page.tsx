@@ -204,7 +204,7 @@ export default async function QRPage() {
 
 // ✅ Server component supports metadata
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
   const title = `Free QR Code Generator & URL Shortener | Create Affiliate QR Links`;
   const description = `Generate free QR codes and shorten long URLs instantly. Perfect for affiliate marketing, social media, business promotions, and product campaigns. Create your affiliate QR link today.`;
   const image = `${siteUrl}/qr-shortener-og.jpg`;

@@ -52,7 +52,7 @@ export default EntertainmenPage;
 
 
 export async function generateMetadata() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bd-news-next.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.newsus.shop';
   const subCategories = subCategoriesMap['Blog'] || [];
   const categoriesList = subCategories.join(', ');
 
@@ -96,7 +96,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Blog`,
+      url: "https://www.newsus.shop/Blog",
       type: 'website',
       images: [
         {
