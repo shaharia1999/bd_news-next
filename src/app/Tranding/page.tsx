@@ -48,7 +48,7 @@ const TrendingPage = async () => {
 export default TrendingPage;
 export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.newsus.shop";
-  const subCategories = subCategoriesMap['Trending'] || [];
+  const subCategories = subCategoriesMap['Tranding'] || [];
   const categoriesList = subCategories.join(', ');
 
   const title = `Latest Trending News, Viral Stories & Hot Topics | NewsUS`;
@@ -88,7 +88,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Trending`,
+      url: `${siteUrl}/Tranding`,
       type: 'website',
       images: [
         {
@@ -113,7 +113,7 @@ export async function generateMetadata() {
       ],
     },
     alternates: {
-      canonical: `${siteUrl}/Trending`,
+      canonical: `${siteUrl}/Tranding`,
     },
   };
 }
