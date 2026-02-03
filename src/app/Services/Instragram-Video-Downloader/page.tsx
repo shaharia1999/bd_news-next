@@ -31,7 +31,7 @@ export async function generateMetadata() {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/Instagram-Video-Downloader`,
+      url: `${siteUrl}/Services/Instagram-Video-Downloader`,
       type: 'website',
       siteName: 'NewsUS',
       images: [
@@ -45,7 +45,7 @@ export async function generateMetadata() {
       images: [image],
     },
     alternates: {
-      canonical: `${siteUrl}/Instagram-Video-Downloader`,
+      canonical: `${siteUrl}/Services/Instagram-Video-Downloader`,
     },
   };
 }
