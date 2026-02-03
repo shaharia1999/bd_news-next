@@ -32,7 +32,7 @@ const Footer = () => {
             <li>Email: <a href="/contact" className="text-blue-600 hover:underline">adeptshaharia@gmail.com</a></li>
             <li>Phone: +8801707018322</li>
             <li>Address: Brahmanbaria, Bangladesh</li>
-              <a href="/qrcode-linkshorter" className="text-blue-600 hover:underline"> QR-CODE GENARETOR & LINK SHORTER</a> 
+              <a href="/Services/Link-Sortener-Qr-Code" className="text-blue-600 hover:underline"> QR-CODE GENARETOR & LINK SHORTER</a> 
           </ul>
                       <a href="/contact" className="text-blue-600 hover:underline">Tuch me</a> 
                     
