@@ -65,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <meta name="google-adsense-account" content="ca-pub-6058153331113323"></meta>
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
         {/* ✅ Add RSS/Atom Feed link here */}
         <link
